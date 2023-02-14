@@ -1,4 +1,16 @@
+# Software Engineers:
+Clayton Kristiansen
+
+Nadxhieli Juarez
+
+David Windisch
+
+Justin Feng
+
 # Running The Server
+
+## We recommend using this Docker Image to build and run this project
+https://hub.docker.com/repository/docker/claytonkristiansen/capstone/general
 
 This website is comprised of three main processes: a site hosted on port 3000 and two servers hosted on ports 3001 and 3002. All three must be running for full functionality to the webpage. The website process can be run by simply entering "npm run build" from the aggie-fangs directory. The JDoodle API server (on port 3000) can be run by entering "node index.js" from the aggie-fangs/backend directory. The Notion API server (on port 3001) can be run by entering "node server.js" from the aggie-fangs/backend directory.
 
