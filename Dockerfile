@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
-FROM node:18-alpine
-WORKDIR /app
+FROM ubuntu:latest
+RUN apt-get update
+# WORKDIR /
 COPY . .
-# RUN yarn install --production
-CMD ["node", ""]
-EXPOSE 3000
+CMD ["bash", ""]
+# EXPOSE 3000
