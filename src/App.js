@@ -1,23 +1,25 @@
 import React from 'react';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import { ThemeProvider } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
+// we need to run this command in order to import react-router-dom
+//npm install react-router-dom --save
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from "./pages";
+import Home from "./pages/home";
 import Applications from './pages/applications';
 import Network from './pages/network';
 import InterviewPrep from './pages/interviewPrep';
 import Coding from './pages/coding';
-import GooglePrep from './pages/googlePrep'
-import FacebookPrep from './pages/facebookPrep';
-import AmazonPrep from './pages/AmazonPrep';
-import NetflixPrep from './pages/NetflixPrep';
-import ApplePrep from './pages/ApplePrep';
-import MicrosoftPrep from './pages/microsoftPrep';
+import GooglePrep from './pages/company_pages/googlePrep'
+import FacebookPrep from './pages/company_pages/facebookPrep';
+import AmazonPrep from './pages/company_pages/amazonPrep';
+import NetflixPrep from './pages/company_pages/netflixPrep';
+import ApplePrep from './pages/company_pages/applePrep';
+import MicrosoftPrep from './pages/company_pages/microsoftPrep';
 import Guide1 from "./pages/guide1";
 import Guide2 from "./pages/guide2";
 import Guide3 from "./pages/guide3";
-import FeedbackForm from "./pages/feedbackform";
+import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import "./App.css";
 

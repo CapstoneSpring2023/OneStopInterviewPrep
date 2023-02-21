@@ -1,5 +1,5 @@
 import React from 'react'
-import "./pages.css";
+import "./formatting/pages.css";
 
 const Applications = () => {
   return (
