@@ -22,6 +22,16 @@ import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import "./App.css";
+import logo from "./logo.svg";
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -93,7 +103,7 @@ window.onload = function() {
   localStorage.setItem("comp-address", publicCompAddress);
 }
 
-function App() {
+function App({ signOut }) {
   document.title = "Aggie Fangs";
 
   const whichStyle = () => {
@@ -109,6 +119,13 @@ function App() {
       <Router>
         {whichStyle()}
         <Navbar />
+        <View className="App">
+          <Card>
+            <Image src={logo} className="App-logo" alt="logo" />
+            <Heading level={1}>We now have Auth!</Heading>
+          </Card>
+          <Button onClick={signOut}>Sign Out</Button>
+        </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
@@ -128,7 +145,8 @@ function App() {
           <Route path="/settings" element = {<Settings/>}/>
         </Routes>
       </Router>
+      
   );
 }
 
-export default App;
+export default withAuthenticator(App);
