@@ -8,6 +8,8 @@ RUN yes | apt install curl --fix-missing
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+RUN wget https://go.microsoft.com/fwlink/?LinkID=760868 \
+    apt install ./code_1.75.1-1675893397_amd64.deb
 
 RUN git clone https://github.com/CapstoneSpring2023/OneStopInterviewPrep.git ~/repos/OneStopInterviewPrep
 
