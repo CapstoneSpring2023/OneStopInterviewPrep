@@ -36,7 +36,7 @@ const GlobalStyle1 = createGlobalStyle`
     --lnkcolor: #BCB8B1;
     --lnk2color: #262948;
     --aboutimgshadow: rgba(127, 121, 121, 0.5);
-    --aboutimgtxtcolor: #500000;
+    --aboutimgtxtcolor: #F6EEE0;
   }
 `
 
