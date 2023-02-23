@@ -20,9 +20,6 @@ const Navbar = () => {
             <NavLink to="/coding" activeStyle>
                 <div class = "nav-link">Coding Problems</div>
             </NavLink>
-            <NavLink to="/mockInterview" activeStyle>
-                <div class = "nav-link">Mock Interview</div>
-            </NavLink>
             <NavLink to="/guide1" activeStyle>
                 <div class = "nav-link">Interview Guides</div>
             </NavLink>
