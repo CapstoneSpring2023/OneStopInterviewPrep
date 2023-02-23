@@ -6,7 +6,7 @@ const Navbar = () => {
     <>
     <Nav>
         <NavLink exact to="/">
-            <img src={logo} alt="logo" height="100%"/>
+            <img src={logo} alt="logo" height="110%"/>
             <h1 class="nav-title">Aggie Presence</h1>
         </NavLink>
         <Bars />
