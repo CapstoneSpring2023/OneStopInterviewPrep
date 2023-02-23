@@ -1,13 +1,13 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavbarElements";
-import logo from "./../../images/Aggie_Fangs_Logo_Transparent.png";
+import logo from "./../../images/ap_dark_logo.png";
 const Navbar = () => {
   return (
     <>
     <Nav>
         <NavLink exact to="/">
             <img src={logo} alt="logo" height="100%"/>
-            <h1 class="nav-title">Aggie Fangs</h1>
+            <h1 class="nav-title">Aggie Presence</h1>
         </NavLink>
         <Bars />
         <NavMenu>
