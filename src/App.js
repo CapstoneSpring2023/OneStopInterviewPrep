@@ -18,6 +18,7 @@ import Guide2 from "./pages/guide2";
 import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
+import MockInterview from "./pages/mockInterview";
 import "./App.css";
 
 const GlobalStyle1 = createGlobalStyle`
@@ -113,6 +114,7 @@ function App() {
           <Route path="/guide2" element = {<Guide2/>}/>
           <Route path="/guide3" element = {<Guide3/>}/>
           <Route path="/settings" element = {<Settings/>}/>
+          <Route path="/mockInterview" element = {<MockInterview/>}/>
         </Routes>
       </Router>
   );
