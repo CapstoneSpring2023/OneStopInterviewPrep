@@ -1,11 +1,8 @@
 import React from 'react';
-import Navbar from './components/navbar';
-import { ThemeProvider } from 'styled-components';
+import Navbar from './components/navbar/Navbar';
 import { createGlobalStyle } from 'styled-components';
-// we need to run this command in order to import react-router-dom
-//npm install react-router-dom --save
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from "./pages/home";
+import Home from "./pages/about_us";
 import Applications from './pages/applications';
 import Network from './pages/network';
 import InterviewPrep from './pages/interviewPrep';
@@ -27,54 +24,44 @@ import "./App.css";
 const GlobalStyle1 = createGlobalStyle`
   html {
     --bgcolor: #fafafa;
-    --bg2color: #e4e5f1;
-    --btncolor: #484b6a;
+    --bg2color: #BCB8B1;
+    --btncolor: #2E4052;
     --btntxtcolor: #fafafa;
-    --navcolor: #484b6a;
-    --navtxtcolor: #fafafa;
-    --navtxtcolor2: #B6CCD7;
-    --hdrcolor: #6082B6;
-    --txtcolor: #484b6a;
+    --navcolor: #F6EEE0;
+    --navtxtcolor: #500000;
+    --navtxtcolor2: #500000;
+    --hdrcolor: #8f4646;
+    --txtcolor: #2E4052;
     --brdrcolor: #0d0d0d;
     --shdwcolor: #ccc;
-    --lnkcolor: #406094;
+    --lnkcolor: #BCB8B1;
     --lnk2color: #262948;
+    --aboutimgshadow: rgba(127, 121, 121, 0.5);
+    --aboutimgtxtcolor: #F6EEE0;
   }
 `
 
 const GlobalStyle2 = createGlobalStyle`
   html {
-    --bgcolor: #484b6a;
-    --bg2color: #717283;
-    --btncolor: #9394a5;
+    --bgcolor: #170c0d;
+    --bg2color: #BCB8B1;
+    --btncolor: #BCB8B1;
     --btntxtcolor: #262948;
-    --navcolor: #262948;
+    --navcolor: #500000;
     --navtxtcolor: #fafafa;
-    --navtxtcolor2: #B6CCD7;
-    --hdrcolor: #ADD8E6;
-    --txtcolor: #fafafa;
+    --navtxtcolor2: #fafafa;
+    --hdrcolor: #F6EEE0;
+    --txtcolor: #8f4646;
     --brdrcolor: #0d0d0d;
     --shdwcolor: rgba(50,50,50,0.5);
-    --lnkcolor: #9cc7b5;
+    --lnkcolor: #F6EEE0;
     --lnk2color: #8bb6c4;
+    --aboutimgshadow: rgba(0,0,0,0.5);
+    --aboutimgtxtcolor: #F6EEE0;
   }
 `
 
-const GlobalStyleOriginal = createGlobalStyle`
-  html {
-    --bgcolor: rgb(254,251,234);
-    --bg2color: rgb(250, 250, 250);
-    --btncolor: rgb(100, 0, 0);
-    --btntxtcolor: rgb(255, 255, 255);
-    --navcolor: rgb(80, 0, 0);
-    --navtxtcolor: rgb(255, 255, 255);
-    --navtxtcolor2: #B6CCD7;
-    --hdrcolor: rgb(100, 0, 0);
-    --txtcolor: rgb(0, 0, 0);
-    --brdrcolor: #0d0d0d;
-    --shdwcolor: #ccc;
-  }
-`
+
 
 window.onload = function() {
   var defaultStyle = localStorage.getItem("current-style");
@@ -95,13 +82,13 @@ window.onload = function() {
 }
 
 function App() {
-  document.title = "Aggie Fangs";
+  document.title = "Aggie Presence";
 
   const whichStyle = () => {
     var styleInput = localStorage.getItem("current-style");
-    var thisStyle = <GlobalStyle1/>;
+    var thisStyle = <GlobalStyle2/>;
     if (styleInput == "style2") {
-      thisStyle = <GlobalStyle2/>;
+      thisStyle = <GlobalStyle1/>;
     }
     return thisStyle;
   };
