@@ -23,7 +23,7 @@ const RunButton = styled.button `
 
 const mockInterview = () => {
     return (
-        <p>MOCK INTERVIEW</p>
+        <p>MOCK INTERVIEW TEST</p>
     )
 }
 export default mockInterview;
