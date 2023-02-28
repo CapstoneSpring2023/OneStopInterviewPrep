@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
+// import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
 import CodingProblemList from "../components/coding_problems/codingProb.js";
 import Editor from "@monaco-editor/react"
