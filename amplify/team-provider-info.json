@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-onestopinterviewprep-staging-00158-authRole",
+      "UnauthRoleArn": "arn:aws:iam::251532891045:role/amplify-onestopinterviewprep-staging-00158-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::251532891045:role/amplify-onestopinterviewprep-staging-00158-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-onestopinterviewprep-staging-00158-deployment",
+      "UnauthRoleName": "amplify-onestopinterviewprep-staging-00158-unauthRole",
+      "StackName": "amplify-onestopinterviewprep-staging-00158",
+      "StackId": "arn:aws:cloudformation:us-east-2:251532891045:stack/amplify-onestopinterviewprep-staging-00158/204582a0-b244-11ed-b134-0659aa3b570e",
+      "AmplifyAppId": "d18nfltgi3s46l"
+    },
+    "categories": {
+      "auth": {
+        "onestopinterviewprepa32fa4b9": {}
+      }
+    }
+  }
+}
