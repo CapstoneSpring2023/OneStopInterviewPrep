@@ -1,12 +1,20 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavbarElements";
-import logo from "./../../images/ap_dark_logo.png";
+import logo from "./../../images/ap_dark_logo.png"; 
+import Logo from "./Logo"
+
 const Navbar = () => {
+    var styleInput = localStorage.getItem("current-style");
+    var imageURL = "./../../images/ap_dark_logo.png"; 
+    if(styleInput =="style1"){
+    } else {
+        imageURL = "./../../images/ap_light_logo.png";
+    }
   return (
     <>
     <Nav>
         <NavLink exact to="/">
-            <img src={logo} alt="logo" height="110%"/>
+            <Logo></Logo>
             <h1 class="nav-title">Aggie Presence</h1>
         </NavLink>
         <Bars />

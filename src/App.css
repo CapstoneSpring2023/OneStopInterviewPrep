@@ -282,7 +282,7 @@ input[type="radio"]:focus {
   color: var(--lnk2color);
 }
 .coding-header {
-  height: 250px;
+  height: 400px;
 }
 .coding-logo {
   left: 0;
