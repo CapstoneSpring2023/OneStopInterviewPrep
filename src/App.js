@@ -32,6 +32,7 @@ import {
   View,
   Card,
 } from "@aws-amplify/ui-react";
+import { Amplify, Auth } from 'aws-amplify';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -103,6 +104,8 @@ window.onload = function() {
   localStorage.setItem("comp-address", publicCompAddress);
 }
 
+const { attributes } = await Auth.currentAuthenticatedUser();
+
 function App({ signOut }) {
   document.title = "Aggie Fangs";
 
@@ -113,7 +116,10 @@ function App({ signOut }) {
       thisStyle = <GlobalStyle2/>;
     }
     return thisStyle;
+
   };
+
+
   
   return (
       <Router>
@@ -121,7 +127,6 @@ function App({ signOut }) {
         <Navbar />
         <View className="App">
           <Card>
-            <Image src={logo} className="App-logo" alt="logo" />
             <Heading level={1}>We now have Auth!</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
