@@ -20,6 +20,17 @@ import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
 import "./App.css";
+import logo from "./logo.svg";
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+import { Amplify, Auth } from 'aws-amplify';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -81,7 +92,7 @@ window.onload = function() {
   localStorage.setItem("comp-address", publicCompAddress);
 }
 
-function App() {
+function App({ signOut }) {
   document.title = "Aggie Presence";
 
   const whichStyle = () => {
@@ -91,12 +102,36 @@ function App() {
       thisStyle = <GlobalStyle1/>;
     }
     return thisStyle;
+
   };
-  
+  const [userName, setUserDetails] = React.useState("");
+  const [userData, setUserData] = React.useState("");
+  const [isLoading, setLoading] = React.useState(true);
+  Auth.currentAuthenticatedUser({
+    bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+  })
+    .then((user) => {
+      setUserDetails(user.username);
+      setUserData(user.attributes.email);
+      setLoading(false);
+    })
+    .catch((err) => console.log(err));
+
+  if(isLoading) {
+    return <div>Loading...</div>
+  }
+  // var userName = userDetails.username;
   return (
       <Router>
         {whichStyle()}
         <Navbar />
+        <View className="App">
+          <Card>
+            <Heading level={1}>{userName} is currently signed in</Heading>
+          </Card>
+          <Button onClick={signOut}>Sign Out</Button>
+
+        </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
@@ -117,7 +152,8 @@ function App() {
           <Route path="/mockInterview" element = {<MockInterview/>}/>
         </Routes>
       </Router>
+      
   );
 }
 
-export default App;
+export default withAuthenticator(App);
