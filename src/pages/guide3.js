@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
+// import logo from "./../images/ap_dark_logo.png";
 import styled from "styled-components";
 import {Link } from "react-router-dom";
 

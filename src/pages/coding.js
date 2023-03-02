@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react'
-import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
+import logo from "./../images/ap_dark_logo.png";
 import styled from "styled-components";
 import CodingProblemList from "../components/coding_problems/codingProb.js";
 import Editor from "@monaco-editor/react"
@@ -93,7 +93,7 @@ class Coding extends Component {
             <div>
                 <div class="coding coding-header">
                     <div class="split coding-logo">
-                        <img src={logo} alt="logo" />
+                        <img src={logo} alt="logo" height="100%" />
                     </div>
                     <div class="split coding-problem-name">
                         <h1>Problem Name: {probName}</h1>
