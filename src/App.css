@@ -1,14 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Merriweather:wght@300&family=Mukta:wght@300&family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap');
 
-/*:root {
-  --bgcolor: rgb(254,251,234);
-  --bg2color: rgb(250, 250, 250);
-  --btncolor: rgb(100, 0, 0);
-  --hdrcolor: rgb(100, 0, 0);
-  --txtcolor: rgb(0, 0, 0);
-  --brdrcolor: #0d0d0d;
-  --shdwcolor: #ccc;
-}*/
 
 *{
   box-sizing: border-box;
@@ -18,7 +9,17 @@
 
 h1 {
   font-size: 30px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Mukta', sans-serif;
+}
+
+h2 {
+  font-size: 30px;
+  font-family: 'Merriweather', serif
+}
+
+h3 {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .logo-img {
@@ -175,133 +176,94 @@ input[type="radio"]:focus {
   text-decoration: none;
 }
 
-/* ----- Home Page Styling ----- */
-.hp {
+/* ----- About Page Styling ----- */
+.about {
   border-width: 0.5px;
   border-bottom-color: var(--brdrcolor);
   border-bottom-style: solid;
 }
-.hp Link {
+.about Link {
   text-decoration: none;
 }
-.hp body {
+.about body {
   font-size: 26px;
   text-align: left;
   margin: auto;
   margin-bottom: 0px;
   color: var(--txtcolor);
 }
-.hp h1 {
+.about h1 {
   text-align: left;
   margin-bottom: 10px;
   color: var(--hdrcolor);
   font-size: 50px;
+  text-align: center;
 }
-.welcome {
-  height: 400px;
+.explanation {
+  height: 600px;
   background-color: var(--bgcolor);
+  background-image: url("https://spy.com/wp-content/uploads/2022/06/how-to-prepare-for-a-job-interview.jpg?w=910&h=569&crop=1");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .split {
-  height: 100%;
+  height: 50%;
   z-index: 1;
   top: 0;
   overflow-x: hidden;
   overflow: hidden;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  border-width: 0.5px;
-  padding: 40px;
 }
-.welcome-left {
-  left: 0;
-  float: left;
-  width: 30%;
-  padding: 0px;
-  padding-top: 30px;
-}
-.welcome-left h1 {
-  font-size: 55px;
-  text-align: center;
-}
-.welcome-left img {
-  height: 55%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-.welcome-right {
-  float: right;
-  right: 0;
-  width: 70%;
-}
-.welcome-right ul {
-  list-style: circle outside;
-  padding-left: 50px;
-}
-.welcome-right li {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.hpfeedback {
-  height: 300px;
-  background-color: var(--bgcolor);
-}
-.fb-left {
-  left: 0;
-  float: left;
-  width: 30%;
-  padding-top: 75px;
-}
-.fb-right {
-  float: right;
-  right: 0;
-  width: 70%;
+.explanation-bottom{
+  background: var(--aboutimgshadow);
 }
 
-.companies {
-  height: 300px;
-  background-color: var(--bgcolor);
+.explanation-bottom h1 {
+  font-size: 55px;
+  text-align: center;
+  color:  var(--aboutimgtxtcolor);
 }
-.companies-left {
-  left: 0;
+.explanation-bottom h2 {
+  font-size: 20px;
+  text-align: center;
+  color:  var(--aboutimgtxtcolor);
+}
+
+.link-section {
   float: left;
-  width: 70%;
-}
-.companies-right {
-  float: right;
-  right: 0;
-  width: 30%;
-  padding-top: 75px;
-}
-.codinghp {
-  height: 300px;
+  width: 33.33%;
   background-color: var(--bgcolor);
+  height: 500px;
+  text-align: center;
 }
-.coding-left {
-  left: 0;
-  float: left;
-  width: 30%;
-  padding-top: 75px;
+
+.link-section h2{
+  color:var(--txtcolor);
+  text-align: center;
 }
-.coding-right {
-  right: 0;
-  float: right;
-  width: 70%;
+
+.link-section h3{
+  color:var(--txtcolor);
+  text-align: center;
 }
-.interview-help {
-  height: 300px;
-  background-color: var(--bgcolor);
+
+.clipart{
+  height: 100px;
+  width: 100px;
+  /* margin-left: 20%; */
+  
 }
-.help-left {
-  left: 0;
-  float: left;
-  width: 70%;
+
+#prep{
+  height: 150px;
+  width: 150px;
+  margin-bottom: -10%;
+  margin-top: -5%;
 }
-.help-right {
-  float: right;
-  right: 0;
-  width: 30%;
-  padding-top: 75px;
+
+#prep_context{
+  margin-top: 5%;
 }
 
 
@@ -320,7 +282,7 @@ input[type="radio"]:focus {
   color: var(--lnk2color);
 }
 .coding-header {
-  height: 150px;
+  height: 400px;
 }
 .coding-logo {
   left: 0;
@@ -331,7 +293,7 @@ input[type="radio"]:focus {
   border-right-style: solid;
 }
 .coding-logo img {
-  height: 100%;
+  height: 200px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -635,5 +597,5 @@ input[type="radio"]:focus {
 
 /* ----- Nav Bar Styling ---- */
 .nav-title {
-  margin-left: 2rem;
+  margin-left: .5rem;
 }
