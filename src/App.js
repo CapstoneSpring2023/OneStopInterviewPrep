@@ -104,11 +104,8 @@ window.onload = function() {
   localStorage.setItem("comp-address", publicCompAddress);
 }
 
-const { attributes } = await Auth.currentAuthenticatedUser();
-
 function App({ signOut }) {
   document.title = "Aggie Fangs";
-
   const whichStyle = () => {
     var styleInput = localStorage.getItem("current-style");
     var thisStyle = <GlobalStyle1/>;
@@ -118,18 +115,33 @@ function App({ signOut }) {
     return thisStyle;
 
   };
+  const [userName, setUserDetails] = React.useState("");
+  const [userData, setUserData] = React.useState("");
+  const [isLoading, setLoading] = React.useState(true);
+  Auth.currentAuthenticatedUser({
+    bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+  })
+    .then((user) => {
+      setUserDetails(user.username);
+      setUserData(user.attributes.email);
+      setLoading(false);
+    })
+    .catch((err) => console.log(err));
 
-
-  
+  if(isLoading) {
+    return <div>Loading...</div>
+  }
+  // var userName = userDetails.username;
   return (
       <Router>
         {whichStyle()}
         <Navbar />
         <View className="App">
           <Card>
-            <Heading level={1}>We now have Auth!</Heading>
+            <Heading level={1}>{userName} is currently signed in</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
+
         </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
