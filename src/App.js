@@ -19,6 +19,7 @@ import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
+import Profile from "./pages/profile";
 import "./App.css";
 import logo from "./logo.svg";
 import "@aws-amplify/ui-react/styles.css";
@@ -150,6 +151,7 @@ function App({ signOut }) {
           <Route path="/guide3" element = {<Guide3/>}/>
           <Route path="/settings" element = {<Settings/>}/>
           <Route path="/mockInterview" element = {<MockInterview/>}/>
+          <Route path="/profile" element = {<Profile/>}/>
         </Routes>
       </Router>
       
