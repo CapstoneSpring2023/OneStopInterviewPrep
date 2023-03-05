@@ -599,3 +599,9 @@ input[type="radio"]:focus {
 .nav-title {
   margin-left: .5rem;
 }
+
+/*-----Universal user display ----*/
+
+.Userdisplay{
+  background-color: var(--bgcolor);
+}

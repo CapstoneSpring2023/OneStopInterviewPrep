@@ -125,13 +125,14 @@ function App({ signOut }) {
       <Router>
         {whichStyle()}
         <Navbar />
-        <View className="App">
-          <Card>
-            <Heading level={1}>{userName} is currently signed in</Heading>
-          </Card>
-          <Button onClick={signOut}>Sign Out</Button>
-
-        </View>
+        <div class = "Userdisplay">
+          <View className="App">
+            <Card>
+              <Heading level={1}>{userName} is currently signed in</Heading>
+            </Card>
+            <Button onClick={signOut}>Sign Out</Button>
+          </View>
+        </div>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
