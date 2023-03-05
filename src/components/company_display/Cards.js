@@ -1,9 +1,16 @@
 import React from 'react'
 import CardItems from './CardItems'
 import "./Cards.css"
+import { API } from 'aws-amplify';
+import { listCompanies } from '../../graphql/queries';
 import googleImg from '../../images/googleLogo.png'
 
 function Cards() {
+  console.log( 
+    API.graphql({
+      query: listCompanies
+    }).result
+  );
   return (
     <div className='cards'>
         <div className='company-header'>
