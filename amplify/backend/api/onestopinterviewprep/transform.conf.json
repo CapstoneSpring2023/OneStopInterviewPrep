@@ -1,28 +1,4 @@
 {
     "Version": 5,
-    "ElasticsearchWarning": true,
-    "ResolverConfig": {
-        "project": {
-            "ConflictHandler": "AUTOMERGE",
-            "ConflictDetection": "VERSION"
-        },
-        "models": {
-            "Review": {
-                "ConflictHandler": "AUTOMERGE",
-                "ConflictDetection": "VERSION"
-            },
-            "Questions": {
-                "ConflictHandler": "AUTOMERGE",
-                "ConflictDetection": "VERSION"
-            },
-            "URL": {
-                "ConflictHandler": "AUTOMERGE",
-                "ConflictDetection": "VERSION"
-            },
-            "Company": {
-                "ConflictHandler": "AUTOMERGE",
-                "ConflictDetection": "VERSION"
-            }
-        }
-    }
+    "ElasticsearchWarning": true
 }

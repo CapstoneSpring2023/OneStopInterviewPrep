@@ -15,9 +15,6 @@ export const createReview = /* GraphQL */ `
       companyID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -35,9 +32,6 @@ export const updateReview = /* GraphQL */ `
       companyID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -55,9 +49,6 @@ export const deleteReview = /* GraphQL */ `
       companyID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -80,18 +71,11 @@ export const createQuestions = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -114,18 +98,11 @@ export const updateQuestions = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -148,18 +125,11 @@ export const deleteQuestions = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -180,18 +150,11 @@ export const createURL = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -212,18 +175,11 @@ export const updateURL = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -244,18 +200,11 @@ export const deleteURL = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -275,12 +224,8 @@ export const createCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       questionss {
         items {
@@ -289,12 +234,8 @@ export const createCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Reviews {
         items {
@@ -306,18 +247,11 @@ export const createCompany = /* GraphQL */ `
           companyID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -337,12 +271,8 @@ export const updateCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       questionss {
         items {
@@ -351,12 +281,8 @@ export const updateCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Reviews {
         items {
@@ -368,18 +294,11 @@ export const updateCompany = /* GraphQL */ `
           companyID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -399,12 +318,8 @@ export const deleteCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       questionss {
         items {
@@ -413,12 +328,8 @@ export const deleteCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Reviews {
         items {
@@ -430,18 +341,11 @@ export const deleteCompany = /* GraphQL */ `
           companyID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -463,13 +367,9 @@ export const createQuestionsCompany = /* GraphQL */ `
         solution
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -477,27 +377,18 @@ export const createQuestionsCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -519,13 +410,9 @@ export const updateQuestionsCompany = /* GraphQL */ `
         solution
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -533,27 +420,18 @@ export const updateQuestionsCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -575,13 +453,9 @@ export const deleteQuestionsCompany = /* GraphQL */ `
         solution
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -589,27 +463,18 @@ export const deleteQuestionsCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -629,13 +494,9 @@ export const createURLCompany = /* GraphQL */ `
         url
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -643,27 +504,18 @@ export const createURLCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -683,13 +535,9 @@ export const updateURLCompany = /* GraphQL */ `
         url
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -697,27 +545,18 @@ export const updateURLCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -737,13 +576,9 @@ export const deleteURLCompany = /* GraphQL */ `
         url
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -751,27 +586,18 @@ export const deleteURLCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

@@ -12,9 +12,6 @@ export const getReview = /* GraphQL */ `
       companyID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -34,43 +31,8 @@ export const listReviews = /* GraphQL */ `
         companyID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncReviews = /* GraphQL */ `
-  query SyncReviews(
-    $filter: ModelReviewFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncReviews(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        review
-        rating
-        level
-        position
-        companyID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -98,12 +60,8 @@ export const reviewsByCompanyID = /* GraphQL */ `
         companyID
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -123,18 +81,11 @@ export const getQuestions = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -154,51 +105,11 @@ export const listQuestions = /* GraphQL */ `
         solution
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncQuestions = /* GraphQL */ `
-  query SyncQuestions(
-    $filter: ModelQuestionsFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncQuestions(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        type
-        concepts
-        prompt
-        solution
-        Companies {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -216,18 +127,11 @@ export const getURL = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -245,49 +149,11 @@ export const listURLS = /* GraphQL */ `
         url
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncURLS = /* GraphQL */ `
-  query SyncURLS(
-    $filter: ModelURLFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncURLS(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        source
-        url
-        Companies {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -304,12 +170,8 @@ export const getCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       questionss {
         items {
@@ -318,12 +180,8 @@ export const getCompany = /* GraphQL */ `
           companyId
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       Reviews {
         items {
@@ -335,18 +193,11 @@ export const getCompany = /* GraphQL */ `
           companyID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -363,64 +214,17 @@ export const listCompanies = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncCompanies = /* GraphQL */ `
-  query SyncCompanies(
-    $filter: ModelCompanyFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncCompanies(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        logo
-        urls {
-          nextToken
-          startedAt
-        }
-        questionss {
-          nextToken
-          startedAt
-        }
-        Reviews {
-          nextToken
-          startedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -439,13 +243,9 @@ export const getQuestionsCompany = /* GraphQL */ `
         solution
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -453,27 +253,18 @@ export const getQuestionsCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -501,9 +292,6 @@ export const listQuestionsCompanies = /* GraphQL */ `
           solution
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -511,69 +299,11 @@ export const listQuestionsCompanies = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncQuestionsCompanies = /* GraphQL */ `
-  query SyncQuestionsCompanies(
-    $filter: ModelQuestionsCompanyFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncQuestionsCompanies(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        questionsId
-        companyId
-        questions {
-          id
-          title
-          type
-          concepts
-          prompt
-          solution
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        company {
-          id
-          name
-          logo
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -605,9 +335,6 @@ export const questionsCompaniesByQuestionsId = /* GraphQL */ `
           solution
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -615,18 +342,11 @@ export const questionsCompaniesByQuestionsId = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -658,9 +378,6 @@ export const questionsCompaniesByCompanyId = /* GraphQL */ `
           solution
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -668,18 +385,11 @@ export const questionsCompaniesByCompanyId = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -696,13 +406,9 @@ export const getURLCompany = /* GraphQL */ `
         url
         Companies {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       company {
         id
@@ -710,27 +416,18 @@ export const getURLCompany = /* GraphQL */ `
         logo
         urls {
           nextToken
-          startedAt
         }
         questionss {
           nextToken
-          startedAt
         }
         Reviews {
           nextToken
-          startedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -752,9 +449,6 @@ export const listURLCompanies = /* GraphQL */ `
           url
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -762,67 +456,11 @@ export const listURLCompanies = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncURLCompanies = /* GraphQL */ `
-  query SyncURLCompanies(
-    $filter: ModelURLCompanyFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncURLCompanies(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        uRLId
-        companyId
-        uRL {
-          id
-          title
-          source
-          url
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        company {
-          id
-          name
-          logo
-          createdAt
-          updatedAt
-          _version
-          _deleted
-          _lastChangedAt
-        }
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -852,9 +490,6 @@ export const uRLCompaniesByURLId = /* GraphQL */ `
           url
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -862,18 +497,11 @@ export const uRLCompaniesByURLId = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -903,9 +531,6 @@ export const uRLCompaniesByCompanyId = /* GraphQL */ `
           url
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         company {
           id
@@ -913,18 +538,11 @@ export const uRLCompaniesByCompanyId = /* GraphQL */ `
           logo
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         createdAt
         updatedAt
-        _version
-        _deleted
-        _lastChangedAt
       }
       nextToken
-      startedAt
     }
   }
 `;
