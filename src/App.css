@@ -600,12 +600,15 @@ input[type="radio"]:focus {
   margin-left: .5rem;
 }
 
-.text-area{
-  background-color: var(--navcolor);
+.Userdisplay{
+  margin-top: 2.55%;
+  margin-left: 4.5%;
   color: var(--navtxtcolor);
+  font-size: 9px;
+  font-weight: 100;
 }
-
-.signout-btn{
+/* 
+.text-area{
   background-color: var(--btncolor);
   color: var(--btntxtcolor);
-}
+} */
