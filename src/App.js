@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import { createGlobalStyle } from 'styled-components';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -30,7 +30,7 @@ import {
   View,
   Card,
 } from "@aws-amplify/ui-react";
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -71,8 +71,6 @@ const GlobalStyle2 = createGlobalStyle`
     --aboutimgtxtcolor: #F6EEE0;
   }
 `
-
-
 
 window.onload = function() {
   var defaultStyle = localStorage.getItem("current-style");

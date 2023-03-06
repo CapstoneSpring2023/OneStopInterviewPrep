@@ -1,12 +1,36 @@
-type Todo @model @auth(rules: [{allow: public}]) {
+type Review @model @auth(rules: [{allow: public}]) {
   id: ID!
-  name: String!
-  description: String
+  review: String!
+  rating: String!
+  level: [Int!]!
+  position: String!
+  companyID: ID! @index(name: "byCompany")
+}
+
+type Questions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  type: Int!
+  concepts: [String]
+  prompt: String!
+  solution: String!
+  Companies: [Company!] @manyToMany(relationName: "QuestionsCompany")
+}
+
+type URL @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  title: String!
+  source: AWSURL
+  url: AWSURL!
+  Companies: [Company!] @manyToMany(relationName: "URLCompany")
 }
 
 type Company @model @auth(rules: [{allow: public}]) {
   id: ID!
   name: String!
   logo: String
+  urls: [URL] @manyToMany(relationName: "URLCompany")
+  questionss: [Questions] @manyToMany(relationName: "QuestionsCompany")
+  Reviews: [Review] @hasMany(indexName: "byCompany", fields: ["id"])
 }
  
