@@ -600,8 +600,12 @@ input[type="radio"]:focus {
   margin-left: .5rem;
 }
 
-/*-----Universal user display ----*/
+.text-area{
+  background-color: var(--navcolor);
+  color: var(--navtxtcolor);
+}
 
-.Userdisplay{
-  background-color: var(--bgcolor);
+.signout-btn{
+  background-color: var(--btncolor);
+  color: var(--btntxtcolor);
 }
