@@ -37,6 +37,9 @@ const Navbar = () => {
             <NavLink to="/settings" activeStyle>
                 <div class = "nav-link">Settings</div>
             </NavLink>
+            <NavLink to="/chatbot" activeStyle>
+                <div class = "nav-link">Chatbot</div>
+            </NavLink>
         </NavMenu>
     </Nav>
     </>
