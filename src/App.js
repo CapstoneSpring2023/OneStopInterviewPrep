@@ -19,6 +19,7 @@ import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
+import Chatbot from "./pages/chatbot";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
@@ -30,7 +31,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
-import { generatePrompts } from './utils/openai';
+// import { generatePrompts } from './utils/openai';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -101,20 +102,10 @@ function App({ signOut }) {
     }
     return thisStyle;
   };
-  async function onSubmit(event) {
-    event.preventDefault();
-    try {
-      const prompts = await generatePrompts('text-davinci-002', 'promptAI');
-      console.log(prompts);
-    } catch(error) {
-      console.error(error);
-      alert(error.message);
-    }
-  }
+ 
   const [userName, setUserDetails] = React.useState("");
   const [userData, setUserData] = React.useState("");
   const [isLoading, setLoading] = React.useState(true);
-  const [promptAI, setPromptAI] = React.useState("");
   Auth.currentAuthenticatedUser({
     bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
   })
@@ -138,16 +129,6 @@ function App({ signOut }) {
             <Heading level={1}>{userName} is currently signed in</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
-          <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              name="prompt"
-              placeholder="Enter a prompt for the AI"
-              value={promptAI}
-              onChange={(e) => setPromptAI(e.target.value)}
-            />
-            <input type="submit" value="Generate names" />
-          </form>
         </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
@@ -167,6 +148,7 @@ function App({ signOut }) {
           <Route path="/guide3" element = {<Guide3/>}/>
           <Route path="/settings" element = {<Settings/>}/>
           <Route path="/mockInterview" element = {<MockInterview/>}/>
+          <Route path="/chatbot" element = {<Chatbot/>}/>
         </Routes>
       </Router>
       
