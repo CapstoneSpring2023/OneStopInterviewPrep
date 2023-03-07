@@ -12,7 +12,7 @@ var companyName = <text>Netflix</text>;
 const NetflixPrep = () => {
     const [reviews, setReviews] = useState([])
 
-    localStorage.setItem("this-company", "Netflix");
+    localStorage.setItem("this-company", "00e022fc-90e2-4fae-94a1-7c5b631d5ec9");
 
   return (
     <div class='company-page'>
