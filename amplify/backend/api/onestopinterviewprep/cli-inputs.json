@@ -8,37 +8,6 @@
       "keyDescription": "api key description",
       "expirationTime": 30
     },
-    "conflictResolution": {
-      "defaultResolutionStrategy": {
-        "type": "AUTOMERGE"
-      },
-      "perModelResolutionStrategy": [
-        {
-          "resolutionStrategy": {
-            "type": "AUTOMERGE"
-          },
-          "entityName": "Review"
-        },
-        {
-          "resolutionStrategy": {
-            "type": "AUTOMERGE"
-          },
-          "entityName": "Questions"
-        },
-        {
-          "resolutionStrategy": {
-            "type": "AUTOMERGE"
-          },
-          "entityName": "URL"
-        },
-        {
-          "resolutionStrategy": {
-            "type": "AUTOMERGE"
-          },
-          "entityName": "Company"
-        }
-      ]
-    },
     "additionalAuthTypes": [
       {
         "mode": "AWS_IAM"
