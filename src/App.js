@@ -20,7 +20,6 @@ import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
 import "./App.css";
-import logo from "./logo.svg";
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
@@ -31,6 +30,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
+import { generatePrompts } from './utils/openai';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -100,11 +100,21 @@ function App({ signOut }) {
       thisStyle = <GlobalStyle1/>;
     }
     return thisStyle;
-
   };
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const prompts = await generatePrompts('text-davinci-002', 'promptAI');
+      console.log(prompts);
+    } catch(error) {
+      console.error(error);
+      alert(error.message);
+    }
+  }
   const [userName, setUserDetails] = React.useState("");
   const [userData, setUserData] = React.useState("");
   const [isLoading, setLoading] = React.useState(true);
+  const [promptAI, setPromptAI] = React.useState("");
   Auth.currentAuthenticatedUser({
     bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
   })
@@ -128,7 +138,16 @@ function App({ signOut }) {
             <Heading level={1}>{userName} is currently signed in</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
-
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="prompt"
+              placeholder="Enter a prompt for the AI"
+              value={promptAI}
+              onChange={(e) => setPromptAI(e.target.value)}
+            />
+            <input type="submit" value="Generate names" />
+          </form>
         </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
