@@ -1,5 +1,6 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
+//import {Card} from "react-bootstrap";
 
 function CardItems(props) {
   return (
