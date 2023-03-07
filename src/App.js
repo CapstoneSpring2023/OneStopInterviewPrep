@@ -19,8 +19,9 @@ import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
+import Profile from "./pages/profile";
+import Chatbot from "./pages/chatbot";
 import "./App.css";
-import logo from "./logo.svg";
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
@@ -31,6 +32,7 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
+// import { generatePrompts } from './utils/openai';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -100,8 +102,8 @@ function App({ signOut }) {
       thisStyle = <GlobalStyle1/>;
     }
     return thisStyle;
-
   };
+ 
   const [userName, setUserDetails] = React.useState("");
   const [userData, setUserData] = React.useState("");
   const [isLoading, setLoading] = React.useState(true);
@@ -147,6 +149,8 @@ function App({ signOut }) {
           <Route path="/guide3" element = {<Guide3/>}/>
           <Route path="/settings" element = {<Settings/>}/>
           <Route path="/mockInterview" element = {<MockInterview/>}/>
+          <Route path="/profile" element = {<Profile/>}/>
+          <Route path="/chatbot" element = {<Chatbot/>}/>
         </Routes>
       </Router>
       
