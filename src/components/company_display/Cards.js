@@ -5,24 +5,12 @@ import { API } from 'aws-amplify';
 import { listCompanies } from '../../graphql/queries';
 // import googleImg from '../../images/googleLogo.png'
 
-async function get_companies(){
-  let comp_list_query = await API.graphql({
-    query: listCompanies
-  }).then(companyList => {
-    let companyObjArr = companyList.data.listCompanies.items
-    console.log("Company list? " + companyObjArr);
-  } ).catch((err) => {
-    console.log("error caught: ", err);
-  });
-
+function Cards() {
   console.log( 
     API.graphql({
       query: listCompanies
-    }));
-}
-
-function Cards() {
-  get_companies();
+    })
+  );
   return (
     <div className='cards'>
         <div className='company-header'>

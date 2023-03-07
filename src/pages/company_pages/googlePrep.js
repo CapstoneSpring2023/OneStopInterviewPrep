@@ -11,8 +11,8 @@ var companyName = <text>Google</text>;
 
 const GooglePrep = () => {
   const [reviews, setReviews] = useState([])
-  //google id = a1450ef6-f339-43cc-87e4-227601a06f27
-  localStorage.setItem("this-company", "a1450ef6-f339-43cc-87e4-227601a06f27");
+
+  localStorage.setItem("this-company", "Google");
 
   return (
 

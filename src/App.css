@@ -599,16 +599,3 @@ input[type="radio"]:focus {
 .nav-title {
   margin-left: .5rem;
 }
-
-.Userdisplay{
-  margin-top: 2.55%;
-  margin-left: 4.5%;
-  color: var(--navtxtcolor);
-  font-size: 9px;
-  font-weight: 100;
-}
-/* 
-.text-area{
-  background-color: var(--btncolor);
-  color: var(--btntxtcolor);
-} */
