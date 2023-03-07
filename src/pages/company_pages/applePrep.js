@@ -11,7 +11,7 @@ var companyName = <text>Apple</text>;
 const ApplePrep = () => {
     const [reviews, setReviews] = useState([])
 
-    localStorage.setItem("this-company", "Apple");
+    localStorage.setItem("this-company", "9e4102e9-1761-4a08-b361-87e440f10118");
 
   return (
     <div class='company-page'>
