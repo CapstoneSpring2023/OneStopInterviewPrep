@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import { createGlobalStyle } from 'styled-components';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -19,8 +19,9 @@ import Guide3 from "./pages/guide3";
 import FeedbackForm from "./components/forms/FeedbackForm";
 import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
+import Profile from "./pages/profile";
+import Chatbot from "./pages/chatbot";
 import "./App.css";
-import logo from "./logo.svg";
 import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
@@ -30,7 +31,8 @@ import {
   View,
   Card,
 } from "@aws-amplify/ui-react";
-import { Amplify, Auth } from 'aws-amplify';
+import { Amplify, Auth, API, graphqlOperation } from 'aws-amplify';
+// import { generatePrompts } from './utils/openai';
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -72,8 +74,6 @@ const GlobalStyle2 = createGlobalStyle`
   }
 `
 
-
-
 window.onload = function() {
   var defaultStyle = localStorage.getItem("current-style");
   if (!defaultStyle) {
@@ -102,8 +102,8 @@ function App({ signOut }) {
       thisStyle = <GlobalStyle1/>;
     }
     return thisStyle;
-
   };
+ 
   const [userName, setUserDetails] = React.useState("");
   const [userData, setUserData] = React.useState("");
   const [isLoading, setLoading] = React.useState(true);
@@ -130,7 +130,6 @@ function App({ signOut }) {
             <Heading level={1}>{userName} is currently signed in</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
-
         </View>
         <Routes>
           <Route exact path="/" element = {<Home />}/>
@@ -150,6 +149,8 @@ function App({ signOut }) {
           <Route path="/guide3" element = {<Guide3/>}/>
           <Route path="/settings" element = {<Settings/>}/>
           <Route path="/mockInterview" element = {<MockInterview/>}/>
+          <Route path="/profile" element = {<Profile/>}/>
+          <Route path="/chatbot" element = {<Chatbot/>}/>
         </Routes>
       </Router>
       

@@ -19,6 +19,9 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
+            <NavLink to="/profile" activeStyle>
+                <div class = "nav-link">Profile</div>
+            </NavLink>
             <NavLink to="/feedbackform" activeStyle>
                 <div class = "nav-link">Share Experience</div>
             </NavLink>
@@ -36,6 +39,9 @@ const Navbar = () => {
             </NavLink>
             <NavLink to="/settings" activeStyle>
                 <div class = "nav-link">Settings</div>
+            </NavLink>
+            <NavLink to="/chatbot" activeStyle>
+                <div class = "nav-link">Chatbot</div>
             </NavLink>
         </NavMenu>
     </Nav>
