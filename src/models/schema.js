@@ -221,7 +221,7 @@ export const schema = {
                 "source": {
                     "name": "source",
                     "isArray": false,
-                    "type": "AWSURL",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -604,5 +604,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.3.6",
-    "version": "27485da0caee01952ebf356960f14f4d"
+    "version": "89d4bc44c8c04820c0b60d696b5998da"
 };
