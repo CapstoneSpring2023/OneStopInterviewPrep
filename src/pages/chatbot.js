@@ -2,6 +2,7 @@ import { useState } from "react"
 const { Configuration, OpenAIApi } = require("openai");
 
 const Chatbot = () => {
+  console.log(process.env.REACT_APP_OPENAI_API_KEY);
   const configuration = new Configuration({
     apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   });
