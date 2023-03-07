@@ -31,12 +31,8 @@ import {
   Card,
 } from "@aws-amplify/ui-react";
 import { Amplify, Auth } from 'aws-amplify';
-import { Configuration, OpenAIApi } from "openai";
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+import { useState } from "react";
+import styles from "./index.module.css";
 
 const GlobalStyle1 = createGlobalStyle`
   html {
@@ -98,22 +94,13 @@ window.onload = function() {
   localStorage.setItem("comp-address", publicCompAddress);
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
 
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
-}
 
 
 function App({ signOut }) {
   document.title = "Aggie Presence";
+  const [animalInput, setAnimalInput] = useState("");
+  const [result, setResult] = useState();
 
   const whichStyle = () => {
     var styleInput = localStorage.getItem("current-style");
@@ -127,6 +114,30 @@ function App({ signOut }) {
   const [userName, setUserDetails] = React.useState("");
   const [userData, setUserData] = React.useState("");
   const [isLoading, setLoading] = React.useState(true);
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const response = await fetch("/src/pages/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ animal: animalInput }),
+      });
+  
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw data.error || new Error(`Request failed with status ${response.status}`);
+      }
+  
+      setResult(data.result);
+      setAnimalInput("");
+    } catch(error) {
+      // Consider implementing your own error handling logic here
+      console.error(error);
+      alert(error.message);
+    }
+  }
   Auth.currentAuthenticatedUser({
     bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
   })
@@ -140,6 +151,7 @@ function App({ signOut }) {
   if(isLoading) {
     return <div>Loading...</div>
   }
+
   // var userName = userDetails.username;
   return (
       <Router>
@@ -150,6 +162,17 @@ function App({ signOut }) {
             <Heading level={1}>{userName} is currently signed in</Heading>
           </Card>
           <Button onClick={signOut}>Sign Out</Button>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              name="animal"
+              placeholder="Enter an animal"
+              value={animalInput}
+              onChange={(e) => setAnimalInput(e.target.value)}
+            />
+            <input type="submit" value="Generate names" />
+          </form>
+          <div>{result}</div>
 
         </View>
         <Routes>
