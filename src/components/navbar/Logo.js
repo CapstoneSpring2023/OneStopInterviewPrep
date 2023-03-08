@@ -14,6 +14,8 @@ const Logo = props => {
     } else {
         imageURL = light_logo;
     }
+
+    console.log("IMAGE URL IS ------>",imageURL);
            
     return <div>
        <div>

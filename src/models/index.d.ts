@@ -87,7 +87,7 @@ type EagerURL = {
   };
   readonly id: string;
   readonly title: string;
-  readonly source?: string | null;
+  readonly source?: number | null;
   readonly url: string;
   readonly Companies?: URLCompany[] | null;
   readonly createdAt?: string | null;
@@ -101,7 +101,7 @@ type LazyURL = {
   };
   readonly id: string;
   readonly title: string;
-  readonly source?: string | null;
+  readonly source?: number | null;
   readonly url: string;
   readonly Companies: AsyncCollection<URLCompany>;
   readonly createdAt?: string | null;

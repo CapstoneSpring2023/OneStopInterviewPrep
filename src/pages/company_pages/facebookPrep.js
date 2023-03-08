@@ -13,7 +13,7 @@ var companyName = <text>Facebook</text>;
 const FacebookPrep = () => {
     const [reviews, setReviews] = useState([])
 
-    localStorage.setItem("this-company", "c081b565-ac29-4dee-8a17-5cae3a69b58c");
+    localStorage.setItem("this-company", "Facebook");
 
   return (
     <div class='company-page'>

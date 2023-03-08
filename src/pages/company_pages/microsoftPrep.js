@@ -29,7 +29,7 @@ var companyName = <text>Microsoft</text>;
 const MicrosoftPrep = () => {
     const [reviews, setReviews] = useState([])
 
-    localStorage.setItem("this-company", "70b6ab87-2af7-485c-b30b-977ad6adccd6");
+    localStorage.setItem("this-company", "Microsoft");
 
   return (
     <div class='company-page'>

@@ -48,7 +48,7 @@ const Chatbot = () => {
             value={prompt}
             placeholder="Please ask Justin a question"
             onChange={(e) => setPrompt(e.target.value)}
-            style={{width: 1000}}
+            style={{width: 800}}
           ></input>
           <button
             disabled={loading || prompt.length === 0}
@@ -63,12 +63,13 @@ const Chatbot = () => {
           style={{
             display: "flex",
             justifyContent: "center",
+            margin: 30,
           }}
         >
-          <pre>
+          <text>
             <strong>Justin: </strong>
             {apiResponse}
-          </pre>
+          </text>
         </div>
       )}
     </>

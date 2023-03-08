@@ -5,6 +5,8 @@ import upimg2 from "../../images/up2.png";
 import downimg1 from "../../images/down1.png";
 import downimg2 from "../../images/down2.png";
 
+var dbAddress = localStorage.getItem("db-address");
+//reviewAddress = "http://localhost:3002/getReviews";
 
 function FeedbackView({company}){
     // const [reviewInfo, setReviewInfo] = useState(null);

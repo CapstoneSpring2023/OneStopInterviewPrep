@@ -12,6 +12,7 @@
       {
         "mode": "AWS_IAM"
       }
-    ]
+    ],
+    "conflictResolution": {}
   }
 }
