@@ -1,9 +1,37 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavbarElements";
-import logo from "./../../images/ap_dark_logo.png"; 
 import Logo from "./Logo"
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+import { Amplify, Auth } from 'aws-amplify';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const [userName, setUserDetails] = React.useState("");
+    const [userData, setUserData] = React.useState("");
+    const [isLoading, setLoading] = React.useState(true);
+    Auth.currentAuthenticatedUser({
+      bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+    })
+      .then((user) => {
+        setUserDetails(user.username);
+        setUserData(user.attributes.email);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  
+    if(isLoading) {
+      return <div>Loading...</div>
+    }
+
+
+
     var styleInput = localStorage.getItem("current-style");
     var imageURL = "./../../images/ap_dark_logo.png"; 
     if(styleInput =="style1"){
@@ -19,9 +47,6 @@ const Navbar = () => {
         </NavLink>
         <Bars />
         <NavMenu>
-            <NavLink to="/profile" activeStyle>
-                <div class = "nav-link">Profile</div>
-            </NavLink>
             <NavLink to="/feedbackform" activeStyle>
                 <div class = "nav-link">Share Experience</div>
             </NavLink>
@@ -40,10 +65,11 @@ const Navbar = () => {
             <NavLink to="/settings" activeStyle>
                 <div class = "nav-link">Settings</div>
             </NavLink>
-            <NavLink to="/chatbot" activeStyle>
-                <div class = "nav-link">Chatbot</div>
-            </NavLink>
         </NavMenu>
+        <div class = "userDisplay">
+            <Heading level={3} class ="text-area">{userName}</Heading>
+      </div>
+
     </Nav>
     </>
   )

@@ -3,12 +3,9 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import axios from 'axios';
 import Multiselect from 'multiselect-react-dropdown';
+import { API } from 'aws-amplify';
+import { createQuestions } from '../../graphql/mutations';
 //import loadingGif from "../../images/loading.gif";
-
-const database_id = '22f238cc864e4a1496e42e3d8a2c05c6';
-//const secretKey = 'secret_AFKZAuWeh8KSRFU7dK4vcdUTEQG1pb3CyQtwBIdj9Ws'
-
-var dbAddress = localStorage.getItem("db-address");
 
 const SubmitButton = styled.button `
   cursor: pointer;
@@ -67,55 +64,42 @@ const Form = ({form, setForm}) => {
     return true;
   }
   const handleSubmit = e => {
-    /*Tied to database example.. */
-    // fetch('http://localhost:3002/addRev', {
-    //   mode:'no-cors',
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    //   body: JSON.stringify({
-    //     title: form.company,
-    //     name: form.name,
-    //     userEmail: form.email,
-    //     description: form.review,
-    //     tag: form.job
-    //   }) 
-    // });
+
+
+  //   const newQuestions = await API.graphql({
+  //     query: createQuestions,
+  //     variables: {
+  //         input: {
+  //     "title": "Lorem ipsum dolor sit amet",
+  //     "type": 1020,
+  //     "concepts": [],
+  //     "prompt": "Lorem ipsum dolor sit amet",
+  //     "solution": "Lorem ipsum dolor sit amet",
+  //     "Companies": []
+  //   }
+  //     }
+  // });
       if (checkValidity()) {
-        fetch(dbAddress + '/addCodeProb', {
-            mode:'no-cors',
-            method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-            body: JSON.stringify({
-                company: form.company,
-                probTitle:form.name,
-                concepts: form.concepts,
-                probPrompt:form.prompt,
-            }) 
-          });
+        console.log(
+          "form.name is: ", form.name, " and its type is: ", typeof(form.name)
+        )
+        API.graphql({
+          query: createQuestions,
+          variables: {
+              input: {
+              "title": form.name,
+              "type": 1,
+              "concepts": [form.concepts],
+              "prompt": form.prompt,
+              "solution": "",
+              "Companies": [form.company]
+            }
+          }
+        });
     } else {
         alert("Please enter valid information.")
     }
   }
-/*  if (checkValidity()) {
-      alert("The input data is good!");
-      e.preventDefault();
-      setReviews([...reviews, form]);
-      setForm({company: "", review: "", id: uuidv4()});
-    } else {
-      alert("Please enter valid information.")
-    } */
-   // console.log("form is: ", form, " and the job is: ", form.job )
-  // }
-  
-  // if(tags == null){
-  //   return(
-  //     <div>
-  //     <img src={loadingGif} alt="wait until the page loads" />
-  //     <h1>Loading...</h1> 
-  //   </div>
-  //   )
-
-  // } else {
     return (  
       <form className="form" onSubmit={handleSubmit}>
           <h2>Share Your Experience</h2>
