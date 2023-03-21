@@ -1,10 +1,23 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Reviews: [Review] @hasMany(indexName: "byUser", fields: ["id"])
+  first_name: String
+  last_name: String
+  email: String!
+  companyID: ID! @index(name: "byCompany")
+  resume: String
+}
+
 type Review @model @auth(rules: [{allow: public}]) {
   id: ID!
   review: String!
-  rating: String!
+  rating: Int!
   level: [Int!]!
   position: String!
   companyID: ID! @index(name: "byCompany")
+  userID: ID! @index(name: "byUser")
+  questionID: ID! @index(name: "byQuestions")
+  urlID: ID! @index(name: "byURL")
 }
 
 type Questions @model @auth(rules: [{allow: public}]) {
@@ -14,7 +27,8 @@ type Questions @model @auth(rules: [{allow: public}]) {
   concepts: [String]
   prompt: String!
   solution: String!
-  Companies: [Company!] @manyToMany(relationName: "QuestionsCompany")
+  Companies: [Company!] @manyToMany(relationName: "CompanyQuestions")
+  Reviews: [Review] @hasMany(indexName: "byQuestions", fields: ["id"])
 }
 
 type URL @model @auth(rules: [{allow: public}]) {
@@ -23,6 +37,7 @@ type URL @model @auth(rules: [{allow: public}]) {
   source: Int
   url: AWSURL!
   Companies: [Company!] @manyToMany(relationName: "URLCompany")
+  Reviews: [Review] @hasMany(indexName: "byURL", fields: ["id"])
 }
 
 type Company @model @auth(rules: [{allow: public}]) {
@@ -30,7 +45,7 @@ type Company @model @auth(rules: [{allow: public}]) {
   name: String!
   logo: String
   urls: [URL] @manyToMany(relationName: "URLCompany")
-  questionss: [Questions] @manyToMany(relationName: "QuestionsCompany")
+  questions: [Questions] @manyToMany(relationName: "CompanyQuestions")
   Reviews: [Review] @hasMany(indexName: "byCompany", fields: ["id"])
-}
- 
+  Users: [User] @hasMany(indexName: "byCompany", fields: ["id"])
+} 
