@@ -4,7 +4,8 @@ import styled from "styled-components";
 import axios from 'axios';
 import Multiselect from 'multiselect-react-dropdown';
 import { API } from 'aws-amplify';
-import { createQuestions } from '../../graphql/mutations';
+import { createReview } from '../../graphql/mutations';
+import { listCompanies } from "../../graphql/queries";
 //import loadingGif from "../../images/loading.gif";
 
 const SubmitButton = styled.button `
@@ -20,40 +21,10 @@ const SubmitButton = styled.button `
   overflow-x: hidden;
   float: center;
 `
-//const Form = ({form, reviews, setForm, setReviews}) => {
-  // const [tags, setTags] = useState(null);
-  // const[selectedValue, setSelectedValue] = useState([])
-
-  // useEffect(() => {
-  //   fetch(dbAddress + '/tags',{
-  //   method: "GET"
-  // }).then(response => {
-  //   if (response.type === 'opaque' || response.ok) {
-  //       response.json().then(revItems => {
-  //         setTags(revItems)
-  //     });
-  //   } 
-  // }).catch(error => {
-  //   console.log("Error is: ", error)
-  // });
-  // },[]);
-
-  // const handleRemovedTag = e => {
-  //   //
-  // }
-
-  // const handleChange = e => {
-  //   const{name, value} = e.target;
-  //   setForm({...form, [name]: value});
-  //   console.log("Form is set to: ", form)
-  // }
 
 const Form = ({form, setForm}) => {  
-  // const handleSelectedChange = e => {
-  //   // console.log("selected change detected")
-  //   // setSelectedValue(Array.isArray(e) ? e.map(x => x.value) : ["empty"]);
-  //   // console.log("selectedValue",selectedValue)
-  // }
+  const [companyList, setCompanyList] = useState(null);
+  var dropdownCompDis = new Array();
   const handleChange = e => {
     const{name, value} = e.target;
     setForm({...form, [name]: value});
@@ -63,38 +34,47 @@ const Form = ({form, setForm}) => {
     // todo
     return true;
   }
+  /*   we should make the review ratings and all ratings ints or a numeric value not a string*/
+  useEffect( ()=> {
+    API.graphql({
+      query: listCompanies
+    }).then( res => {
+      let companiesArr = res.data.listCompanies.items;
+      setCompanyList(companiesArr);
+    }).catch (err => {
+      console.log("An error occurred when retrieving company list");
+    })
+  },[])
+
+  if(companyList != null){
+    companyList.map( compObj => {
+      dropdownCompDis.push(
+      <option value ={compObj.id}>{compObj.name}</option>
+      )
+    })
+  }
+
   const handleSubmit = e => {
-
-
-  //   const newQuestions = await API.graphql({
-  //     query: createQuestions,
-  //     variables: {
-  //         input: {
-  //     "title": "Lorem ipsum dolor sit amet",
-  //     "type": 1020,
-  //     "concepts": [],
-  //     "prompt": "Lorem ipsum dolor sit amet",
-  //     "solution": "Lorem ipsum dolor sit amet",
-  //     "Companies": []
-  //   }
-  //     }
-  // });
+    var level_int = parseInt(form.level);
+    e.preventDefault();
       if (checkValidity()) {
-        console.log(
-          "form.name is: ", form.name, " and its type is: ", typeof(form.name)
-        )
         API.graphql({
-          query: createQuestions,
+          query: createReview,
           variables: {
               input: {
-              "title": form.name,
-              "type": 1,
-              "concepts": [form.concepts],
-              "prompt": form.prompt,
-              "solution": "",
-              "Companies": [form.company]
+                review: form.review,
+                rating: "0",
+                level: level_int,
+                position: form.job,
+                companyID: form.company
+
+                
             }
           }
+        }).then(res => {
+          console.log("Response is: ", res);
+        }).catch(err => {
+          console.log("The error read is: ", err);
         });
     } else {
         alert("Please enter valid information.")
@@ -110,12 +90,7 @@ const Form = ({form, setForm}) => {
                 value={form.company}
                 onChange={handleChange}>
                 <option value="None">Select Company</option>
-                <option value="Google">Google</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Amazon">Amazon</option>
-                <option value="Netflix">Netflix</option>
-                <option value="Apple">Apple</option>
-                <option value="Microsoft">Microsoft</option>
+                {dropdownCompDis}
             </select><br/>
 
             <label htmlFor='JobTitle'>Job Title</label><br/>
@@ -125,29 +100,24 @@ const Form = ({form, setForm}) => {
               value={form.job}
               onChange={handleChange}>
               <option value="None">Select Job Type(s)</option>
-              {/* {tags.map(company =>
-                (<option value = {company.id}>{company.name}</option>)
-                )} */}
+              <option value ="software engineering intern">Software Engineering Intern</option>
+              <option value="Quality Assurance"> QA</option>
               </select><br/>
 
-            <label htmlFor='Name'>Name</label><br/>
-            <textarea
-                   value={form.name}
-                   placeholder="Enter your name"  
-                   id="name" 
-                   name="name" 
-                   autoComplete="off"
-                   onChange={handleChange}>
-            </textarea><br/>
-            <label htmlFor='Email'>Valid School Email</label><br/>
-            <textarea
-                   value={form.email}
-                   placeholder="Enter your valid school email"
-                   id="email" 
-                   name="email" 
-                   autoComplete="off"
-                   onChange={handleChange}>
-            </textarea><br/>
+              <label htmlFor='Level'>Job Level</label><br/>
+            <select placeholder="level"
+              id="level"
+              name="level"
+              value={form.level}
+              onChange={handleChange}>
+              <option value="None">Select Job level</option>
+              <option value ={1}>Freshmen</option>
+              <option value={2}> Sophomore</option>
+              <option value={3}>Junior</option>
+              <option value={4}>4th Year Senior</option>
+              <option value={5}>5th Year Senior</option>
+              <option value={6}>Entry Level</option>
+              </select><br/>
             <label htmlFor='review'>Review</label><br/>
             <div class="review-box"><textarea
                    value={form.review}

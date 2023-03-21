@@ -43,6 +43,7 @@ function LeetCodeURL(){
         urls.map( Obj=> {
             var urlObj = Obj.uRL;
             if(urlObj.source == 1){
+                console.log("inserting these objects to the array: ", urlObj.title)
                 urlArr.push(
                     (
                         <li><a href={urlObj.url}>{urlObj.title}</a></li>

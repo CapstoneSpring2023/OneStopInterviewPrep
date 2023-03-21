@@ -62,6 +62,9 @@ const Navbar = (props) => {
             <NavLink to="/guide1" activeStyle>
                 <div class = "nav-link">Interview Guides</div>
             </NavLink>
+            <NavLink to ="/chatbot" activeStyle>
+              <div class = "nav-link"> Chatbot </div>
+            </NavLink>
             <NavLink to="/settings" activeStyle>
                 <div class = "nav-link">Settings</div>
             </NavLink>
