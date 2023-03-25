@@ -599,3 +599,20 @@ input[type="radio"]:focus {
 .nav-title {
   margin-left: .5rem;
 }
+
+.userDisplay{
+  color: var(--navtxtcolor);
+  margin-top: 2.55%;
+  margin-left: 5%;
+}
+
+.signOutBtn{
+  background-color: var(--btncolor);
+  color: var(--btntxtcolor);
+}
+
+.signout-section{
+  background-color: var(--bgcolor);
+  border: none;
+  padding: -5%;
+}
