@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-import axios from 'axios';
 import Multiselect from 'multiselect-react-dropdown';
 import { API } from 'aws-amplify';
 import { createReview } from '../../graphql/mutations';
@@ -34,7 +33,7 @@ const Form = ({form, setForm}) => {
     // todo
     return true;
   }
-  /*   we should make the review ratings and all ratings ints or a numeric value not a string*/
+
   useEffect( ()=> {
     API.graphql({
       query: listCompanies
@@ -66,9 +65,7 @@ const Form = ({form, setForm}) => {
                 rating: "0",
                 level: level_int,
                 position: form.job,
-                companyID: form.company
-
-                
+                companyID: form.company                
             }
           }
         }).then(res => {
