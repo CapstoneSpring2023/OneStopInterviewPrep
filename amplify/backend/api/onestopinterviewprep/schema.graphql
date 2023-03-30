@@ -15,9 +15,9 @@ type Review @model @auth(rules: [{allow: public}]) {
   level: [Int!]!
   position: String!
   companyID: ID! @index(name: "byCompany")
-  userID: ID! @index(name: "byUser")
-  questionID: ID! @index(name: "byQuestions")
-  urlID: ID! @index(name: "byURL")
+  userID: ID @index(name: "byUser")
+  questionID: ID @index(name: "byQuestions")
+  urlID: ID @index(name: "byURL")
 }
 
 type Questions @model @auth(rules: [{allow: public}]) {
@@ -48,4 +48,5 @@ type Company @model @auth(rules: [{allow: public}]) {
   questions: [Questions] @manyToMany(relationName: "CompanyQuestions")
   Reviews: [Review] @hasMany(indexName: "byCompany", fields: ["id"])
   Users: [User] @hasMany(indexName: "byCompany", fields: ["id"])
-} 
+}
+ 
