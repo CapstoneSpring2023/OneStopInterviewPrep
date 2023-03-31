@@ -41,7 +41,7 @@ const Form = ({form, setForm}) => {
       let companiesArr = res.data.listCompanies.items;
       setCompanyList(companiesArr);
     }).catch (err => {
-      console.log("An error occurred when retrieving company list");
+      console.log("An error occurred when retrieving company list", err);
     })
   },[])
 
@@ -61,11 +61,11 @@ const Form = ({form, setForm}) => {
           query: createReview,
           variables: {
               input: {
-                review: form.review,
-                rating: "0",
-                level: level_int,
-                position: form.job,
-                companyID: form.company                
+                review: form.review, //str
+                rating: 0, //int
+                level: level_int, //integer
+                position: form.job, //string
+                companyID: form.company  //correspond to               
             }
           }
         }).then(res => {

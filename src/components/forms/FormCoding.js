@@ -33,17 +33,17 @@ const FormCoding = ({formCd, setFormCd}) => {
         // todo
         return true;
     }
-
+    
     useEffect( ()=> {
-        API.graphql({
-          query: listCompanies
-        }).then( res => {
-          let companiesArr = res.data.listCompanies.items;
-          setCompanyList(companiesArr);
-        }).catch (err => {
-          console.log("An error occurred when retrieving company list");
-        })
-      },[])
+      API.graphql({
+        query: listCompanies
+      }).then( res => {
+        let companiesArr = res.data.listCompanies.items;
+        setCompanyList(companiesArr);
+      }).catch (err => {
+        console.log("An error occurred when retrieving company list");
+      })
+    },[])
     
       if(companyList != null){
         companyList.map( compObj => {
@@ -71,37 +71,37 @@ const FormCoding = ({formCd, setFormCd}) => {
     const handleSubmit = e => {
       e.preventDefault();
         if (checkValidity()) {
-            // API.graphql({
-            //     query: createQuestions,
-            //     variables: {
-            //         input: {
-            //             title: formCd.name,
-            //             type: 1,
-            //             concepts: [formCd.concepts],
-            //             prompt: formCd.prompt,
-            //             solution: formCd.solution
-            //       }
-            //     }
-            //   }).then(res => {
-            //     //the response returns the data object that was just created, in this case Questions
-            //     //another entry in the Company questions table needs to be created with the ID of the newly created question (attribute of the 'res')
-            //     //and the id of the company (companyID: formCd.company)
-            //     //nested..
-            //     var reviewID = res.data.createQuestions.id
-            //     console.log("The review ID is: ", reviewID)
-            //     // API.graphql({
-            //     //   query: createQuestionsCompany,
-            //     //   variables:{
-            //     //     input:{
-            //     //       companyId: formCd.company,
+            API.graphql({
+                query: createQuestions,
+                variables: {
+                    input: {
+                        title: formCd.name,
+                        type: 1,
+                        concepts: [formCd.concepts],
+                        prompt: formCd.prompt,
+                        solution: formCd.solution
+                  }
+                }
+              }).then(res => {
+                //the response returns the data object that was just created, in this case Questions
+                //another entry in the Company questions table needs to be created with the ID of the newly created question (attribute of the 'res')
+                //and the id of the company (companyID: formCd.company)
+                //nested..
+                var reviewID = res.data.createQuestions.id
+                console.log("The review ID is: ", reviewID)
+                // API.graphql({
+                //   query: createQuestionsCompany,
+                //   variables:{
+                //     input:{
+                //       companyId: formCd.company,
 
-            //     //     }
-            //     //   }
-            //     // })
-            //     console.log("Response is: ", res);
-            //   }).catch(err => {
-            //     console.log("The error read is: ", err);
-            //   });
+                //     }
+                //   }
+                // })
+                console.log("Response is: ", res);
+              }).catch(err => {
+                console.log("The error read is: ", err);
+              });
 
 
         } else {

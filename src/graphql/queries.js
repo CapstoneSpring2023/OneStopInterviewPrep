@@ -173,7 +173,7 @@ export const getCompany = /* GraphQL */ `
         }
         nextToken
       }
-      questionss {
+      questions {
         items {
           id
           questionsId
@@ -215,7 +215,7 @@ export const listCompanies = /* GraphQL */ `
         urls {
           nextToken
         }
-        questionss {
+        questions {
           nextToken
         }
         Reviews {
@@ -254,7 +254,7 @@ export const getQuestionsCompany = /* GraphQL */ `
         urls {
           nextToken
         }
-        questionss {
+        questions {
           nextToken
         }
         Reviews {
@@ -268,13 +268,13 @@ export const getQuestionsCompany = /* GraphQL */ `
     }
   }
 `;
-export const listQuestionsCompanies = /* GraphQL */ `
-  query ListQuestionsCompanies(
+export const listCompanyQuestions = /* GraphQL */ `
+  query listCompanyQuestions(
     $filter: ModelQuestionsCompanyFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuestionsCompanies(
+    listCompanyQuestions(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -417,7 +417,7 @@ export const getURLCompany = /* GraphQL */ `
         urls {
           nextToken
         }
-        questionss {
+        questions {
           nextToken
         }
         Reviews {

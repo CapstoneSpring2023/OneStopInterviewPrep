@@ -7,7 +7,7 @@ import { listURLCompanies} from '../../graphql/queries';
 function LeetCodeURL(){
     const [urls, setUrls] = useState(null);
     var thisCompany = localStorage.getItem("this-company");
-    
+    /*Need to add an additional filter to check type */
     const input_variables = {
         filter:{
             companyId: 

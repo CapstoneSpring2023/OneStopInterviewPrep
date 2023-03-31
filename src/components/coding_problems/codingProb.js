@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import { API } from 'aws-amplify';
-import { listQuestions,listQuestionsCompanies } from '../../graphql/queries';
+import { listQuestions, listCompanyQuestions} from '../../graphql/queries';
 import loadingGif from "../../images/loading.gif";
 
 const ProbButton = styled.button `
@@ -20,18 +20,13 @@ const ProbButton = styled.button `
 `
 
 function CodingProblemList () {
-  // console.log(
-  //   API.graphql({
-  //       query: listQuestionsCompanies
-  //   })
-  // );
   const [codeProbArr, setcodeProbArr] = useState(null);
   useEffect(() => {
     API.graphql({
-      query: listQuestionsCompanies
+      query: listCompanyQuestions
     }).then(response => {
-      let codeProbsObjs = response.data.listQuestionsCompanies.items
-      console.log("response is: ", codeProbsObjs);
+      let codeProbsObjs = response.data.listCompanyQuestions.items
+      console.log("response is: ", response.data);
       setcodeProbArr(codeProbsObjs);
   }).catch(error => {
     console.log("Error is: ", error)
@@ -75,7 +70,7 @@ function CodingProblemList () {
   // id, title, prompt, concepts, company
   if(codeProbArr != null){
     codeProbArr.map(codeObj => {
-      console.log(" CAN I ACCESS DATA? -------> ", codeObj.questions.title);
+      // console.log(" CAN I ACCESS DATA? -------> ", codeObj.questions.title);
       problemList.push((!thisCompany.localeCompare(codeObj.company.name) || thisCompany == "None") ?
       (<div>
         {/* onClick={() => {changeCurrentProblem(codeObj.id)}} */}
