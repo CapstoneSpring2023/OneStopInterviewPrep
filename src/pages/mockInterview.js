@@ -1,10 +1,7 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useRef } from 'react'
+import Webcam from 'react-webcam';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
-import CodingProblemList from "../components/coding_problems/codingProb.js";
-import Editor from "@monaco-editor/react"
-import axios from 'axios';
-import { FaThList } from 'react-icons/fa';
 
 const RunButton = styled.button `
   cursor: pointer;
@@ -21,9 +18,39 @@ const RunButton = styled.button `
   margin-right: 1rem;
 `
 
-const mockInterview = () => {
-    return (
-        <p>MOCK INTERVIEW TEST</p>
-    )
-}
-export default mockInterview;
+const MockInterview = () => {
+
+  const [isShowVideo, setIsShowVideo] = useState(false);
+  const videoElement = useRef(null);
+  
+  const videoConstraints = {
+      width: 640,
+      height: 480,
+      facingMode: "user"
+  }
+
+  const startCam = () => {
+      setIsShowVideo(true);
+  }
+
+  const stopCam = () => {
+      let stream = videoElement.current.stream;
+      const tracks = stream.getTracks();
+      tracks.forEach(track => track.stop());
+      setIsShowVideo(false);
+  }
+
+  return (
+      <div>
+          <div className="camView">
+              {isShowVideo &&
+                  <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
+              }
+          </div>
+          <button onClick={startCam}>Start Video</button>
+          <button onClick={stopCam}>Stop Video</button>
+      </div>
+  );
+};
+
+export default MockInterview;
