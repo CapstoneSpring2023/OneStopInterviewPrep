@@ -268,9 +268,9 @@ export const getQuestionsCompany = /* GraphQL */ `
     }
   }
 `;
-export const listQuestionsCompanies = /* GraphQL */ `
-  query ListQuestionsCompanies(
-    $filter: ModelQuestionsCompanyFilterInput
+export const listCompanyQuestions = /* GraphQL */ `
+  query listCompanyQuestions(
+    $filter: ModelCompanyQuestionsFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -311,7 +311,7 @@ export const questionsCompaniesByQuestionsId = /* GraphQL */ `
   query QuestionsCompaniesByQuestionsId(
     $questionsId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelQuestionsCompanyFilterInput
+    $filter: ModelCompanyQuestionsFilterInput
     $limit: Int
     $nextToken: String
   ) {
@@ -354,7 +354,7 @@ export const questionsCompaniesByCompanyId = /* GraphQL */ `
   query QuestionsCompaniesByCompanyId(
     $companyId: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelQuestionsCompanyFilterInput
+    $filter: ModelCompanyQuestionsFilterInput
     $limit: Int
     $nextToken: String
   ) {

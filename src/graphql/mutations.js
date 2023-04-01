@@ -349,12 +349,12 @@ export const deleteCompany = /* GraphQL */ `
     }
   }
 `;
-export const createQuestionsCompany = /* GraphQL */ `
-  mutation CreateQuestionsCompany(
-    $input: CreateQuestionsCompanyInput!
-    $condition: ModelQuestionsCompanyConditionInput
+export const createCompanyQuestions = /* GraphQL */ `
+  mutation CreateCompanyQuestions(
+    $input: CreateCompanyQuestionsInput!
+    $condition: ModelCompanyQuestionsConditionInput
   ) {
-    createQuestionsCompany(input: $input, condition: $condition) {
+    createCompanyQuestions(input: $input, condition: $condition) {
       id
       questionsId
       companyId
@@ -392,12 +392,12 @@ export const createQuestionsCompany = /* GraphQL */ `
     }
   }
 `;
-export const updateQuestionsCompany = /* GraphQL */ `
-  mutation UpdateQuestionsCompany(
-    $input: UpdateQuestionsCompanyInput!
-    $condition: ModelQuestionsCompanyConditionInput
+export const updateCompanyQuestions = /* GraphQL */ `
+  mutation UpdateCompanyQuestions(
+    $input: UpdateCompanyQuestionsInput!
+    $condition: ModelCompanyQuestionsConditionInput
   ) {
-    updateQuestionsCompany(input: $input, condition: $condition) {
+    updateCompanyQuestions(input: $input, condition: $condition) {
       id
       questionsId
       companyId
@@ -435,12 +435,12 @@ export const updateQuestionsCompany = /* GraphQL */ `
     }
   }
 `;
-export const deleteQuestionsCompany = /* GraphQL */ `
-  mutation DeleteQuestionsCompany(
-    $input: DeleteQuestionsCompanyInput!
-    $condition: ModelQuestionsCompanyConditionInput
+export const deleteCompanyQuestions = /* GraphQL */ `
+  mutation DeleteCompanyQuestions(
+    $input: DeleteCompanyQuestionsInput!
+    $condition: ModelCompanyQuestionsConditionInput
   ) {
-    deleteQuestionsCompany(input: $input, condition: $condition) {
+    deleteCompanyQuestions(input: $input, condition: $condition) {
       id
       questionsId
       companyId

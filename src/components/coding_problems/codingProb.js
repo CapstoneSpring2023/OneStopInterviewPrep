@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
-//import loadingGif from "../../images/loading.gif";
+import { API } from 'aws-amplify';
+import { listQuestions, listCompanyQuestions} from '../../graphql/queries';
+import loadingGif from "../../images/loading.gif";
+import { createCompanyQuestions } from '../../graphql/mutations';
 
 const ProbButton = styled.button `
   cursor: pointer;
@@ -20,20 +23,34 @@ const ProbButton = styled.button `
 var dbAddress = localStorage.getItem("db-address");
 
 function CodingProblemList () {
-  // const [codeProbArr, setcodeProbArr] = useState(null);
-  // useEffect(() => {
-  //   fetch(dbAddress + '/getCodeProb',{
-  //   method: "GET"
-  // }).then(response => {
-  //   if (response.type === 'opaque' || response.ok) {
-  //       response.json().then(codeProbsObjs => {
-  //         setcodeProbArr(codeProbsObjs)
-  //     });
-  //   } 
-  // }).catch(error => {
-  //   console.log("Error is: ", error)
-  // });
-  // },[]);
+  const [codeProbArr, setcodeProbArr] = useState(null);
+  useEffect(() => {
+
+    API.graphql({
+      query:createCompanyQuestions,
+      variables:{
+        input:{
+          companyID: "c41ed82a-a85b-478d-b84a-bed887d15cd5",
+          questionsId:"a1450ef6-f339-43cc-87e4-227601a06f27"
+        }
+      }
+    }).then(res => {
+      console.log("Response recieved from trying to create Company Questions: ", res);
+    }).catch(err => {
+      console.log("the error recieved from trying to create a company question was: ", err);
+    })
+
+
+    API.graphql({
+      query: listCompanyQuestions
+    }).then(response => {
+      let codeProbsObjs = response.data.listCompanyQuestions.items
+      console.log("response is: ", response.data);
+      setcodeProbArr(codeProbsObjs);
+  }).catch(error => {
+    console.log("Error is: ", error)
+  });
+  },[]);
 
   // function changeCurrentProblem (objID) {
 
