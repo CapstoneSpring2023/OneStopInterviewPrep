@@ -42,13 +42,18 @@ const MockInterview = () => {
 
   return (
       <div>
-          <div className="camView">
-              {isShowVideo &&
-                  <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
-              }
-          </div>
+        {isShowVideo &&
+            <div className="camView">
+
+                <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
+            </div>
+        }
+        {!isShowVideo &&
           <button onClick={startCam}>Start Video</button>
-          <button onClick={stopCam}>Stop Video</button>
+        }
+        {isShowVideo &&
+            <button onClick={stopCam}>Stop Video</button>
+        }
       </div>
   );
 };
