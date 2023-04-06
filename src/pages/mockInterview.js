@@ -198,34 +198,14 @@ const MockInterview = () => {
                   if (!isActive) {
                     startRecording();
                   } else {
+                    stopRecording();
                     pauseRecording();
                   }
 
                   setIsActive(!isActive);
                 }}
               >
-                {isActive ? "Pause" : "Start"}
-              </button>
-              <button
-                style={{
-                  padding: "0.8rem 2rem",
-                  border: "none",
-                  backgroundColor: "#df3636",
-                  marginLeft: "15px",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  color: "white",
-                  borderRadius: "5px",
-                  fontWeight: "bold",
-                  transition: "all 300ms ease-in-out",
-                  transform: "translateY(0)"
-                }}
-                onClick={() => {
-                  stopRecording();
-                  pauseRecording();
-                }}
-              >
-                Stop
+                {isActive ? "Stop" : "Start"}
               </button>
             </div>
           </label>
