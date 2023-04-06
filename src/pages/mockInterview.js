@@ -150,16 +150,6 @@ const MockInterview = () => {
           marginLeft: "357px"
         }}
       >
-        <button
-          style={{
-            backgroundColor: "black",
-            borderRadius: "8px",
-            color: "white"
-          }}
-          onClick={stopTimer}
-        >
-          Clear
-        </button>
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
           <span className="minute">{minute}</span>
           <span>:</span>
@@ -200,6 +190,7 @@ const MockInterview = () => {
                   } else {
                     stopRecording();
                     pauseRecording();
+                    stopTimer();
                   }
 
                   setIsActive(!isActive);
