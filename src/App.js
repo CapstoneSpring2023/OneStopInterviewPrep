@@ -21,6 +21,7 @@ import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
 import Profile from "./pages/profile";
 import Chatbot from "./pages/chatbot";
+import FileUpload from "./pages/fileupload";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
@@ -148,6 +149,7 @@ function App({ signOut }) {
           <Route path="/mockInterview" element = {<MockInterview/>}/>
           <Route path="/profile" element = {<Profile/>}/>
           <Route path="/chatbot" element = {<Chatbot/>}/>
+          <Route path="/fileupload" element = {<FileUpload/>}/>
         </Routes>
       </Router>
       
