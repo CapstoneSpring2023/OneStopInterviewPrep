@@ -91,18 +91,18 @@ class Coding extends Component {
     render() {
         return (
             <div>
-                <div class="coding coding-header">
-                    <div class="split coding-logo">
+                <div className="coding coding-header">
+                    <div className="split coding-logo">
                         <img src={logo} alt="logo" height="100%" />
                     </div>
-                    <div class="split coding-problem-name">
+                    <div className="split coding-problem-name">
                         <h1>Problem Name: {probName}</h1>
                         <h2>Concepts Covered: {probConcepts}</h2>
                         <h2>Company: {probCompany}</h2>
                     </div>
                 </div>
-                <div class="coding coding-main">
-                    <div class="split problem-list">
+                <div className="coding coding-main">
+                    <div className="split problem-list">
                         <form className='problem-sort'>
                             <h1>Sort by:</h1>
                             <div className='radio'>
@@ -185,22 +185,22 @@ class Coding extends Component {
                         </form>
                         <CodingProblemList/>
                     </div>
-                    <div class="split problem-statement">
+                    <div className="split problem-statement">
                         <h2>Problem Prompt:</h2>
                         <body>{probPrompt}</body>
                         <h2>Your Code:</h2>
-                        <div class="coding-problem-left">
+                        <div className="coding-problem-left">
                             <Editor
                                 className='code-editor'
                                 defaultLanguage = "cpp"
                                 defaultValue=  {startingCode}
                                 onChange={(value) => this.setState({userCode: value})}
                             />
-                            <RunButton class="run-button" onClick={this.compile}>Run Code</RunButton>
-                            <RunButton class="save-button" onClick={this.saveCode}>Save</RunButton>
+                            <RunButton className="run-button" onClick={this.compile}>Run Code</RunButton>
+                            <RunButton className="save-button" onClick={this.saveCode}>Save</RunButton>
                         </div>
-                        <div class="coding-problem-right">
-                            <textarea disabled class="compiler-window" id="terminal" name="terminal" value={this.state.userOutput}/>
+                        <div className="coding-problem-right">
+                            <textarea disabled className="compiler-window" id="terminal" name="terminal" value={this.state.userOutput}/>
                         </div>
                     </div>
                 </div>

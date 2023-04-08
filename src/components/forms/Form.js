@@ -116,7 +116,7 @@ const Form = ({form, setForm}) => {
               <option value={6}>Entry Level</option>
               </select><br/>
             <label htmlFor='review'>Review</label><br/>
-            <div class="review-box"><textarea
+            <div className="review-box"><textarea
                    value={form.review}
                    placeholder="Give feedback"  
                    id="review" 

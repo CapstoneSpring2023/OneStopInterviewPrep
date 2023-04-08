@@ -142,7 +142,7 @@ const FormCoding = ({formCd, setFormCd}) => {
             </textarea><br/>
           
             <label htmlFor='prompt'>Problem Prompt</label><br/>
-            <div class="review-box"><textarea
+            <div className="review-box"><textarea
                     value={formCd.prompt}
                     placeholder="Enter problem prompt"  
                     id="prompt" 
@@ -153,7 +153,7 @@ const FormCoding = ({formCd, setFormCd}) => {
 
 
             <label htmlFor='solution'>Optional: Suggested solution</label><br/>
-            <div class="review-box"><textarea
+            <div className="review-box"><textarea
                     value={formCd.solution}
                     placeholder="Enter a suggested solution "  
                     id="solution" 
