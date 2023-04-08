@@ -125,11 +125,11 @@ function App({ signOut }) {
       <Router>
         {whichStyle()}
         <Navbar />
-        <div class ="signout-section">
-          <Button class= "signOutBtn" onClick={signOut}>Sign Out</Button>
+        <div className ="signout-section">
+          <Button className= "signOutBtn" onClick={signOut}>Sign Out</Button>
         </div>
         <Routes>
-          <Route exact path="/" element = {<Home />}/>
+          <Route exact="true" path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
           <Route path="/feedbackform" element = {<FeedbackForm/>}/>
           <Route path="/interviewPrep" element = {<InterviewPrep/>}/>

@@ -75,10 +75,10 @@ function FeedbackView({company}){
     //                 <body>
     //                     {singleReviewItem.description}
     //                 </body>
-    //                 <div class="votes up">
+    //                 <div className="votes up">
     //                     <a onClick={() => { upVote(singleReviewItem.id)}}>{upImage}</a>{singleReviewItem.upVotes}
     //                 </div>
-    //                 <div class="votes down">
+    //                 <div className="votes down">
     //                     <a onClick={() => {downVote(singleReviewItem.id)}}>{downImage}</a>{singleReviewItem.downVotes}
     //                 </div>
     //             </div>)

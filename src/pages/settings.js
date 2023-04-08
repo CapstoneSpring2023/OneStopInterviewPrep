@@ -33,8 +33,8 @@ const Settings = () => {
   }
 
   return (
-    <div class="settings-page">
-        <div class="company-section settings-menu">
+    <div className="settings-page">
+        <div className="company-section settings-menu">
             <h1>Settings</h1>
             <body>
                 Color Scheme:<ColorSchemeButton onClick={changeCSS}>{currentScheme}</ColorSchemeButton>

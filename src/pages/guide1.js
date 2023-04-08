@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "./../images/ap_dark_logo.png";
 import styled from "styled-components";
-import {Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 const LinkButton = styled.button `
   cursor: pointer;
@@ -23,20 +23,20 @@ const LinkButton = styled.button `
 function Guide1() {
     return (
         <div>
-            <div class="guide-header">
+            <div className="guide-header">
                 <h1>Resumes</h1>
                 <h2>Guides:</h2>
-                <Link to="/guide1"><LinkButton>
+                <NavLink to="/guide1"><LinkButton>
                     Resumes
-                </LinkButton></Link>
-                <Link to="/guide2"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide2"><LinkButton>
                     Personality Interviews
-                </LinkButton></Link>
-                <Link to="/guide3"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide3"><LinkButton>
                     Technical Interviews
-                </LinkButton></Link>
+                </LinkButton></NavLink>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Why Should Your Resume Look Good?</h2>
                 <body>
                     As recruiters sort through hundreds or even thousands of applications 
@@ -58,7 +58,7 @@ function Guide1() {
                     Doing this is simpler than you may think.
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Formatting</h2>
                 <body>
                     When a recruiter picks up your resume, you are immediately up against the clock.
@@ -73,7 +73,7 @@ function Guide1() {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Education</h2>
                 <body>
                     When writing about your education in a resume, you do not need to list your entire 
@@ -87,7 +87,7 @@ function Guide1() {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Work Experience</h2>
                 <body>
                     Again, as in the education portion, you do not need to list every job you have ever 
@@ -107,7 +107,7 @@ function Guide1() {
                     experience.
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Projects</h2>
                 <body>
                     The projects section is a big place to show a recruiter just what you're capable of. 
@@ -122,7 +122,7 @@ function Guide1() {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>What Not To Put On Your Resume</h2>
                 <body>
                     Remember, a recruiter could spend as little as 7 seconds or less looking at your resume.
@@ -137,7 +137,7 @@ function Guide1() {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Further Reference</h2>
                 <body>
                     You can find more resources at the following pages:

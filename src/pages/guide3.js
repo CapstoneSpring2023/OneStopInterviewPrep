@@ -1,7 +1,7 @@
 import React from 'react'
 // import logo from "./../images/ap_dark_logo.png";
 import styled from "styled-components";
-import {Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 const LinkButton = styled.button `
   cursor: pointer;
@@ -23,20 +23,20 @@ const LinkButton = styled.button `
 function Guide3 () {
     return (
         <div>
-            <div class="guide-header">
+            <div className="guide-header">
                 <h1>Technical Interviews</h1>
                 <h2>Guides:</h2>
-                <Link to="/guide1"><LinkButton>
+                <NavLink to="/guide1"><LinkButton>
                     Resumes
-                </LinkButton></Link>
-                <Link to="/guide2"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide2"><LinkButton>
                     Personality Interviews
-                </LinkButton></Link>
-                <Link to="/guide3"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide3"><LinkButton>
                     Technical Interviews
-                </LinkButton></Link>
+                </LinkButton></NavLink>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>What Do Employers Look For In Technical Interviews?</h2>
                 <body>
                     At the point of a technical interview, the interviewer already likely knows a good amount about your 
@@ -45,15 +45,15 @@ function Guide3 () {
                     talking about, they will also be looking at your problem solving skills and your coding practices.
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>How Do I Know What They Will Ask Me In My Technical Interview?</h2>
                 <body>
                     The short answer is that you don't. The same recruiter might even ask different questions of different 
                     candidates. But since each company looks for specific skills in their employees, they are likely to ask 
                     closely related questions. Looking at and practicing coding problems that the company has asked of 
                     candidates in the past will go a long way to prepare you for the technical interview with them.<br/>
-                    You can see our list of companies and reviews from students who interviewed at those companies <Link to="/interviewPrep">here</Link>.<br/>
-                    You can see our list of example coding problems that have been asked in technical interviews <Link to="/coding">here</Link>.<br/>
+                    You can see our list of companies and reviews from students who interviewed at those companies <NavLink to="/interviewPrep">here</NavLink>.<br/>
+                    You can see our list of example coding problems that have been asked in technical interviews <NavLink to="/coding">here</NavLink>.<br/>
                 </body>
             </div>
         </div>

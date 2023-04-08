@@ -30,10 +30,10 @@ function Display_User(props) {
     }
 
     return(
-        <div class = "Userdisplay">
+        <div className = "Userdisplay">
         <View className="App">
-            <Heading level={3} class ="text-area">{userName} is currently signed in</Heading>
-          <Button class="signout-btn" onClick={props.signOut}>Sign Out</Button>
+            <Heading level={3} className ="text-area">{userName} is currently signed in</Heading>
+          <Button className="signout-btn" onClick={props.signOut}>Sign Out</Button>
         </View>
       </div>
     )

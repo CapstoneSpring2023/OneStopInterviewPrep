@@ -41,36 +41,36 @@ const Navbar = (props) => {
   return (
     <>
     <Nav>
-        <NavLink exact to="/">
+        <NavLink exact="true" to="/">
             <Logo></Logo>
-            <h1 class="nav-title">Aggie Presence</h1>
+            <h1 className="nav-title">Aggie Presence</h1>
         </NavLink>
         <Bars />
         <NavMenu>
-            <NavLink to="/feedbackform" activeStyle>
-                <div class = "nav-link">Share Experience</div>
+            <NavLink to="/feedbackform">
+                <div className= "nav-link">Share Experience</div>
             </NavLink>
-            <NavLink to="/interviewPrep" activeStyle>
-                <div class = "nav-link">Interview Prep</div>
+            <NavLink to="/interviewPrep">
+                <div className= "nav-link">Interview Prep</div>
             </NavLink>
-            <NavLink to="/coding" activeStyle>
-                <div class = "nav-link">Coding Problems</div>
+            <NavLink to="/coding">
+                <div className= "nav-link">Coding Problems</div>
             </NavLink>
-            <NavLink to="/mockInterview" activeStyle>
-                <div class = "nav-link">Mock Interview</div>
+            <NavLink to="/mockInterview">
+                <div className= "nav-link">Mock Interview</div>
             </NavLink>
-            <NavLink to="/guide1" activeStyle>
-                <div class = "nav-link">Interview Guides</div>
+            <NavLink to="/guide1">
+                <div className= "nav-link">Interview Guides</div>
             </NavLink>
-            <NavLink to ="/chatbot" activeStyle>
-              <div class = "nav-link"> Chatbot </div>
+            <NavLink to ="/chatbot">
+              <div className= "nav-link"> Chatbot </div>
             </NavLink>
-            <NavLink to="/settings" activeStyle>
-                <div class = "nav-link">Settings</div>
+            <NavLink to="/settings">
+                <div className= "nav-link">Settings</div>
             </NavLink>
         </NavMenu>
-        <div class = "userDisplay">
-            <Heading level={3} class ="text-area">{userName}</Heading>
+        <div className= "userDisplay">
+            <Heading level={3} className="text-area">{userName}</Heading>
       </div>
 
     </Nav>
