@@ -75,17 +75,19 @@ const MockInterview = () => {
   });
   console.log("url", mediaBlobUrl);
 
-  fetch(mediaBlobUrl)
-  .then((response) => response.blob())
-  .then((blob) => {
-    // do something with the media blob
-    console.log(blob)
-  });
-
   const videoConstraints = {
       width: 640,
       height: 480,
       facingMode: "user"
+  }
+
+  const handleSubmit = () => {
+    fetch(mediaBlobUrl)
+    .then((response) => response.blob())
+    .then((blob) => {
+    // do something with the media blob
+    console.log(".wav", blob)
+    });
   }
 
   const startCam = () => {
@@ -204,6 +206,24 @@ const MockInterview = () => {
                 }}
               >
                 {isActive ? "Stop" : "Start"}
+              </button>
+
+              <button
+                style={{
+                  padding: "0.8rem 2rem",
+                  border: "none",
+                  marginLeft: "15px",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                  fontWeight: "bold",
+                  backgroundColor: "maroon",
+                  color: "white",
+                  transition: "all 300ms ease-in-out",
+                  transform: "translateY(0)"
+                }}
+                onClick={() => {handleSubmit()}}
+              >Submit
               </button>
             </div>
           </label>
