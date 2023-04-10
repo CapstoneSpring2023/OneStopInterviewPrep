@@ -1,7 +1,7 @@
+import { async } from 'q';
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
 import Webcam from 'react-webcam';
-// import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
 
 const RunButton = styled.button `
@@ -70,10 +70,17 @@ const MockInterview = () => {
   } = useReactMediaRecorder({
     video: false,
     audio: true,
-    echoCancellation: true
+    echoCancellation: true,
+    mediaRecorderOptions: { mimeType: 'audio/wav' }
   });
   console.log("url", mediaBlobUrl);
 
+  fetch(mediaBlobUrl)
+  .then((response) => response.blob())
+  .then((blob) => {
+    // do something with the media blob
+    console.log(blob)
+  });
 
   const videoConstraints = {
       width: 640,
