@@ -70,10 +70,17 @@ const MockInterview = () => {
   } = useReactMediaRecorder({
     video: false,
     audio: true,
-    echoCancellation: true
+    echoCancellation: true,
+    mimeType: "audio/wav"
   });
   console.log("url", mediaBlobUrl);
 
+  fetch(mediaBlobUrl)
+  .then((response) => response.blob())
+  .then((blob) => {
+    // do something with the media blob
+    console.log(blob)
+  });
 
   const videoConstraints = {
       width: 640,
