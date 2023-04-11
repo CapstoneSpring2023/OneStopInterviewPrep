@@ -47,9 +47,9 @@ const MockInterview = () => {
     API.graphql({
         query: listQuestions
     }).then(response => {
-        let arr = response.data.listURLCompanies;
+        let arr = response.data.listQuestions.items;
         setQuestionList(arr);
-        console.log(response);
+        console.log(arr);
     }).catch(error => {
       console.log("Error in mockinterview.js, inside graphql query: ", error)
     });
@@ -156,7 +156,7 @@ const MockInterview = () => {
       <div
         style={{
           border: "1px solid #bd9f61",
-          height: "70px",
+          height: "200px",
           backgroundColor: "#bd9f61",
           display: "flex"
         }}
@@ -170,7 +170,7 @@ const MockInterview = () => {
             color: "white"
           }}
         >
-          {status}
+          {"Prompt: " + questionList[questionIndex].prompt}
         </h4> 
         
       </div>
