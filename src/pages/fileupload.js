@@ -10,7 +10,7 @@ const FileUpload = () => {
         try {
             const response = await axios({
                 method: "post",
-                url: "http://localhost:5000/upload",
+                url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/upload",
                 data: formData,
                 headers: {"Content-Type": "multipart/form-data"}
             })

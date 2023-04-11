@@ -3,6 +3,7 @@ import { useReactMediaRecorder } from 'react-media-recorder';
 import Webcam from 'react-webcam';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
+import axios from 'axios';
 
 const RunButton = styled.button `
   cursor: pointer;
@@ -84,9 +85,22 @@ const MockInterview = () => {
   const handleSubmit = () => {
     fetch(mediaBlobUrl)
     .then((response) => response.blob())
-    .then((blob) => {
-    // do something with the media blob
-    console.log(".wav", blob)
+    .then(async (blob) => {
+      // const wavBlob = convertWebmToMp3(blob)
+      const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
+      const formData = new FormData();
+      formData.append("audiodata", audioFile, "audiodata.webm");
+      try {
+          const response = await axios({
+              method: "post",
+              url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              data: formData,
+              headers: {"Content-Type": "multipart/form-data"}
+          })
+          console.log(response);
+      } catch(error) {
+          console.log(error);
+      }
     });
   }
 
