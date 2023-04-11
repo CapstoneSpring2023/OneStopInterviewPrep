@@ -28,6 +28,10 @@ const MockInterview = () => {
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [hap_lower, set_hap_lower] = useState("0");
+  const [hap_upper, set_hap_upper] = useState("0");
+  const [nuetral_lower, set_nuetral_lower] = useState("0");
+  const [nuetral_upper, set_nuetral_upper] = useState("0");
 
   useEffect(() => {
     let intervalId;
@@ -97,7 +101,11 @@ const MockInterview = () => {
               data: formData,
               headers: {"Content-Type": "multipart/form-data"}
           })
-          console.log(response);
+          console.log(response.data);
+          set_hap_lower(response.data.hap_lower);
+          set_hap_upper(response.data.hap_upper);
+          set_nuetral_lower(response.data.nuetral_lower);
+          set_nuetral_upper(response.data.nuetral_upper);
       } catch(error) {
           console.log(error);
       }
@@ -245,6 +253,12 @@ const MockInterview = () => {
         <b></b>
       </div>
       </div>
+      <div>
+      <p>Hap Lower Jitter: {hap_lower}</p>
+      <p>Hap Upper Jitter: {hap_upper}</p>
+      <p>Nuetral Lower Jitter: {nuetral_lower}</p>
+      <p>Nuetral Upper Jitter: {nuetral_upper}</p>
+    </div>
     </div>
   );
 };
