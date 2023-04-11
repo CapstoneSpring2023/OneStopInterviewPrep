@@ -1,6 +1,9 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
 import Webcam from 'react-webcam';
+import { API } from 'aws-amplify';
+import { listQuestions} from '../graphql/queries';
+
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
 
@@ -27,6 +30,30 @@ const MockInterview = () => {
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [questionList, setQuestionList] = useState(null);
+
+  const input_variables = {
+    filter:{
+        type: 
+        {
+            nq: 1
+        }
+    }
+  };
+
+  useEffect(() => {
+    // List all items
+    API.graphql({
+        query: listQuestions
+    }).then(response => {
+        let arr = response.data.listURLCompanies;
+        setQuestionList(arr);
+        console.log(response);
+    }).catch(error => {
+      console.log("Error in mockinterview.js, inside graphql query: ", error)
+    });
+  },[]);
 
   useEffect(() => {
     let intervalId;
@@ -79,6 +106,15 @@ const MockInterview = () => {
       width: 640,
       height: 480,
       facingMode: "user"
+  }
+
+  const getNextQuestion = () => {
+    let nextIndex = questionIndex + 1;
+    if (nextIndex == questionList.length) {
+      setQuestionIndex(0);
+    } else {
+      setQuestionIndex(questionIndex + 1);
+    }
   }
 
   const startCam = () => {
@@ -135,7 +171,8 @@ const MockInterview = () => {
           }}
         >
           {status}
-        </h4>
+        </h4> 
+        
       </div>
       <div style={{ height: "38px" }}>
         {" "}
@@ -197,6 +234,27 @@ const MockInterview = () => {
                 }}
               >
                 {isActive ? "Stop" : "Start"}
+              </button>
+
+              <button
+                style={{
+                  padding: "0.8rem 2rem",
+                  border: "none",
+                  marginLeft: "15px",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                  fontWeight: "bold",
+                  backgroundColor: "#42b72a",
+                  color: "white",
+                  transition: "all 300ms ease-in-out",
+                  transform: "translateY(0)"
+                }}
+                onClick={() => {
+                  getNextQuestion();
+                }}
+              >
+                {"Get Next Question"}
               </button>
             </div>
           </label>

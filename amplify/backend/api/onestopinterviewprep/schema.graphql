@@ -26,7 +26,7 @@ type Questions @model @auth(rules: [{allow: public}]) {
   type: Int!
   concepts: [String]
   prompt: String!
-  solution: String!
+  solution: String
   Companies: [Company!] @manyToMany(relationName: "CompanyQuestions")
   Reviews: [Review] @hasMany(indexName: "byQuestions", fields: ["id"])
 }
