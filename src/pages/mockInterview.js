@@ -27,6 +27,7 @@ const MockInterview = () => {
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [question, setQuestion] = useState("How's your day going?");
 
   useEffect(() => {
     let intervalId;
@@ -102,6 +103,150 @@ const MockInterview = () => {
   }
 
   return (
+    <div
+      style={{
+        border: "2px solid black",
+        width: "100%",
+        textAlign: "center",
+        fontFamily: "sans-serif",
+        display: "inline-block"
+      }}
+    >
+      <div
+      style={{
+        width: "50%",
+      }}
+      >
+        <div
+          style={{
+            border: "2px solid black",
+            height: "fit-content",
+            backgroundColor: "#bd9f61",
+            display: "flex"
+          }}
+        >
+          <h4
+            style={{
+              width: '100%',
+              //marginRight: "15px",
+              textTransform: "capitalize",
+              //fontFamily: "sans-serif",
+              fontSize: "18px",
+              color: "white"
+            }}
+          >
+            {question}
+          </h4>
+        </div>
+        <div 
+        style={{
+          display: "inline-block",
+          padding: "0.5rem",
+          //marginRight: "125px"
+        }}
+        >
+        <button
+          style={{
+            padding: "0.8rem 1.2rem",
+            border: "1px solid black",
+            //marginLeft: "15px",
+            fontSize: "1rem",
+            cursor: "pointer",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            backgroundColor: "maroon",
+            color: "white",
+            transition: "all 300ms ease-in-out",
+            transform: "translateY(0)"
+          }}
+          onClick={() => {handleSubmit()}}
+        >Submit
+        </button>
+        </div>
+
+        <div
+        style={{
+          display: "inline-block"
+          //marginLeft: "125px"
+        }}
+        >
+        <button
+            style={{
+              padding: "0.8rem 1.2rem",
+              border: "1px solid black",
+              //marginLeft: "15px",
+              fontSize: "1rem",
+              cursor: "pointer",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              backgroundColor: "#42b72a",
+              color: "white",
+              transition: "all 300ms ease-in-out",
+              transform: "translateY(0)"
+            }}
+            onClick={() => {
+              if (!isActive) {
+                startRecording();
+              } else {
+                stopRecording();
+                pauseRecording();
+                stopTimer();
+              }
+
+              setIsActive(!isActive);
+            }}
+          >
+            {isActive ? "Stop" : "Start"}
+        </button>
+        </div>
+
+        {isShowVideo &&
+            <div className="camView"
+              style={{
+                objectFit: "fill"
+              }}
+            >
+                <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
+            </div>
+        }
+        {!isShowVideo &&
+          <button onClick={startCam}>Start Video</button>
+        }
+        {isShowVideo &&
+            <button onClick={stopCam}>Stop Video</button>
+        }
+      </div>
+      <div
+      style={{
+        width:'50%',
+        marginLeft: "50%",
+        border: "1px solid black",
+        display: "inline-block"
+      }}
+      >
+        <div style={{fontSize: "3rem"}}>
+            <span className="minute">{minute}</span>
+            <span>:</span>
+            <span className="second">{second}</span>
+        </div>
+
+        <div style={{ marginLeft: "20px", display: "flex" }}>
+          <label
+            style={{
+              fontSize: "15px",
+              fontWeight: "Normal"
+              // marginTop: "20px"
+            }}
+            htmlFor="icon-button-file"
+          ></label>
+        </div>
+        <div style={{ height: "38px" }}>
+          {" "}
+          <video src={mediaBlobUrl} controls loop />
+        </div>
+      </div>
+    </div>
+    /*
     <div>
       <div>
         {isShowVideo &&
@@ -232,6 +377,7 @@ const MockInterview = () => {
       </div>
       </div>
     </div>
+    */
   );
 };
 
