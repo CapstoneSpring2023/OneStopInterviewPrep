@@ -1,6 +1,8 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
 import Webcam from 'react-webcam';
+import { API } from 'aws-amplify';
+import { listQuestions} from '../graphql/queries';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
 import axios from 'axios';
@@ -28,8 +30,19 @@ const MockInterview = () => {
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [questionList, setQuestionList] = useState(null);
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
+
+  const input_variables = {
+    filter:{
+        type: 
+        {
+            gt: 1
+        }
+    }
+  };
 
   useEffect(() => {
     let intervalId;
@@ -82,6 +95,26 @@ const MockInterview = () => {
       width: 640,
       height: 480,
       facingMode: "user"
+  }
+  
+  const getNextQuestion = () => {
+    let nextIndex = questionIndex + 1;
+    if (nextIndex == questionList.length) {
+      setQuestionIndex(0);
+    } else {
+      setQuestionIndex(questionIndex + 1);
+    }
+  }
+
+  const questionStart = () => {
+    API.graphql({
+      query: listQuestions, variables: input_variables
+    }).then(response => {
+      let arr = response.data.listQuestions.items;
+      setQuestionList(arr);
+    }).catch(error => {
+      console.log("Error in mockinterview.js, inside graphql query: ", error)
+    });
   }
 
   const handleSubmit = () => {
@@ -161,7 +194,7 @@ const MockInterview = () => {
             color: "white"
           }}
         >
-          {status}
+        {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
       <div style={{ height: "38px" }}>
@@ -224,6 +257,31 @@ const MockInterview = () => {
                 }}
               >
                 {isActive ? "Stop" : "Start"}
+              </button>
+
+               <button
+                style={{
+                  padding: "0.8rem 2rem",
+                  border: "none",
+                  marginLeft: "15px",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                  fontWeight: "bold",
+                  backgroundColor: "#42b72a",
+                  color: "white",
+                  transition: "all 300ms ease-in-out",
+                  transform: "translateY(0)"
+                }}
+                onClick={() => {
+                  if (questionList) {
+                    getNextQuestion();
+                  } else {
+                    questionStart();
+                  }
+                }}
+              >
+                {questionList ? "Get Next Question" : "Get First Question"}
               </button>
 
               <button
