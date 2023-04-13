@@ -21,6 +21,7 @@ import Settings from "./pages/settings";
 import MockInterview from "./pages/mockInterview";
 import Profile from "./pages/profile";
 import Chatbot from "./pages/chatbot";
+import FileUpload from "./pages/fileupload";
 import "./App.css";
 import "@aws-amplify/ui-react/styles.css";
 import {
@@ -125,11 +126,11 @@ function App({ signOut }) {
       <Router>
         {whichStyle()}
         <Navbar />
-        <div class ="signout-section">
-          <Button class= "signOutBtn" onClick={signOut}>Sign Out</Button>
+        <div className="signout-section">
+          <Button className= "signOutBtn" onClick={signOut}>Sign Out</Button>
         </div>
         <Routes>
-          <Route exact path="/" element = {<Home />}/>
+          <Route exact="true" path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
           <Route path="/feedbackform" element = {<FeedbackForm/>}/>
           <Route path="/interviewPrep" element = {<InterviewPrep/>}/>
@@ -148,6 +149,7 @@ function App({ signOut }) {
           <Route path="/mockInterview" element = {<MockInterview/>}/>
           <Route path="/profile" element = {<Profile/>}/>
           <Route path="/chatbot" element = {<Chatbot/>}/>
+          <Route path="/fileupload" element = {<FileUpload/>}/>
         </Routes>
       </Router>
       

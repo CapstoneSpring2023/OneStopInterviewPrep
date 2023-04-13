@@ -3,9 +3,9 @@ import { useReactMediaRecorder } from 'react-media-recorder';
 import Webcam from 'react-webcam';
 import { API } from 'aws-amplify';
 import { listQuestions} from '../graphql/queries';
-
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
 import styled from "styled-components";
+import axios from 'axios';
 
 const RunButton = styled.button `
   cursor: pointer;
@@ -32,6 +32,8 @@ const MockInterview = () => {
   const [counter, setCounter] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questionList, setQuestionList] = useState(null);
+  const [upper_loud, set_upper_loud] = useState("0");
+  const [lower_loud, set_lower_loud] = useState("0");
 
   const input_variables = {
     filter:{
@@ -84,17 +86,17 @@ const MockInterview = () => {
   } = useReactMediaRecorder({
     video: false,
     audio: true,
-    echoCancellation: true
+    echoCancellation: true,
+    mimeType: "audio/wav"
   });
   console.log("url", mediaBlobUrl);
-
 
   const videoConstraints = {
       width: 640,
       height: 480,
       facingMode: "user"
   }
-
+  
   const getNextQuestion = () => {
     let nextIndex = questionIndex + 1;
     if (nextIndex == questionList.length) {
@@ -112,6 +114,30 @@ const MockInterview = () => {
       setQuestionList(arr);
     }).catch(error => {
       console.log("Error in mockinterview.js, inside graphql query: ", error)
+    });
+  }
+
+  const handleSubmit = () => {
+    fetch(mediaBlobUrl)
+    .then((response) => response.blob())
+    .then(async (blob) => {
+      // const wavBlob = convertWebmToMp3(blob)
+      const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
+      const formData = new FormData();
+      formData.append("audiodata", audioFile, "audiodata.webm");
+      try {
+          const response = await axios({
+              method: "post",
+              url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              data: formData,
+              headers: {"Content-Type": "multipart/form-data"}
+          })
+          console.log(response.data);
+          set_upper_loud(response.data.upper_loud);
+          set_lower_loud(response.data.lower_loud);
+      } catch(error) {
+          console.log(error);
+      }
     });
   }
 
@@ -154,7 +180,7 @@ const MockInterview = () => {
       <div
         style={{
           border: "1px solid #bd9f61",
-          height: "200px",
+          height: "70px",
           backgroundColor: "#bd9f61",
           display: "flex"
         }}
@@ -168,9 +194,8 @@ const MockInterview = () => {
             color: "white"
           }}
         >
-          {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
-        </h4> 
-        
+        {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+        </h4>
       </div>
       <div style={{ height: "38px" }}>
         {" "}
@@ -234,7 +259,7 @@ const MockInterview = () => {
                 {isActive ? "Stop" : "Start"}
               </button>
 
-              <button
+               <button
                 style={{
                   padding: "0.8rem 2rem",
                   border: "none",
@@ -258,12 +283,34 @@ const MockInterview = () => {
               >
                 {questionList ? "Get Next Question" : "Get First Question"}
               </button>
+
+              <button
+                style={{
+                  padding: "0.8rem 2rem",
+                  border: "none",
+                  marginLeft: "15px",
+                  fontSize: "1rem",
+                  cursor: "pointer",
+                  borderRadius: "5px",
+                  fontWeight: "bold",
+                  backgroundColor: "maroon",
+                  color: "white",
+                  transition: "all 300ms ease-in-out",
+                  transform: "translateY(0)"
+                }}
+                onClick={() => {handleSubmit()}}
+              >Submit
+              </button>
             </div>
           </label>
         </div>
         <b></b>
       </div>
       </div>
+      <div>
+      <p>Hap Upper Loud: {upper_loud}</p>
+      <p>Hap Lower Loud: {lower_loud}</p>
+    </div>
     </div>
   );
 };
