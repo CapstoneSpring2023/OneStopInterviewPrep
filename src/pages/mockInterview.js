@@ -37,23 +37,10 @@ const MockInterview = () => {
     filter:{
         type: 
         {
-            nq: 1
+            gt: 1
         }
     }
   };
-
-  useEffect(() => {
-    // List all items
-    API.graphql({
-        query: listQuestions
-    }).then(response => {
-        let arr = response.data.listQuestions.items;
-        setQuestionList(arr);
-        console.log(arr);
-    }).catch(error => {
-      console.log("Error in mockinterview.js, inside graphql query: ", error)
-    });
-  },[]);
 
   useEffect(() => {
     let intervalId;
@@ -117,6 +104,17 @@ const MockInterview = () => {
     }
   }
 
+  const questionStart = () => {
+    API.graphql({
+      query: listQuestions, variables: input_variables
+    }).then(response => {
+      let arr = response.data.listQuestions.items;
+      setQuestionList(arr);
+    }).catch(error => {
+      console.log("Error in mockinterview.js, inside graphql query: ", error)
+    });
+  }
+
   const startCam = () => {
       setIsShowVideo(true);
   }
@@ -170,7 +168,7 @@ const MockInterview = () => {
             color: "white"
           }}
         >
-          {"Prompt: " + questionList[questionIndex].prompt}
+          {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4> 
         
       </div>
@@ -251,10 +249,14 @@ const MockInterview = () => {
                   transform: "translateY(0)"
                 }}
                 onClick={() => {
-                  getNextQuestion();
+                  if (questionList) {
+                    getNextQuestion();
+                  } else {
+                    questionStart();
+                  }
                 }}
               >
-                {"Get Next Question"}
+                {questionList ? "Get Next Question" : "Get First Question"}
               </button>
             </div>
           </label>
