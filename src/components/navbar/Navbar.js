@@ -1,9 +1,37 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavbarElements";
-import logo from "./../../images/ap_dark_logo.png"; 
 import Logo from "./Logo"
+import "@aws-amplify/ui-react/styles.css";
+import {
+  withAuthenticator,
+  Button,
+  Heading,
+  Image,
+  View,
+  Card,
+} from "@aws-amplify/ui-react";
+import { Amplify, Auth } from 'aws-amplify';
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const [userName, setUserDetails] = React.useState("");
+    const [userData, setUserData] = React.useState("");
+    const [isLoading, setLoading] = React.useState(true);
+    Auth.currentAuthenticatedUser({
+      bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+    })
+      .then((user) => {
+        setUserDetails(user.username);
+        setUserData(user.attributes.email);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
+  
+    if(isLoading) {
+      return <div>Loading...</div>
+    }
+
+
+
     var styleInput = localStorage.getItem("current-style");
     var imageURL = "./../../images/ap_dark_logo.png"; 
     if(styleInput =="style1"){
@@ -13,37 +41,38 @@ const Navbar = () => {
   return (
     <>
     <Nav>
-        <NavLink exact to="/">
+        <NavLink exact="true" to="/">
             <Logo></Logo>
-            <h1 class="nav-title">Aggie Presence</h1>
+            <h1 className="nav-title">Aggie Presence</h1>
         </NavLink>
         <Bars />
         <NavMenu>
-            <NavLink to="/profile" activeStyle>
-                <div class = "nav-link">Profile</div>
+            <NavLink to="/feedbackform">
+                <div className= "nav-link">Share Experience</div>
             </NavLink>
-            <NavLink to="/feedbackform" activeStyle>
-                <div class = "nav-link">Share Experience</div>
+            <NavLink to="/interviewPrep">
+                <div className= "nav-link">Interview Prep</div>
             </NavLink>
-            <NavLink to="/interviewPrep" activeStyle>
-                <div class = "nav-link">Interview Prep</div>
+            <NavLink to="/coding">
+                <div className= "nav-link">Coding Problems</div>
             </NavLink>
-            <NavLink to="/coding" activeStyle>
-                <div class = "nav-link">Coding Problems</div>
+            <NavLink to="/mockInterview">
+                <div className= "nav-link">Mock Interview</div>
             </NavLink>
-            <NavLink to="/mockInterview" activeStyle>
-                <div class = "nav-link">Mock Interview</div>
+            <NavLink to="/guide1">
+                <div className= "nav-link">Interview Guides</div>
             </NavLink>
-            <NavLink to="/guide1" activeStyle>
-                <div class = "nav-link">Interview Guides</div>
+            <NavLink to ="/chatbot">
+              <div className= "nav-link"> Chatbot </div>
             </NavLink>
-            <NavLink to="/settings" activeStyle>
-                <div class = "nav-link">Settings</div>
-            </NavLink>
-            <NavLink to="/chatbot" activeStyle>
-                <div class = "nav-link">Chatbot</div>
+            <NavLink to="/settings">
+                <div className= "nav-link">Settings</div>
             </NavLink>
         </NavMenu>
+        <div className= "userDisplay">
+            <Heading level={3} className="text-area">{userName}</Heading>
+      </div>
+
     </Nav>
     </>
   )
