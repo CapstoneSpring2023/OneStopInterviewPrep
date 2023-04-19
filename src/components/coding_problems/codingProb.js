@@ -52,17 +52,17 @@ function CodingProblemList () {
       })
     }
     if (codeProb) {
-      probTitle = codeProb.title;
-      probConcepts = codeProb.concepts;
-      probPrompt = codeProb.prompt;
-      probCompany = codeProb.company;
+      probTitle = codeProb.questions.title;
+      probConcepts = codeProb.questions.concepts;
+      probPrompt = codeProb.questions.prompt;
+     // probCompany = codeProb.questions.company;
     }
 
 
     localStorage.setItem("problem-title", probTitle);
     localStorage.setItem("problem-concepts", probConcepts);
     localStorage.setItem("problem-prompt", probPrompt);
-    localStorage.setItem("problem-company", probCompany);
+   /// localStorage.setItem("problem-company", probCompany);
     window.location.reload();
   }
 
