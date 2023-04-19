@@ -55,7 +55,7 @@ const Form = ({form, setForm}) => {
 
   const handleSubmit = e => {
     var level_int = parseInt(form.level);
-    e.preventDefault();
+    //e.preventDefault();
       if (checkValidity()) {
         API.graphql({
           query: createReview,

@@ -19,8 +19,6 @@ const SubmitButton = styled.button `
   float: center;
 `
 
-var dbAddress = localStorage.getItem("db-address");
-
 const FormCoding = ({formCd, setFormCd}) => {
     const [companyList, setCompanyList] = useState(null);
     var dropdownCompDis = new Array();
@@ -52,24 +50,9 @@ const FormCoding = ({formCd, setFormCd}) => {
           )
         })
     }
-    /* need to convert the formCd.concepts string into an array of strings.
-    also need to check for duplicates, the same question can appear for multiple companies 
-    URL Companies is a good example to follow, this is the amplify studio way to do it:
-        mutation{
-    createURLCompany(
-        input: {
-        #reverse integer
-        uRLId:"e7681bfd-8884-463a-ae64-671bbdf7e5f9"
-        #microsoft
-        companyId: "a1450ef6-f339-43cc-87e4-227601a06f27"
-    }){
-        companyId
-        uRLId
-    }
-}
-    */
+
     const handleSubmit = e => {
-      e.preventDefault();
+      //e.preventDefault();
         if (checkValidity()) {
             API.graphql({
                 query: createQuestions,
