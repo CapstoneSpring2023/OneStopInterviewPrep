@@ -270,7 +270,7 @@ export const getQuestionsCompany = /* GraphQL */ `
 `;
 export const listCompanyQuestions = /* GraphQL */ `
   query listCompanyQuestions(
-    $filter: ModelQuestionsCompanyFilterInput
+    $filter: ModelCompanyQuestionsFilterInput
     $limit: Int
     $nextToken: String
   ) {

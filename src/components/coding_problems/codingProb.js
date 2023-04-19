@@ -26,7 +26,7 @@ function CodingProblemList () {
       query: listCompanyQuestions
     }).then(response => {
       let codeProbsObjs = response.data.listCompanyQuestions.items
-      console.log("response is: ", response.data);
+      console.log("response is: ", codeProbsObjs);
       setcodeProbArr(codeProbsObjs);
   }).catch(error => {
     console.log("Error is: ", error)
@@ -43,7 +43,9 @@ function CodingProblemList () {
     var probCompany = "N/A";
     var codeProb = null;
     if (codeProbArr != null) {
+
       codeProbArr.map(codeObj => {
+       // console.log(" CAN I ACCESS DATA? -------> ", codeObj);
         codeProb = (codeObj.id === objID) ?
           codeObj :
           codeProb
@@ -70,11 +72,10 @@ function CodingProblemList () {
   // id, title, prompt, concepts, company
   if(codeProbArr != null){
     codeProbArr.map(codeObj => {
-      // console.log(" CAN I ACCESS DATA? -------> ", codeObj.questions.title);
+      console.log(" CAN I ACCESS DATA? -------> ", codeObj);
       problemList.push((!thisCompany.localeCompare(codeObj.company.name) || thisCompany == "None") ?
       (<div>
-        {/* onClick={() => {changeCurrentProblem(codeObj.id)}} */}
-        {<ProbButton>{codeObj.questions.title} ({codeObj.company.name})</ProbButton> }
+        {<ProbButton onClick={() => changeCurrentProblem(codeObj.id)} >{codeObj.questions.title} ({codeObj.company.name})</ProbButton> }
       </div>)
       : null)
     })
