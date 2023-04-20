@@ -34,6 +34,7 @@ const MockInterview = () => {
   const [questionList, setQuestionList] = useState(null);
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
+  const [speechToText, SetSpeechToText] = useState("");
 
   const input_variables = {
     filter:{
@@ -128,13 +129,15 @@ const MockInterview = () => {
       try {
           const response = await axios({
               method: "post",
-              url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              // url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              url: "http://localhost:5000/opensmileaudio",
               data: formData,
               headers: {"Content-Type": "multipart/form-data"}
           })
           console.log(response.data);
           set_upper_loud(response.data.upper_loud);
           set_lower_loud(response.data.lower_loud);
+          SetSpeechToText(response.data.speech_to_text);
       } catch(error) {
           console.log(error);
       }
