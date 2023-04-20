@@ -1,6 +1,5 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
-import Webcam from 'react-webcam';
 import { API } from 'aws-amplify';
 import { listQuestions} from '../graphql/queries';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
@@ -24,8 +23,6 @@ const RunButton = styled.button `
 
 const MockInterview = () => {
 
-  const [isShowVideo, setIsShowVideo] = useState(false);
-  const videoElement = useRef(null);
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
@@ -84,18 +81,12 @@ const MockInterview = () => {
     pauseRecording,
     mediaBlobUrl
   } = useReactMediaRecorder({
-    video: false,
+    video: true,
     audio: true,
     echoCancellation: true,
-    mimeType: "audio/wav"
+    mimeType: "audio/webm"
   });
   console.log("url", mediaBlobUrl);
-
-  const videoConstraints = {
-      width: 640,
-      height: 480,
-      facingMode: "user"
-  }
   
   const getNextQuestion = () => {
     let nextIndex = questionIndex + 1;
@@ -141,40 +132,11 @@ const MockInterview = () => {
     });
   }
 
-  const startCam = () => {
-      setIsShowVideo(true);
-  }
-
-  const stopCam = () => {
-      let stream = videoElement.current.stream;
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
-      setIsShowVideo(false);
-  }
-
   return (
     <div>
-      <div>
-        {isShowVideo &&
-            <div className="camView">
-
-                <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
-            </div>
-        }
-        {!isShowVideo &&
-          <button onClick={startCam}>Start Video</button>
-        }
-        {isShowVideo &&
-            <button onClick={stopCam}>Stop Video</button>
-        }
-      </div>
-
       <div
       style={{
-        border: "1px solid black",
-        //backgroundColor: "black",
-        width: "700px",
-        height: "350px"
+        border: "1px solid black"
       }}
       >
       <div
@@ -207,7 +169,7 @@ const MockInterview = () => {
         style={{
           backgroundColor: "black",
           color: "white",
-          marginLeft: "357px"
+          marginLeft: "700px"
         }}
       >
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
@@ -307,7 +269,10 @@ const MockInterview = () => {
         <b></b>
       </div>
       </div>
-      <div>
+      <div 
+      style={{
+        marginLeft: "700px"
+      }}>
       <p>Hap Upper Loud: {upper_loud}</p>
       <p>Hap Lower Loud: {lower_loud}</p>
     </div>
