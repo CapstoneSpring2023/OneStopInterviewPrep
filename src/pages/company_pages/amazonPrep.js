@@ -2,9 +2,7 @@ import React, {useState} from 'react'
 import ReviewList from '../../components/review_displays/ReviewList'
 import { v4 as uuidv4 } from "uuid";
 import FeedbackView from '../../components/feedback_display/FeedbackView';
-import LeetCodeURL from '../../components/urls/LeetCodeURL'
-import HackerRankURL from '../../components/urls/HackerRankURL'
-import OtherURL from '../../components/urls/OtherURL'
+import GetURL from '../../components/urls/GetURL';
 
 
 var companyName = <text>Amazon</text>;
@@ -30,7 +28,7 @@ const AmazonPrep = () => {
             <div class='company-section'>
               <h1>HackerRank Links</h1>
               <ul>
-                <HackerRankURL/>
+              <GetURL type={2}/>
               </ul>
             </div>
           </div>
@@ -38,13 +36,13 @@ const AmazonPrep = () => {
             <div class='company-section'>
               <h1>LeetCode Problems</h1>
               <ul>
-                <LeetCodeURL/>
+              <GetURL type = {1}/>
               </ul>
             </div>
             <div class='company-section'>
               <h1>More Resources</h1>
               <ul>
-                <OtherURL/>
+              <GetURL type = {3}/>
               </ul>
             </div>
           </div>

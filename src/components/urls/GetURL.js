@@ -4,7 +4,7 @@ import { API } from 'aws-amplify';
 import { listURLCompanies} from '../../graphql/queries';
 
 
-function LeetCodeURL(){
+function GetURL({props}){
     const [urls, setUrls] = useState(null);
     var thisCompany = localStorage.getItem("this-company");
     /*Need to add an additional filter to check type */
@@ -25,13 +25,11 @@ function LeetCodeURL(){
             let urlArr1 = response.data.listURLCompanies.items
             setUrls(urlArr1);
         }).catch(error => {
-       console.log("Error in LeetCodeURL.js, inside graphql query: ", error)
-     });
-    },[]);
+    console.log("Error in GetURL.js, inside graphql query: ", error)
+    });
+    },[]); 
 
-
-
-    if(urls == null ){
+  if(urls == null ){
         return(
             <div>
                 <img src={loadingGif} alt="wait until the page loads"/>
@@ -42,7 +40,7 @@ function LeetCodeURL(){
         /*the down vote and up votes dont display properly on some company pages */
         urls.map( Obj=> {
             var urlObj = Obj.uRL;
-            if(urlObj.source == 2){
+            if(urlObj.source == props.type){
                 console.log("inserting these objects to the array: ", urlObj.title)
                 urlArr.push(
                     (
@@ -62,4 +60,5 @@ function LeetCodeURL(){
 
 }
 
-export default LeetCodeURL;
+export default GetURL;
+

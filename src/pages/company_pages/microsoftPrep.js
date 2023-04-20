@@ -47,7 +47,7 @@ const MicrosoftPrep = () => {
             <div class='company-section'>
               <h1>HackerRank Links</h1>
               <ul>
-                <HackerRankURL/>
+                <GetURL type={2}/>
               </ul>
             </div>
           </div>
@@ -55,13 +55,13 @@ const MicrosoftPrep = () => {
             <div class='company-section'>
               <h1>LeetCode Problems</h1>
               <ul>
-                <LeetCodeURL/>
+              <GetURL type ={1}/>
               </ul>
             </div>
             <div class='company-section'>
               <h1>More Resources</h1>
               <ul>
-                <OtherURL/>
+              <GetURL type ={3}/>
               </ul>
             </div>
           </div>
