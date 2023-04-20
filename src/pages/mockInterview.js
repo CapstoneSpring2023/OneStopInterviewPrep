@@ -85,7 +85,7 @@ const MockInterview = () => {
     video: true,
     audio: true,
     echoCancellation: true,
-    mimeType: "audio/webm"
+    mimeType: "audio/wav"
   });
   console.log("url", mediaBlobUrl);
   
@@ -276,8 +276,9 @@ const MockInterview = () => {
       style={{
         marginLeft: "700px"
       }}>
-      <p>Hap Upper Loud: {upper_loud}</p>
-      <p>Hap Lower Loud: {lower_loud}</p>
+      <p>Max Loud: {upper_loud}</p>
+      <p>Min Loud: {lower_loud}</p>
+      <p>Text: {speechToText}</p>
     </div>
     </div>
   );
