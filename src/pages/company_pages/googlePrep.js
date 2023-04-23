@@ -2,9 +2,6 @@ import React, {useState} from 'react'
 import ReviewList from '../../components/review_displays/ReviewList'
 //import VideoComp from '../components/VideoPlayer/VideoComp'
 import FeedbackView from '../../components/feedback_display/FeedbackView';
-import LeetCodeURL from '../../components/urls/LeetCodeURL'
-import HackerRankURL from '../../components/urls/HackerRankURL'
-import OtherURL from '../../components/urls/OtherURL'
 import GetURL from '../../components/urls/GetURL';
 import { v4 as uuidv4 } from "uuid";
 

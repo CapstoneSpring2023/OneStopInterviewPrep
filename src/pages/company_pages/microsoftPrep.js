@@ -4,9 +4,7 @@ import {Link } from "react-router-dom";
 import styled from "styled-components";
 //import VideoComp from '../components/VideoPlayer/VideoComp'
 import FeedbackView from '../../components/feedback_display/FeedbackView';
-import LeetCodeURL from '../../components/urls/LeetCodeURL'
-import HackerRankURL from '../../components/urls/HackerRankURL'
-import OtherURL from '../../components/urls/OtherURL'
+import GetURL from '../../components/urls/GetURL';
 
 const LinkButton = styled.button `
   cursor: pointer;

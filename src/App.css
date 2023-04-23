@@ -579,12 +579,12 @@ input[type="radio"]:focus {
 }
 .votes img {
   margin-left: 10px;
-  margin-bottom: 10px;
+  margin-top: -1000px;
   margin-right: 10px;
-  width: 20px;
+  width: 1000px;
   cursor: pointer;
 }
-.votes {
+.votes-up {
   color: var(--txtcolor);
   font-size: 18px;
   text-indent: 0;
