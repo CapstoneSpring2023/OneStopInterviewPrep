@@ -1,4 +1,5 @@
 import { useState } from "react"
+import axios from "axios"
 const { Configuration, OpenAIApi } = require("openai");
 
 const Chatbot = () => {
@@ -15,14 +16,16 @@ const Chatbot = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const result = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: prompt,
-        temperature: 0.5,
-        max_tokens: 4000,
-      });
-      //console.log("response", result.data.choices[0].text);
-      setApiResponse(result.data.choices[0].text);
+      const formData = new FormData();
+      formData.append("prompt", prompt);
+      const response = await axios({
+        method: "post",
+        url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/textcomplete",
+        data: formData,
+        headers: {"Content-Type": "multipart/form-data"}
+    })
+      // setApiResponse(result.data.choices[0].text);
+      setApiResponse(response.data.choices[0].text);
     } catch (e) {
       //console.log(e);
       setApiResponse("Something is going wrong, Please try again.");

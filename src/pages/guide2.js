@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from "./../images/ap_dark_logo.png";
 import styled from "styled-components";
-import {Link } from "react-router-dom";
+import {NavLink } from "react-router-dom";
 
 const LinkButton = styled.button `
   cursor: pointer;
@@ -23,20 +23,20 @@ const LinkButton = styled.button `
 function Guide2 () {
     return (
         <div>
-            <div class="guide-header">
+            <div className="guide-header">
                 <h1>Personality Interviews</h1>
                 <h2>Guides:</h2>
-                <Link to="/guide1"><LinkButton>
+                <NavLink to="/guide1"><LinkButton>
                     Resumes
-                </LinkButton></Link>
-                <Link to="/guide2"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide2"><LinkButton>
                     Personality Interviews
-                </LinkButton></Link>
-                <Link to="/guide3"><LinkButton>
+                </LinkButton></NavLink>
+                <NavLink to="/guide3"><LinkButton>
                     Technical Interviews
-                </LinkButton></Link>
+                </LinkButton></NavLink>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Why Prepare For a Personality Interview?</h2>
                 <body>
                     One of the most important things to many employers today is their work environment. A 
@@ -47,7 +47,7 @@ function Guide2 () {
                     this can mean the difference between being hired or not.
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>What Is My Interviewer Looking For?</h2>
                 <body>
                     Many companies emphasize different things in their employees, so they may ask differing questions 
@@ -63,7 +63,7 @@ function Guide2 () {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>What Is My Interviewer Trying To Avoid?</h2>
                 <body>
                     Interviewers look for bad personality traits just as much as they do good personality 
@@ -75,7 +75,7 @@ function Guide2 () {
                     </ul>
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>How Do I Prepare For a Personality Interview?</h2>
                 <body>
                     The best thing you can do to be prepared is to reflect on example personality interview questions 
@@ -97,7 +97,7 @@ function Guide2 () {
                     or later. Being genuine and up-front about your flaws will be a sign of maturity to the employer.
                 </body>
             </div>
-            <div class="guide-section">
+            <div className="guide-section">
                 <h2>Further Reference</h2>
                 <body>
                     <ul>
