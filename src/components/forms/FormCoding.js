@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import { API } from 'aws-amplify';
-import { createQuestions, createQuestionsCompany } from '../../graphql/mutations';
+import { createQuestions, createCompanyQuestions } from '../../graphql/mutations';
 import { listCompanies } from "../../graphql/queries";
 
 const SubmitButton = styled.button `
@@ -52,7 +52,7 @@ const FormCoding = ({formCd, setFormCd}) => {
     }
 
     const handleSubmit = e => {
-      //e.preventDefault();
+      e.preventDefault();
         if (checkValidity()) {
             API.graphql({
                 query: createQuestions,
@@ -66,24 +66,23 @@ const FormCoding = ({formCd, setFormCd}) => {
                   }
                 }
               }).then(res => {
-                //the response returns the data object that was just created, in this case Questions
-                //another entry in the Company questions table needs to be created with the ID of the newly created question (attribute of the 'res')
-                //and the id of the company (companyID: formCd.company)
-                //nested..
-                var reviewID = res.data.createQuestions.id
-                console.log("The review ID is: ", reviewID)
-                // API.graphql({
-                //   query: createQuestionsCompany,
-                //   variables:{
-                //     input:{
-                //       companyId: formCd.company,
-
-                //     }
-                //   }
-                // })
-                console.log("Response is: ", res);
+                var questionID = res.data.createQuestions.id
+                //console.log("The question ID is: ", questionID)
+                API.graphql({
+                  query: createCompanyQuestions,
+                  variables:{
+                    input:{
+                      companyId: formCd.company,
+                      questionsId: questionID
+                    }
+                  }
+                }).then(bridge_ent_res => {
+                //  console.log("Response from bridge entity: ", bridge_ent_res)
+                }).catch (bridge_err => {
+                  console.log("Error while creating company questions (entry in bridge entity data type) on FormCoding.js: ", bridge_err);
+                })
               }).catch(err => {
-                console.log("The error read is: ", err);
+                console.log("Error in Create questions query in FormCoding.js: ", err);
               });
 
 

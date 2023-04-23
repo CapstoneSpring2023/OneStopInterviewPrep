@@ -16,15 +16,14 @@ function FeedbackView({companyIDs}){
             query: listReviews
           }).then(response => {
             let reviewObj = response.data.listReviews.items
-            console.log("response is: ", reviewObj);
+          // console.log ("response is: ", reviewObj);
             setReviewInfo(reviewObj);
         }).catch(error => {
-          console.log("Error is: ", error)
+          console.log("Error in list reviews query on FeedbackView.js: ", error)
         });
         
     },[]);
     function display_level(level_num){
-        console.log("DISPLAY LEVEL: ", level_num[0])
         var level_str = "unknown";
         switch(level_num[0]){
             case 1:
@@ -49,9 +48,9 @@ function FeedbackView({companyIDs}){
         var rev_obj = reviewInfo.filter(reviewObj => reviewObj.id === id);
         var rev_to_upvote = rev_obj[0]
         var new_rating = rev_to_upvote.rating + 1;
-        console.log("review to upvote: ", rev_to_upvote)
-        console.log(" new rating is: ", new_rating, " new rating type: ", typeof(new_rating))
-        console.log("its id is: ", rev_to_upvote.id)
+        // console.log("review to upvote: ", rev_to_upvote)
+        // console.log(" new rating is: ", new_rating, " new rating type: ", typeof(new_rating))
+        // console.log("its id is: ", rev_to_upvote.id)
         /* User Validation needed */
 
         API.graphql({
@@ -63,7 +62,7 @@ function FeedbackView({companyIDs}){
                 }
             }
         }).then(res => {
-            console.log("REVIEW UPDATE WORKED: ", res);
+          //  console.log(res);
         }).catch(err => {
             console.log("Review update query in FeedbackView.js failed error is: ", err)
         })
