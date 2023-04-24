@@ -29,6 +29,7 @@ const MockInterview = () => {
   const [counter, setCounter] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questionList, setQuestionList] = useState(null);
+  const [submmited, setSubmmited] = useState(false);
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
@@ -133,6 +134,7 @@ const MockInterview = () => {
           console.log(error);
       }
     });
+    setSubmmited(true);
   }
 
   return (
@@ -276,8 +278,14 @@ const MockInterview = () => {
       style={{
         marginLeft: "700px"
       }}>
-      <p>Max Loud: {upper_loud}</p>
-      <p>Min Loud: {lower_loud}</p>
+        <p>{(upper_loud > 6 && submmited) &&
+            "Your volume may be too loud"
+        }</p>
+
+        <p>{(upper_loud < 3 && submmited) &&
+            "Your volume may be too quiet"
+        }</p>
+      <p>Loud: {upper_loud}</p>
       <p>Text: {speechToText}</p>
     </div>
     </div>
