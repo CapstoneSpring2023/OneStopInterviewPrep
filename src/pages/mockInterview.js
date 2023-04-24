@@ -123,8 +123,8 @@ const MockInterview = () => {
       try {
           const response = await axios({
               method: "post",
-              // url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
-              url: "http://localhost:5000/opensmileaudio",
+              url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              // url: "http://localhost:5000/opensmileaudio",
               data: formData,
               headers: {"Content-Type": "multipart/form-data"}
           })
@@ -133,11 +133,11 @@ const MockInterview = () => {
           set_lower_loud(response.data.lower_loud);
           SetSpeechToText(response.data.speech_to_text);
           SetAIResponse(response.data.ai_response.choices[0].text);
+          setSubmmited(true);
       } catch(error) {
           console.log(error);
       }
     });
-    setSubmmited(true);
   }
 
   return (
@@ -281,16 +281,19 @@ const MockInterview = () => {
       style={{
         marginLeft: "700px"
       }}>
-        <p>{(upper_loud > 6 && submmited) &&
+        <p>{(upper_loud > 6.5 && submmited) &&
             "Your volume may be too loud"
         }</p>
 
         <p>{(upper_loud < 3 && submmited) &&
             "Your volume may be too quiet"
         }</p>
-      <p>Loud: {upper_loud}</p>
-      <p>Text: {speechToText}</p>
-      <p>AI Response: {aiResponse}</p>
+      <p>{submmited &&
+        "What you said: " + speechToText
+      }</p>
+      <p>{submmited &&
+        "Feedback: " + aiResponse
+      }</p>
     </div>
     </div>
   );
