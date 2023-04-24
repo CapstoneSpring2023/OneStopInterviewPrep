@@ -33,6 +33,14 @@ function CodingProblemList () {
   });
   },[]);
 
+  function str_fix(str){
+    //make the string uniform
+    str.replace("and", " ");
+    str.replace(",", " ");
+    //continue
+
+  }
+
   function changeCurrentProblem (objID) {
 
     /* -------------- Get problem info by id here -------------- */

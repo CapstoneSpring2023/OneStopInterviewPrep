@@ -52,7 +52,7 @@ const FormCoding = ({formCd, setFormCd}) => {
     }
 
     const handleSubmit = e => {
-      e.preventDefault();
+      //e.preventDefault();
         if (checkValidity()) {
             API.graphql({
                 query: createQuestions,

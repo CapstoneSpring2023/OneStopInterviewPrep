@@ -20,12 +20,12 @@ function GetURL({props}){
     useEffect(() => {
         // List all items
         API.graphql({
-            query: listURLCompanies, variables:input_variables
+            query: listURLCompanies
         }).then(response => {
             let urlArr1 = response.data.listURLCompanies.items
             setUrls(urlArr1);
         }).catch(error => {
-    console.log("Error in GetURL.js, inside graphql query: ", error)
+            console.log("Error in GetURL.js, inside graphql query: ", error)
     });
     },[]); 
 
