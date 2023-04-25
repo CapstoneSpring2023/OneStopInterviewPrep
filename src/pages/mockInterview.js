@@ -29,6 +29,7 @@ const MockInterview = () => {
   const [counter, setCounter] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questionList, setQuestionList] = useState(null);
+  const [recorded, setRecorded] = useState(false)
   const [submmited, setSubmmited] = useState(false);
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
@@ -222,6 +223,7 @@ const MockInterview = () => {
                     stopRecording();
                     pauseRecording();
                     stopTimer();
+                    setRecorded(true);
                   }
 
                   setIsActive(!isActive);
@@ -254,7 +256,7 @@ const MockInterview = () => {
               >
                 {questionList ? "Get Next Question" : "Get First Question"}
               </button>
-              { questionList &&
+              { (questionList && recorded) &&
               <button
                 style={{
                   padding: "0.8rem 2rem",
