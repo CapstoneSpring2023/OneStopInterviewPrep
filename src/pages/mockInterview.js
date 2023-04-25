@@ -124,8 +124,8 @@ const MockInterview = () => {
       try {
           const response = await axios({
               method: "post",
-              url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
-              // url: "http://localhost:5000/opensmileaudio",
+              // url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              url: "http://localhost:5000/opensmileaudio",
               data: formData,
               headers: {"Content-Type": "multipart/form-data"}
           })
