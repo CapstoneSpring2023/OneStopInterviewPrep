@@ -3,11 +3,10 @@ import ReviewList from '../../components/review_displays/ReviewList'
 //import VideoComp from '../components/VideoPlayer/VideoComp'
 import FeedbackView from '../../components/feedback_display/FeedbackView';
 import GetURL from '../../components/urls/GetURL';
-import { v4 as uuidv4 } from "uuid";
 
 var companyName = <text>Google</text>;
 
-const GooglePrep = () => {
+const GooglePrep = (props) => {
   const [reviews, setReviews] = useState([])
   //google id = a1450ef6-f339-43cc-87e4-227601a06f27
   localStorage.setItem("this-company", "a1450ef6-f339-43cc-87e4-227601a06f27");

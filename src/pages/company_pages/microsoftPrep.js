@@ -30,7 +30,7 @@ const MicrosoftPrep = () => {
     localStorage.setItem("this-company", "70b6ab87-2af7-485c-b30b-977ad6adccd6");
 
   return (
-    <div class='company-page'>
+<div class='company-page'>
         <div class='company-header'>
           <h1>Interview Preparation Resources For {companyName}</h1>
         </div>
@@ -38,9 +38,9 @@ const MicrosoftPrep = () => {
           <div class='company-left'>
             <div class='company-section'>
               <h1>Our Coding Problems</h1>
-              <body>
+              <h4>
                 Go to our <a href="/coding">practice coding problems</a> and select the "Sort By {companyName}" option.
-              </body>
+              </h4>
             </div>
             <div class='company-section'>
               <h1>HackerRank Links</h1>
@@ -53,20 +53,16 @@ const MicrosoftPrep = () => {
             <div class='company-section'>
               <h1>LeetCode Problems</h1>
               <ul>
-              <GetURL type ={1}/>
+                <GetURL type = {1}/>
               </ul>
             </div>
             <div class='company-section'>
               <h1>More Resources</h1>
               <ul>
-              <GetURL type ={3}/>
+              <GetURL type = {3}/>
               </ul>
             </div>
           </div>
-        </div>
-        <div class='company-section'>
-          <h1>Youtube Playlist</h1>
-          {/* <VideoComp playListId = "PLi9RQVmJD2fYMiu6JOL3PiEVh_Is6jAin"/> */}
         </div>
         <div class="company-section reviewList">
           <h1>Interview Reviews For {companyName}</h1>
@@ -75,5 +71,6 @@ const MicrosoftPrep = () => {
     </div>
   )
 }
+
 
 export default MicrosoftPrep
