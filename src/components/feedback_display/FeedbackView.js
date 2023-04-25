@@ -52,7 +52,6 @@ function FeedbackView({companyIDs}){
         // console.log(" new rating is: ", new_rating, " new rating type: ", typeof(new_rating))
         // console.log("its id is: ", rev_to_upvote.id)
         /* User Validation needed */
-
         API.graphql({
             query: updateReview,
             variables:{
@@ -66,7 +65,7 @@ function FeedbackView({companyIDs}){
         }).catch(err => {
             console.log("Review update query in FeedbackView.js failed error is: ", err)
         })
-        
+        window.location.reload();
     }
 
     function display_rating(id){
