@@ -200,6 +200,7 @@ const MockInterview = () => {
             </h3>
 
             <div>
+              { questionList &&
               <button
                 style={{
                   padding: "0.8rem 2rem",
@@ -228,7 +229,7 @@ const MockInterview = () => {
               >
                 {isActive ? "Stop" : "Start"}
               </button>
-
+              }
                <button
                 style={{
                   padding: "0.8rem 2rem",
@@ -253,7 +254,7 @@ const MockInterview = () => {
               >
                 {questionList ? "Get Next Question" : "Get First Question"}
               </button>
-
+              { questionList &&
               <button
                 style={{
                   padding: "0.8rem 2rem",
@@ -271,6 +272,7 @@ const MockInterview = () => {
                 onClick={() => {handleSubmit()}}
               >Submit
               </button>
+              }
             </div>
           </label>
         </div>
