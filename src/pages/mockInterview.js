@@ -132,7 +132,7 @@ const MockInterview = () => {
           set_upper_loud(response.data.upper_loud);
           set_lower_loud(response.data.lower_loud);
           SetSpeechToText(response.data.speech_to_text);
-          SetAIResponse(response.data.ai_response.choices[0].text);
+          SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
       } catch(error) {
           console.log(error);
