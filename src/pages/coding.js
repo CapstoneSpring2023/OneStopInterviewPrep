@@ -26,13 +26,13 @@ var probConcepts = <text></text>;
 var probPrompt = <text></text>;
 var probCompany = <text></text>;
 
-var compAddress = "http://localhost:5000";
-// var compAddress = "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com";
+// var compAddress = "http://localhost:5000";
+var compAddress = "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com";
 
-var startingCode = "// C++ \n#include<bits/stdc++.h>\n#include <stdio.h>\nusing namespace std;\n\nint main() {\n\t// enter your code here \n\t\n\t\n\treturn 0;\n}";
+var startingCCode = "#include<iostream>\nusing namespace std;\nint main() {\n\treturn 0;\n}";
 var savedCode = localStorage.getItem("saved-code");
 if (savedCode) {
-    startingCode = savedCode;
+    startingCCode = savedCode;
 }
 
 class Coding extends Component {
@@ -67,7 +67,7 @@ class Coding extends Component {
         this.state = {
             name: "react",
             selectedOption: thisCompany,
-            userCode: "#include<iostream>\nusing namespace std;\nint main() {\n\treturn 0;\n}",
+            userCode: startingCCode,
             language: "cpp17",
             userOutput: "Terminal Output",
             userInput: "",
@@ -204,7 +204,7 @@ class Coding extends Component {
                             <Editor
                                 className='code-editor'
                                 defaultLanguage = "cpp"
-                                defaultValue=  {startingCode}
+                                defaultValue=  {startingCCode}
                                 onChange={(value) => this.setState({userCode: value})}
                             />
                             <RunButton className="run-button" onClick={this.compile}>Run Code</RunButton>
