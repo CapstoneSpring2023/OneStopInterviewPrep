@@ -153,7 +153,8 @@ const MockInterview = () => {
           border: "1px solid #bd9f61",
           height: "70px",
           backgroundColor: "#bd9f61",
-          display: "flex"
+          display: "flex",
+          justifyContent: "center"
         }}
       >
         <h4
@@ -178,7 +179,7 @@ const MockInterview = () => {
         style={{
           backgroundColor: "black",
           color: "white",
-          marginLeft: "700px"
+          marginLeft: "650px"
         }}
       >
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
@@ -283,7 +284,7 @@ const MockInterview = () => {
       </div>
       <div 
       style={{
-        marginLeft: "700px"
+        marginLeft: "6500px"
       }}>
         <p>{(upper_loud > 6.5 && submmited) &&
             "Your volume may be too loud"
