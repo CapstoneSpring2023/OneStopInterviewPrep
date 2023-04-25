@@ -6,10 +6,10 @@ import loadingGif from "../../images/loading.gif";
 
 const ProbButton = styled.button `
   cursor: pointer;
-  background-color: rgb(75, 0, 130);
+  background-color: #8f4646;
   width: 100%;
   padding: 15px 15px;
-  color: white;
+  color: #F6EEE0;
   text-align: center;
   font-size: 20px;
   font-family: "Lucida Console", "Courier New", monospace;
@@ -26,20 +26,12 @@ function CodingProblemList () {
       query: listCompanyQuestions
     }).then(response => {
       let codeProbsObjs = response.data.listCompanyQuestions.items
-      console.log("response is: ", codeProbsObjs);
+      //console.log("response is: ", codeProbsObjs);
       setcodeProbArr(codeProbsObjs);
   }).catch(error => {
     console.log("Error is: ", error)
   });
   },[]);
-
-  function str_fix(str){
-    //make the string uniform
-    str.replace("and", " ");
-    str.replace(",", " ");
-    //continue
-
-  }
 
   function changeCurrentProblem (objID) {
 
@@ -53,7 +45,6 @@ function CodingProblemList () {
     if (codeProbArr != null) {
 
       codeProbArr.map(codeObj => {
-       // console.log(" CAN I ACCESS DATA? -------> ", codeObj);
         codeProb = (codeObj.id === objID) ?
           codeObj :
           codeProb
@@ -70,17 +61,15 @@ function CodingProblemList () {
     localStorage.setItem("problem-title", probTitle);
     localStorage.setItem("problem-concepts", probConcepts);
     localStorage.setItem("problem-prompt", probPrompt);
-   /// localStorage.setItem("problem-company", probCompany);
+    localStorage.setItem("problem-company", probCompany);
     window.location.reload();
   }
 
   var problemList = new Array();
   var thisCompany = localStorage.getItem("this-company");
-  console.log("This company is returning: ", thisCompany);
   // id, title, prompt, concepts, company
   if(codeProbArr != null){
     codeProbArr.map(codeObj => {
-      console.log(" CAN I ACCESS DATA? -------> ", codeObj);
       problemList.push((!thisCompany.localeCompare(codeObj.company.name) || thisCompany == "None") ?
       (<div>
         {<ProbButton onClick={() => changeCurrentProblem(codeObj.id)} >{codeObj.questions.title} ({codeObj.company.name})</ProbButton> }

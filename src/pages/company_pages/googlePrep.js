@@ -22,9 +22,9 @@ const GooglePrep = () => {
           <div class='company-left'>
             <div class='company-section'>
               <h1>Our Coding Problems</h1>
-              <body>
+              <h4>
                 Go to our <a href="/coding">practice coding problems</a> and select the "Sort By {companyName}" option.
-              </body>
+              </h4>
             </div>
             <div class='company-section'>
               <h1>HackerRank Links</h1>
@@ -47,10 +47,6 @@ const GooglePrep = () => {
               </ul>
             </div>
           </div>
-        </div>
-        <div class='company-section'>
-          <h1>Youtube Playlist</h1>
-          {/* <VideoComp playListId = "PLi9RQVmJD2fapKJ4DnZzAn55NJfo5IM1c"/> */}
         </div>
         <div class="company-section reviewList">
           <h1>Interview Reviews For {companyName}</h1>

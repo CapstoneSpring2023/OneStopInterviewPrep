@@ -187,7 +187,7 @@ class Coding extends Component {
                     </div>
                     <div className="split problem-statement">
                         <h2>Problem Prompt:</h2>
-                        <body>{probPrompt}</body>
+                        <h3>{probPrompt}</h3>
                         <h2>Your Code:</h2>
                         <div className="coding-problem-left">
                             <Editor

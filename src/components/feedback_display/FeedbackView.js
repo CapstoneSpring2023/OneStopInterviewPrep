@@ -102,7 +102,7 @@ function FeedbackView({companyIDs}){
                     </div>
 
                     <body>
-                            {singleReviewItem.review}
+                        {singleReviewItem.review}
                     </body>
                     
                 </div>)
