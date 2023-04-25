@@ -573,23 +573,22 @@ input[type="radio"]:focus {
   height: 70%;
   overflow-y: scroll;
   border-color: var(--brdrcolor);
-  border-width: 0.5px;
+  border-width: 2px;
   border-top-style: solid;
   border-bottom-style: solid;
 }
-.votes img {
-  margin-left: 10px;
-  margin-top: -1000px;
-  margin-right: 10px;
-  width: 1000px;
-  cursor: pointer;
+
+.votes-up img {
+  margin-top:2%;
+  width: 30px;
+  margin-bottom: 2%;
 }
-.votes-up {
+.votes-up{
   color: var(--txtcolor);
   font-size: 18px;
   text-indent: 0;
   width: 50%;
-  float: left;
+  /* float: left; */
 }
 .down {
   text-align: right;

@@ -95,13 +95,16 @@ function FeedbackView({companyIDs}){
                 (<div className="reviewBox">
                     <h3>Position: {singleReviewItem.position}</h3>
                     <h3>Level: {display_level(singleReviewItem.level)}</h3>
+
                     <div class="votes-up">
                         <a onClick={() => { upVote(singleReviewItem.id)}}>{upImage}</a>{singleReviewItem.upVotes}
                         <h3>{display_rating(singleReviewItem.id)}</h3>
                     </div>
+
                     <body>
-                        {singleReviewItem.review}
+                            {singleReviewItem.review}
                     </body>
+                    
                 </div>)
                 : null
             )
