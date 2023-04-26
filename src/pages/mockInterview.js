@@ -35,6 +35,7 @@ const MockInterview = () => {
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
   const [aiResponse, SetAIResponse] = useState("");
+  const [waiting, setWaiting] = useState(false);
 
   const input_variables = {
     filter:{
@@ -119,6 +120,7 @@ const MockInterview = () => {
       // const wavBlob = convertWebmToMp3(blob)
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
+      setWaiting(true);
       formData.append("audiodata", audioFile, "audiodata.webm");
       formData.append("question", questionList[questionIndex].prompt)
       try {
@@ -135,6 +137,7 @@ const MockInterview = () => {
           SetSpeechToText(response.data.speech_to_text);
           SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
+          setWaiting(false);
       } catch(error) {
           console.log(error);
       }
@@ -159,11 +162,13 @@ const MockInterview = () => {
       >
         <h4
           style={{
+            marginTop: "10px",
             marginLeft: "10px",
             textTransform: "capitalize",
             fontFamily: "sans-serif",
             fontSize: "18px",
-            color: "white"
+            color: "white",
+            textDecorationLine: "underline"
           }}
         >
         {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
@@ -284,8 +289,13 @@ const MockInterview = () => {
       </div>
       <div 
       style={{
-        marginLeft: "6500px"
+        marginLeft: "650px"
       }}>
+        <p>
+          { waiting &&
+            "Feedback Loading, Please wait"
+          }
+        </p>
         <p>{(upper_loud > 6.5 && submmited) &&
             "Your volume may be too loud"
         }</p>
