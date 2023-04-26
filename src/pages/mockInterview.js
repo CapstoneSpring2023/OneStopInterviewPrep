@@ -117,7 +117,6 @@ const MockInterview = () => {
     fetch(mediaBlobUrl)
     .then((response) => response.blob())
     .then(async (blob) => {
-      // const wavBlob = convertWebmToMp3(blob)
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
       setWaiting(true);
@@ -147,9 +146,7 @@ const MockInterview = () => {
   return (
     <div>
       <div
-      style={{
-        border: "1px solid black"
-      }}
+      style={{border: "1px solid black"}}
       >
       <div
         style={{
@@ -194,17 +191,15 @@ const MockInterview = () => {
         </div>
 
         <div style={{ marginLeft: "20px", display: "flex" }}>
-          <label
-            style={{
-              fontSize: "15px",
-              fontWeight: "Normal"
-              // marginTop: "20px"
-            }}
+          <label style={{fontSize: "15px", fontWeight: "Normal"}}
             htmlFor="icon-button-file"
           >
             <h3 style={{ marginLeft: "15px", fontWeight: "normal" }}>
               Press the Start to record
             </h3>
+            <h4 style={{ marginLeft: "10px", textTransform: "capitalize", fontFamily: "sans-serif", fontSize: "18px", color: "white"}}>
+              {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+            </h4>
 
             <div>
               { questionList &&
@@ -300,16 +295,16 @@ const MockInterview = () => {
             "Your volume may be too loud"
         }</p>
 
-        <p>{(upper_loud < 3 && submmited) &&
-            "Your volume may be too quiet"
+          <p>{(upper_loud < 3 && submmited) &&
+              "Your volume may be too quiet"
+          }</p>
+        <p>{submmited &&
+          "What you said: " + speechToText
         }</p>
-      <p>{submmited &&
-        "What you said: " + speechToText
-      }</p>
-      <p>{submmited &&
-        "Feedback: " + aiResponse
-      }</p>
-    </div>
+        <p>{submmited &&
+          "Feedback: " + aiResponse
+        }</p>
+      </div>
     </div>
   );
 };

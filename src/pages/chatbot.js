@@ -11,23 +11,39 @@ const Chatbot = () => {
   const [prompt, setPrompt] = useState("");
   const [apiResponse, setApiResponse] = useState("");
   const [loading, setLoading] = useState(false);
+  const [promptArray, setPromptArray] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append("prompt", prompt);
+      // var tempPromptArray = promptArray.concat([prompt]);
+      // var tempPromptRoleArray = promptRoleArray.concat(["user"]);
+      // for(let i = 0, len = tempPromptArray.length, )
+      var promptJSON = new Object();
+      promptJSON.role = "user";
+      promptJSON.content = prompt;
+      formData.append("promptArray", JSON.stringify(promptArray.concat(promptJSON)));
       const response = await axios({
         method: "post",
         url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/textcomplete",
+        // url: "http://localhost:5000/textcomplete",
         data: formData,
         headers: {"Content-Type": "multipart/form-data"}
+    }).then(response => {
+        var responseJSON = new Object();
+        responseJSON.role = "assistant";
+        responseJSON.content = response.data.choices[0].message.content;
+        setPromptArray(promptArray.concat([promptJSON, responseJSON]))
+        // setPromptRoleArray(promptRoleArray.concat(["user", "assistant"]))
+        setApiResponse(response.data.choices[0].message.content);
+        console.log(promptArray);
     })
-      // setApiResponse(result.data.choices[0].text);
-      setApiResponse(response.data.choices[0].text);
+      // const responseText = ;
+      
     } catch (e) {
-      //console.log(e);
+      console.log(e);
       setApiResponse("Something is going wrong, Please try again.");
     }
     setPrompt("");
