@@ -35,7 +35,7 @@ const MockInterview = () => {
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
   const [aiResponse, SetAIResponse] = useState("");
-  const [loading, SetLoading] = useState(false);
+  const [waiting, setWaiting] = useState(false);
 
   const input_variables = {
     filter:{
@@ -119,6 +119,7 @@ const MockInterview = () => {
     .then(async (blob) => {
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
+      setWaiting(true);
       formData.append("audiodata", audioFile, "audiodata.webm");
       formData.append("question", questionList[questionIndex].prompt)
       try {
@@ -135,6 +136,7 @@ const MockInterview = () => {
           SetSpeechToText(response.data.speech_to_text);
           SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
+          setWaiting(false);
       } catch(error) {
           console.log(error);
       }
@@ -146,10 +148,27 @@ const MockInterview = () => {
       <div
       style={{border: "1px solid black"}}
       >
-      <div style={{border: "1px solid #bd9f61", height: "70px", backgroundColor: "#bd9f61", display: "flex"}}
+      <div
+        style={{
+          border: "1px solid #bd9f61",
+          height: "70px",
+          backgroundColor: "#bd9f61",
+          display: "flex",
+          justifyContent: "center"
+        }}
       >
-        <h4 style={{marginLeft: "10px", textTransform: "capitalize", fontFamily: "sans-serif", fontSize: "18px", color: "white"}}>
-          {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+        <h4
+          style={{
+            marginTop: "10px",
+            marginLeft: "10px",
+            textTransform: "capitalize",
+            fontFamily: "sans-serif",
+            fontSize: "18px",
+            color: "white",
+            textDecorationLine: "underline"
+          }}
+        >
+        {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
       <div style={{ height: "38px" }}>
@@ -159,7 +178,12 @@ const MockInterview = () => {
 
       <div
         className="col-md-6 col-md-offset-3"
-        style={{backgroundColor: "black", color: "white", marginLeft: "700px"}}>
+        style={{
+          backgroundColor: "black",
+          color: "white",
+          marginLeft: "650px"
+        }}
+      >
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
           <span className="minute">{minute}</span>
           <span>:</span>
@@ -259,12 +283,17 @@ const MockInterview = () => {
       </div>
       </div>
       <div 
-        style={{
-          marginLeft: "700px"
-        }}>
-          <p>{(upper_loud > 6.5 && submmited) &&
-              "Your volume may be too loud"
-          }</p>
+      style={{
+        marginLeft: "650px"
+      }}>
+        <p>
+          { waiting &&
+            "Feedback Loading, Please wait"
+          }
+        </p>
+        <p>{(upper_loud > 6.5 && submmited) &&
+            "Your volume may be too loud"
+        }</p>
 
           <p>{(upper_loud < 3 && submmited) &&
               "Your volume may be too quiet"
