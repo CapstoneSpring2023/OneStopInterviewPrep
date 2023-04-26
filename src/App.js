@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import { createGlobalStyle } from 'styled-components';
-import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from "./pages/about_us";
 import Applications from './pages/applications';
 import Network from './pages/network';
@@ -123,7 +123,7 @@ function App({ signOut }) {
   }
   // var userName = userDetails.username;
   return (
-      <Router basename='/'>
+      <BrowserRouter basename='/'>
         {whichStyle()}
         <Navbar />
         <div className="signout-section">
@@ -151,7 +151,7 @@ function App({ signOut }) {
           <Route path="/chatbot" element = {<Chatbot/>}/>
           <Route path="/fileupload" element = {<FileUpload/>}/>
         </Routes>
-      </Router>
+      </BrowserRouter>
       
   );
 }
