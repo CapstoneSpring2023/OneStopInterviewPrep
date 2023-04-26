@@ -35,6 +35,7 @@ const MockInterview = () => {
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
   const [aiResponse, SetAIResponse] = useState("");
+  const [loading, SetLoading] = useState(false);
 
   const input_variables = {
     filter:{

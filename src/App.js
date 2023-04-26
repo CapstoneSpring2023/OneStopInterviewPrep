@@ -123,7 +123,7 @@ function App({ signOut }) {
   }
   // var userName = userDetails.username;
   return (
-      <Router>
+      <Router basename='/'>
         {whichStyle()}
         <Navbar />
         <div className="signout-section">
