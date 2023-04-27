@@ -143,6 +143,28 @@ const MockInterview = () => {
     });
   }
 
+  const streamCamVideo = () => {
+    var video = document.querySelector("#videoElement");
+    video.width = 500; 
+    video.height = 375;
+    if(navigator.mediaDevices.getUserMedia){
+      var constraints = { audio: true, video: true };
+      navigator.mediaDevices.getUserMedia(constraints)
+      .then(function(stream) {
+        video.srcObject = stream;
+        video.onloadedmetadata = function(e) {
+          video.play();
+        };
+      })
+      .catch(function(err) {
+        console.log(err.name + ": " + err.message);
+      }); // always check for errors at the end.
+    }
+    
+  }
+
+  
+
   return (
     <div>
       <div style={{border: "1px solid black"}}>
@@ -151,9 +173,15 @@ const MockInterview = () => {
           {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
-      <div style={{ height: "38px" }}>
-        <video src={mediaBlobUrl} controls loop />
+      <div>
+        <canvas id="canvasOutput"></canvas>
+        <video autoPlay={true} id="videoElement" controls></video>
       </div>
+      <div class = 'video'>
+        <img id="image"/>
+      </div>
+      <br/>
+      <button onClick={() => {streamCamVideo()}}>Start streaming</button>
 
       <div className="col-md-6 col-md-offset-3" style={{backgroundColor: "black", color: "white", marginLeft: "650px"}}>
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
