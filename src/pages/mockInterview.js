@@ -145,45 +145,17 @@ const MockInterview = () => {
 
   return (
     <div>
-      <div
-      style={{border: "1px solid black"}}
-      >
-      <div
-        style={{
-          border: "1px solid #bd9f61",
-          height: "70px",
-          backgroundColor: "#bd9f61",
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <h4
-          style={{
-            marginTop: "10px",
-            marginLeft: "10px",
-            textTransform: "capitalize",
-            fontFamily: "sans-serif",
-            fontSize: "18px",
-            color: "white",
-            textDecorationLine: "underline"
-          }}
-        >
-        {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+      <div style={{border: "1px solid black"}}>
+      <div style={{ border: "1px solid #8f4646", height: "70px", backgroundColor: "#8f4646", display: "flex", justifyContent: "center"}}>
+        <h4 style={{marginTop: "10px", marginLeft: "10px", textTransform: "capitalize", fontFamily: "sans-serif", fontSize: "22px", color: "#F6EEE0"}}>
+          {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
       <div style={{ height: "38px" }}>
-        {" "}
         <video src={mediaBlobUrl} controls loop />
       </div>
 
-      <div
-        className="col-md-6 col-md-offset-3"
-        style={{
-          backgroundColor: "black",
-          color: "white",
-          marginLeft: "650px"
-        }}
-      >
+      <div className="col-md-6 col-md-offset-3" style={{backgroundColor: "black", color: "white", marginLeft: "650px"}}>
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
           <span className="minute">{minute}</span>
           <span>:</span>
@@ -191,9 +163,7 @@ const MockInterview = () => {
         </div>
 
         <div style={{ marginLeft: "20px", display: "flex" }}>
-          <label style={{fontSize: "15px", fontWeight: "Normal"}}
-            htmlFor="icon-button-file"
-          >
+          <label style={{fontSize: "15px", fontWeight: "Normal"}} htmlFor="icon-button-file">
             <h3 style={{ marginLeft: "15px", fontWeight: "normal" }}>
               Press the Start to record
             </h3>
@@ -258,23 +228,21 @@ const MockInterview = () => {
                 {questionList ? "Get Next Question" : "Get First Question"}
               </button>
               { (questionList && recorded) &&
-              <button
-                style={{
-                  padding: "0.8rem 2rem",
-                  border: "none",
-                  marginLeft: "15px",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  borderRadius: "5px",
-                  fontWeight: "bold",
-                  backgroundColor: "maroon",
-                  color: "white",
-                  transition: "all 300ms ease-in-out",
-                  transform: "translateY(0)"
-                }}
-                onClick={() => {handleSubmit()}}
-              >Submit
-              </button>
+                <button style={{
+                    padding: "0.8rem 2rem",
+                    border: "none",
+                    marginLeft: "15px",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                    borderRadius: "5px",
+                    fontWeight: "bold",
+                    backgroundColor: "maroon",
+                    color: "white",
+                    transition: "all 300ms ease-in-out",
+                    transform: "translateY(0)"
+                  }} onClick={() => {handleSubmit()}}>
+                  Submit
+                </button>
               }
             </div>
           </label>
