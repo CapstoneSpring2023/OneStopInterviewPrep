@@ -1,6 +1,5 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
-import Webcam from 'react-webcam';
 import { API } from 'aws-amplify';
 import { listQuestions} from '../graphql/queries';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
@@ -24,16 +23,19 @@ const RunButton = styled.button `
 
 const MockInterview = () => {
 
-  const [isShowVideo, setIsShowVideo] = useState(false);
-  const videoElement = useRef(null);
   const [second, setSecond] = useState("00");
   const [minute, setMinute] = useState("00");
   const [isActive, setIsActive] = useState(false);
   const [counter, setCounter] = useState(0);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questionList, setQuestionList] = useState(null);
+  const [recorded, setRecorded] = useState(false)
+  const [submmited, setSubmmited] = useState(false);
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
+  const [speechToText, SetSpeechToText] = useState("");
+  const [aiResponse, SetAIResponse] = useState("");
+  const [waiting, setWaiting] = useState(false);
 
   const input_variables = {
     filter:{
@@ -84,18 +86,12 @@ const MockInterview = () => {
     pauseRecording,
     mediaBlobUrl
   } = useReactMediaRecorder({
-    video: false,
+    video: true,
     audio: true,
     echoCancellation: true,
     mimeType: "audio/wav"
   });
   console.log("url", mediaBlobUrl);
-
-  const videoConstraints = {
-      width: 640,
-      height: 480,
-      facingMode: "user"
-  }
   
   const getNextQuestion = () => {
     let nextIndex = questionIndex + 1;
@@ -121,95 +117,45 @@ const MockInterview = () => {
     fetch(mediaBlobUrl)
     .then((response) => response.blob())
     .then(async (blob) => {
-      // const wavBlob = convertWebmToMp3(blob)
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
+      setWaiting(true);
       formData.append("audiodata", audioFile, "audiodata.webm");
+      formData.append("question", questionList[questionIndex].prompt)
       try {
           const response = await axios({
               method: "post",
               url: "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com/opensmileaudio",
+              // url: "http://localhost:5000/opensmileaudio",
               data: formData,
               headers: {"Content-Type": "multipart/form-data"}
           })
           console.log(response.data);
           set_upper_loud(response.data.upper_loud);
           set_lower_loud(response.data.lower_loud);
+          SetSpeechToText(response.data.speech_to_text);
+          SetAIResponse(response.data.ai_response.choices[0].message.content);
+          setSubmmited(true);
+          setWaiting(false);
       } catch(error) {
           console.log(error);
       }
     });
   }
 
-  const startCam = () => {
-      setIsShowVideo(true);
-  }
-
-  const stopCam = () => {
-      let stream = videoElement.current.stream;
-      const tracks = stream.getTracks();
-      tracks.forEach(track => track.stop());
-      setIsShowVideo(false);
-  }
-
   return (
     <div>
-      <div>
-        {isShowVideo &&
-            <div className="camView">
-
-                <Webcam audio={false} ref={videoElement} videoConstraints={videoConstraints} />
-            </div>
-        }
-        {!isShowVideo &&
-          <button onClick={startCam}>Start Video</button>
-        }
-        {isShowVideo &&
-            <button onClick={stopCam}>Stop Video</button>
-        }
-      </div>
-
-      <div
-      style={{
-        border: "1px solid black",
-        //backgroundColor: "black",
-        width: "700px",
-        height: "350px"
-      }}
-      >
-      <div
-        style={{
-          border: "1px solid #bd9f61",
-          height: "70px",
-          backgroundColor: "#bd9f61",
-          display: "flex"
-        }}
-      >
-        <h4
-          style={{
-            marginLeft: "10px",
-            textTransform: "capitalize",
-            fontFamily: "sans-serif",
-            fontSize: "18px",
-            color: "white"
-          }}
-        >
-        {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+      <div style={{border: "1px solid black"}}>
+      <div style={{ border: "1px solid #8f4646", height: "70px", backgroundColor: "#8f4646", display: "flex", justifyContent: "center"}}>
+        <h4 style={{marginTop: "10px", marginLeft: "10px", textTransform: "capitalize", fontFamily: "sans-serif", fontSize: "22px", color: "#F6EEE0"}}>
+          {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
       <div style={{ height: "38px" }}>
-        {" "}
         <video src={mediaBlobUrl} controls loop />
       </div>
 
-      <div
-        className="col-md-6 col-md-offset-3"
-        style={{
-          backgroundColor: "black",
-          color: "white",
-          marginLeft: "357px"
-        }}
-      >
+      <div className="col-md-6 col-md-offset-3" style={{backgroundColor: "black", color: "white", marginLeft: "650px"}}>
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
           <span className="minute">{minute}</span>
           <span>:</span>
@@ -217,19 +163,16 @@ const MockInterview = () => {
         </div>
 
         <div style={{ marginLeft: "20px", display: "flex" }}>
-          <label
-            style={{
-              fontSize: "15px",
-              fontWeight: "Normal"
-              // marginTop: "20px"
-            }}
-            htmlFor="icon-button-file"
-          >
+          <label style={{fontSize: "15px", fontWeight: "Normal"}} htmlFor="icon-button-file">
             <h3 style={{ marginLeft: "15px", fontWeight: "normal" }}>
               Press the Start to record
             </h3>
+            <h4 style={{ marginLeft: "10px", textTransform: "capitalize", fontFamily: "sans-serif", fontSize: "18px", color: "white"}}>
+              {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
+            </h4>
 
             <div>
+              { questionList &&
               <button
                 style={{
                   padding: "0.8rem 2rem",
@@ -251,6 +194,7 @@ const MockInterview = () => {
                     stopRecording();
                     pauseRecording();
                     stopTimer();
+                    setRecorded(true);
                   }
 
                   setIsActive(!isActive);
@@ -258,7 +202,7 @@ const MockInterview = () => {
               >
                 {isActive ? "Stop" : "Start"}
               </button>
-
+              }
                <button
                 style={{
                   padding: "0.8rem 2rem",
@@ -283,34 +227,52 @@ const MockInterview = () => {
               >
                 {questionList ? "Get Next Question" : "Get First Question"}
               </button>
-
-              <button
-                style={{
-                  padding: "0.8rem 2rem",
-                  border: "none",
-                  marginLeft: "15px",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  borderRadius: "5px",
-                  fontWeight: "bold",
-                  backgroundColor: "maroon",
-                  color: "white",
-                  transition: "all 300ms ease-in-out",
-                  transform: "translateY(0)"
-                }}
-                onClick={() => {handleSubmit()}}
-              >Submit
-              </button>
+              { (questionList && recorded) &&
+                <button style={{
+                    padding: "0.8rem 2rem",
+                    border: "none",
+                    marginLeft: "15px",
+                    fontSize: "1rem",
+                    cursor: "pointer",
+                    borderRadius: "5px",
+                    fontWeight: "bold",
+                    backgroundColor: "maroon",
+                    color: "white",
+                    transition: "all 300ms ease-in-out",
+                    transform: "translateY(0)"
+                  }} onClick={() => {handleSubmit()}}>
+                  Submit
+                </button>
+              }
             </div>
           </label>
         </div>
         <b></b>
       </div>
       </div>
-      <div>
-      <p>Hap Upper Loud: {upper_loud}</p>
-      <p>Hap Lower Loud: {lower_loud}</p>
-    </div>
+      <div 
+      style={{
+        marginLeft: "650px"
+      }}>
+        <p>
+          { waiting &&
+            "Feedback Loading, Please wait"
+          }
+        </p>
+        <p>{(upper_loud > 6.5 && submmited) &&
+            "Your volume may be too loud"
+        }</p>
+
+          <p>{(upper_loud < 3 && submmited) &&
+              "Your volume may be too quiet"
+          }</p>
+        <p>{submmited &&
+          "What you said: " + speechToText
+        }</p>
+        <p>{submmited &&
+          "Feedback: " + aiResponse
+        }</p>
+      </div>
     </div>
   );
 };
