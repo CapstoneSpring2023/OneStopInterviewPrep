@@ -26,12 +26,13 @@ var probConcepts = <text></text>;
 var probPrompt = <text></text>;
 var probCompany = <text></text>;
 
-var compAddress = localStorage.getItem("comp-address");
+// var compAddress = "http://localhost:5000";
+var compAddress = "https://flask-service.8ac5gsv5hb4sm.us-east-2.cs.amazonlightsail.com";
 
-var startingCode = "// C++ \n#include<bits/stdc++.h>\n#include <stdio.h>\nusing namespace std;\n\nint main() {\n\t// enter your code here \n\t\n\t\n\treturn 0;\n}";
+var startingCCode = "#include<iostream>\nusing namespace std;\nint main() {\n\treturn 0;\n}";
 var savedCode = localStorage.getItem("saved-code");
 if (savedCode) {
-    startingCode = savedCode;
+    startingCCode = savedCode;
 }
 
 class Coding extends Component {
@@ -66,7 +67,7 @@ class Coding extends Component {
         this.state = {
             name: "react",
             selectedOption: thisCompany,
-            userCode: "#include<bits/stdc++.h>\nusing namespace std;\nint main() {\n\treturn 0;\n}",
+            userCode: startingCCode,
             language: "cpp17",
             userOutput: "Terminal Output",
             userInput: "",
@@ -79,14 +80,24 @@ class Coding extends Component {
     }
     async compile(){
         this.setState({userOutput: "Loading..."})
-        axios.post(compAddress + `/compile`, {
-            code: this.state.userCode,
-            stdin: this.state.userInput
-            }).then((res) => {
-                console.log(res);
-                this.setState({userOutput: res.data.output})
-          }).then(() => {
-          })
+        const formData = new FormData();
+        formData.append("userCCode", this.state.userCode);
+        const response = await axios({
+            method: "post",
+            url: compAddress + '/compilecpp',
+            data: formData,
+            headers: {"Content-Type": "multipart/form-data"}
+        })
+        console.log(response);
+        this.setState({userOutput: response.data.code_output})
+        // axios.post(compAddress + '/compilecpp', {
+        //     code: this.state.userCode,
+        //     stdin: this.state.userInput
+        //     }).then((res) => {
+        //         console.log(res);
+        //         this.setState({userOutput: res.data.output})
+        //   }).then(() => {
+        //   })
     }
     render() {
         return (
@@ -193,7 +204,7 @@ class Coding extends Component {
                             <Editor
                                 className='code-editor'
                                 defaultLanguage = "cpp"
-                                defaultValue=  {startingCode}
+                                defaultValue=  {startingCCode}
                                 onChange={(value) => this.setState({userCode: value})}
                             />
                             <RunButton className="run-button" onClick={this.compile}>Run Code</RunButton>
