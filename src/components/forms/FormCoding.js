@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import { API } from 'aws-amplify';
-import { createQuestions, createQuestionsCompany } from '../../graphql/mutations';
+import { createQuestions, createCompanyQuestions } from '../../graphql/mutations';
 import { listCompanies } from "../../graphql/queries";
 
 const SubmitButton = styled.button `
@@ -19,8 +19,6 @@ const SubmitButton = styled.button `
   float: center;
 `
 
-var dbAddress = localStorage.getItem("db-address");
-
 const FormCoding = ({formCd, setFormCd}) => {
     const [companyList, setCompanyList] = useState(null);
     var dropdownCompDis = new Array();
@@ -33,17 +31,17 @@ const FormCoding = ({formCd, setFormCd}) => {
         // todo
         return true;
     }
-
+    
     useEffect( ()=> {
-        API.graphql({
-          query: listCompanies
-        }).then( res => {
-          let companiesArr = res.data.listCompanies.items;
-          setCompanyList(companiesArr);
-        }).catch (err => {
-          console.log("An error occurred when retrieving company list");
-        })
-      },[])
+      API.graphql({
+        query: listCompanies
+      }).then( res => {
+        let companiesArr = res.data.listCompanies.items;
+        setCompanyList(companiesArr);
+      }).catch (err => {
+        console.log("An error occurred when retrieving company list");
+      })
+    },[])
     
       if(companyList != null){
         companyList.map( compObj => {
@@ -52,56 +50,40 @@ const FormCoding = ({formCd, setFormCd}) => {
           )
         })
     }
-    /* need to convert the formCd.concepts string into an array of strings.
-    also need to check for duplicates, the same question can appear for multiple companies 
-    URL Companies is a good example to follow, this is the amplify studio way to do it:
-        mutation{
-    createURLCompany(
-        input: {
-        #reverse integer
-        uRLId:"e7681bfd-8884-463a-ae64-671bbdf7e5f9"
-        #microsoft
-        companyId: "a1450ef6-f339-43cc-87e4-227601a06f27"
-    }){
-        companyId
-        uRLId
-    }
-}
-    */
-    const handleSubmit = e => {
-      e.preventDefault();
-        if (checkValidity()) {
-            // API.graphql({
-            //     query: createQuestions,
-            //     variables: {
-            //         input: {
-            //             title: formCd.name,
-            //             type: 1,
-            //             concepts: [formCd.concepts],
-            //             prompt: formCd.prompt,
-            //             solution: formCd.solution
-            //       }
-            //     }
-            //   }).then(res => {
-            //     //the response returns the data object that was just created, in this case Questions
-            //     //another entry in the Company questions table needs to be created with the ID of the newly created question (attribute of the 'res')
-            //     //and the id of the company (companyID: formCd.company)
-            //     //nested..
-            //     var reviewID = res.data.createQuestions.id
-            //     console.log("The review ID is: ", reviewID)
-            //     // API.graphql({
-            //     //   query: createQuestionsCompany,
-            //     //   variables:{
-            //     //     input:{
-            //     //       companyId: formCd.company,
 
-            //     //     }
-            //     //   }
-            //     // })
-            //     console.log("Response is: ", res);
-            //   }).catch(err => {
-            //     console.log("The error read is: ", err);
-            //   });
+    const handleSubmit = e => {
+      //e.preventDefault();
+        if (checkValidity()) {
+            API.graphql({
+                query: createQuestions,
+                variables: {
+                    input: {
+                        title: formCd.name,
+                        type: 1,
+                        concepts: [formCd.concepts],
+                        prompt: formCd.prompt,
+                        solution: formCd.solution
+                  }
+                }
+              }).then(res => {
+                var questionID = res.data.createQuestions.id
+                //console.log("The question ID is: ", questionID)
+                API.graphql({
+                  query: createCompanyQuestions,
+                  variables:{
+                    input:{
+                      companyId: formCd.company,
+                      questionsId: questionID
+                    }
+                  }
+                }).then(bridge_ent_res => {
+                //  console.log("Response from bridge entity: ", bridge_ent_res)
+                }).catch (bridge_err => {
+                  console.log("Error while creating company questions (entry in bridge entity data type) on FormCoding.js: ", bridge_err);
+                })
+              }).catch(err => {
+                console.log("Error in Create questions query in FormCoding.js: ", err);
+              });
 
 
         } else {
@@ -142,7 +124,7 @@ const FormCoding = ({formCd, setFormCd}) => {
             </textarea><br/>
           
             <label htmlFor='prompt'>Problem Prompt</label><br/>
-            <div className="review-box"><textarea
+            <div class="review-box"><textarea
                     value={formCd.prompt}
                     placeholder="Enter problem prompt"  
                     id="prompt" 
@@ -153,7 +135,7 @@ const FormCoding = ({formCd, setFormCd}) => {
 
 
             <label htmlFor='solution'>Optional: Suggested solution</label><br/>
-            <div className="review-box"><textarea
+            <div class="review-box"><textarea
                     value={formCd.solution}
                     placeholder="Enter a suggested solution "  
                     id="solution" 

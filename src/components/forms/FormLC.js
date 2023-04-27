@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
+import { API } from 'aws-amplify';
+import { createURL } from '../../graphql/mutations';
+import { listCompanies } from "../../graphql/queries";
 
 const SubmitButton = styled.button `
   cursor: pointer;
@@ -16,9 +19,12 @@ const SubmitButton = styled.button `
   float: center;
 `
 
-var dbAddress = localStorage.getItem("db-address");
+
 
 const FormLC = ({formLC, setFormLC}) => {
+    const [companyList, setCompanyList] = useState(null);
+    var dropdownCompDis = new Array();
+
     const handleChange = e => {
         const{name, value} = e.target;
         setFormLC({...formLC, [name]: value});
@@ -27,21 +33,62 @@ const FormLC = ({formLC, setFormLC}) => {
         // todo
         return true;
     }
+
+    useEffect( ()=> {
+        API.graphql({
+          query: listCompanies
+        }).then( res => {
+          let companiesArr = res.data.listCompanies.items;
+          setCompanyList(companiesArr);
+        }).catch (err => {
+          console.log("An error occurred when retrieving company list");
+        })
+      },[])
+      
+        if(companyList != null){
+          companyList.map( compObj => {
+            dropdownCompDis.push(
+            <option value ={compObj.id}>{compObj.name}</option>
+            )
+          })
+      }
     const handleSubmit = e => {
+        //e.preventDefault();
         console.log("formLC.urlType", formLC.urlType)
         if(formLC.urlType != undefined || formLC.urlType != "None" ){
-            var urlEndPoint = dbAddress + '/add' + formLC.urlType
-            console.log("Endpoint is: ", urlEndPoint)
-            fetch(urlEndPoint, {
-                mode:'no-cors',
-                method: 'POST',
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                body: JSON.stringify({
-                    company: formLC.company,
-                    probTitle:formLC.name, 
-                    url:formLC.link,
-                }) 
-              });
+            if (checkValidity()) {
+                var type_int = parseInt(formLC.urlType);
+                API.graphql({
+                    query: createURL,
+                    variables: {
+                        input: {
+                            title: formLC.name,
+                            source: type_int,
+                            url: formLC.link
+                      }
+                    }
+                  }).then(res => {
+                    //the response returns the data object that was just created, in this case Questions
+                    //another entry in the Company questions table needs to be created with the ID of the newly created question (attribute of the 'res')
+                    //and the id of the company (companyID: formCd.company)
+                    //nested..
+                    var reviewID = res.data
+                    console.log("The review ID is: ", reviewID)
+                    // API.graphql({
+                    //   query: createQuestionsCompany,
+                    //   variables:{
+                    //     input:{
+                    //       companyId: formCd.company,
+    
+                    //     }
+                    //   }
+                    // })
+                    console.log("Response is: ", res);
+                  }).catch(err => {
+                    console.log("The error read is: ", err);
+                  });
+    
+             } 
         } else{
             alert("Need to enter Link Type!")
         }
@@ -58,18 +105,13 @@ const FormLC = ({formLC, setFormLC}) => {
             <h2>Submit A LeetCode/HackerRank/Other Link</h2>
 
             <label htmlFor='Company'>Company</label><br/>
-            <select placeholder="Company"
+            <select placeholder="Company Name"
                 id="company"
                 name="company"
                 value={formLC.company}
                 onChange={handleChange}>
                 <option value="None">Select Company</option>
-                <option value="Google">Google</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Amazon">Amazon</option>
-                <option value="Netflix">Netflix</option>
-                <option value="Apple">Apple</option>
-                <option value="Microsoft">Microsoft</option>
+                {dropdownCompDis}
             </select><br/>
 
             <label htmlFor='urlType'>Link Type?</label><br/>
@@ -79,9 +121,9 @@ const FormLC = ({formLC, setFormLC}) => {
                 value={formLC.urlType}
                 onChange={handleChange}>
                 <option value="None">Select Link Type</option>
-                <option value="LeetCode">LeetCode</option>
-                <option value="HackerRank">HackerRank</option>
-                <option value="OtherURL">Other (article or general)</option>
+                <option value={1}>LeetCode</option>
+                <option value={2}>HackerRank</option>
+                <option value={3}>Other (article or general)</option>
             </select><br/>
             
             <label htmlFor='Name'>Name</label>

@@ -4,9 +4,7 @@ import {Link } from "react-router-dom";
 import styled from "styled-components";
 //import VideoComp from '../components/VideoPlayer/VideoComp'
 import FeedbackView from '../../components/feedback_display/FeedbackView';
-import LeetCodeURL from '../../components/urls/LeetCodeURL'
-import HackerRankURL from '../../components/urls/HackerRankURL'
-import OtherURL from '../../components/urls/OtherURL'
+import GetURL from '../../components/urls/GetURL';
 
 const LinkButton = styled.button `
   cursor: pointer;
@@ -32,50 +30,47 @@ const MicrosoftPrep = () => {
     localStorage.setItem("this-company", "70b6ab87-2af7-485c-b30b-977ad6adccd6");
 
   return (
-    <div className='company-page'>
-        <div className='company-header'>
+<div class='company-page'>
+        <div class='company-header'>
           <h1>Interview Preparation Resources For {companyName}</h1>
         </div>
-        <div className='split'>
-          <div className='company-left'>
-            <div className='company-section'>
+        <div class='split'>
+          <div class='company-left'>
+            <div class='company-section'>
               <h1>Our Coding Problems</h1>
-              <body>
+              <h4>
                 Go to our <a href="/coding">practice coding problems</a> and select the "Sort By {companyName}" option.
-              </body>
+              </h4>
             </div>
-            <div className='company-section'>
+            <div class='company-section'>
               <h1>HackerRank Links</h1>
               <ul>
-                <HackerRankURL/>
+                <GetURL type={2}/>
               </ul>
             </div>
           </div>
-          <div className='company-right'>
-            <div className='company-section'>
+          <div class='company-right'>
+            <div class='company-section'>
               <h1>LeetCode Problems</h1>
               <ul>
-                <LeetCodeURL/>
+                <GetURL type = {1}/>
               </ul>
             </div>
-            <div className='company-section'>
+            <div class='company-section'>
               <h1>More Resources</h1>
               <ul>
-                <OtherURL/>
+              <GetURL type = {3}/>
               </ul>
             </div>
           </div>
         </div>
-        <div className='company-section'>
-          <h1>Youtube Playlist</h1>
-          {/* <VideoComp playListId = "PLi9RQVmJD2fYMiu6JOL3PiEVh_Is6jAin"/> */}
-        </div>
-        <div className="company-section reviewList">
+        <div class="company-section reviewList">
           <h1>Interview Reviews For {companyName}</h1>
           <FeedbackView/>
         </div>
     </div>
   )
 }
+
 
 export default MicrosoftPrep
