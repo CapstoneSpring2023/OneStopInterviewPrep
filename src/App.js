@@ -23,7 +23,7 @@ import Profile from "./pages/profile";
 import Chatbot from "./pages/chatbot";
 import FileUpload from "./pages/fileupload";
 import "./App.css";
-// import "@aws-amplify/ui-react/styles.css";
+import "@aws-amplify/ui-react/styles.css";
 import {
   withAuthenticator,
   Button,
