@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import { API } from 'aws-amplify';
-import { listQuestions,listQuestionsCompanies } from '../../graphql/queries';
+import { listQuestions, listCompanyQuestions} from '../../graphql/queries';
 import loadingGif from "../../images/loading.gif";
 
 const ProbButton = styled.button `
   cursor: pointer;
-  background-color: rgb(75, 0, 130);
+  background-color: #8f4646;
   width: 100%;
   padding: 15px 15px;
-  color: white;
+  color: #F6EEE0;
   text-align: center;
   font-size: 20px;
   font-family: "Lucida Console", "Courier New", monospace;
@@ -20,18 +20,13 @@ const ProbButton = styled.button `
 `
 
 function CodingProblemList () {
-  // console.log(
-  //   API.graphql({
-  //       query: listQuestionsCompanies
-  //   })
-  // );
   const [codeProbArr, setcodeProbArr] = useState(null);
   useEffect(() => {
     API.graphql({
-      query: listQuestionsCompanies
+      query: listCompanyQuestions
     }).then(response => {
-      let codeProbsObjs = response.data.listQuestionsCompanies.items
-      console.log("response is: ", codeProbsObjs);
+      let codeProbsObjs = response.data.listCompanyQuestions.items
+      //console.log("response is: ", codeProbsObjs);
       setcodeProbArr(codeProbsObjs);
   }).catch(error => {
     console.log("Error is: ", error)
@@ -48,6 +43,7 @@ function CodingProblemList () {
     var probCompany = "N/A";
     var codeProb = null;
     if (codeProbArr != null) {
+
       codeProbArr.map(codeObj => {
         codeProb = (codeObj.id === objID) ?
           codeObj :
@@ -55,10 +51,10 @@ function CodingProblemList () {
       })
     }
     if (codeProb) {
-      probTitle = codeProb.title;
-      probConcepts = codeProb.concepts;
-      probPrompt = codeProb.prompt;
-      probCompany = codeProb.company;
+      probTitle = codeProb.questions.title;
+      probConcepts = codeProb.questions.concepts;
+      probPrompt = codeProb.questions.prompt;
+     // probCompany = codeProb.questions.company;
     }
 
 
@@ -71,15 +67,12 @@ function CodingProblemList () {
 
   var problemList = new Array();
   var thisCompany = localStorage.getItem("this-company");
-  console.log("This company is returning: ", thisCompany);
   // id, title, prompt, concepts, company
   if(codeProbArr != null){
     codeProbArr.map(codeObj => {
-      console.log(" CAN I ACCESS DATA? -------> ", codeObj.questions.title);
       problemList.push((!thisCompany.localeCompare(codeObj.company.name) || thisCompany == "None") ?
       (<div>
-        {/* onClick={() => {changeCurrentProblem(codeObj.id)}} */}
-        {<ProbButton>{codeObj.questions.title} ({codeObj.company.name})</ProbButton> }
+        {<ProbButton onClick={() => changeCurrentProblem(codeObj.id)} >{codeObj.questions.title} ({codeObj.company.name})</ProbButton> }
       </div>)
       : null)
     })

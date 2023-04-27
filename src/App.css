@@ -131,6 +131,7 @@ input[type="radio"]:focus {
   width: 50%;
   float: left;
   align-items: center;
+  height: auto;
 }
 .company-right {
   width: 50%;
@@ -159,7 +160,7 @@ input[type="radio"]:focus {
   font-style: italic;
   padding: 0.7rem;
 }
-.company-section body, li {
+.company-section h4, li {
   font-size: 25px;
   color: var(--txtcolor);
   font-style: normal;
@@ -282,7 +283,7 @@ input[type="radio"]:focus {
   color: var(--lnk2color);
 }
 .coding-header {
-  height: 400px;
+  height: fit-content;
 }
 .coding-logo {
   left: 0;
@@ -291,6 +292,7 @@ input[type="radio"]:focus {
   padding: 0px;
   border-right-color: var(--brdrcolor);
   border-right-style: solid;
+  margin-bottom: 2%;
 }
 .coding-logo img {
   height: 200px;
@@ -336,17 +338,16 @@ input[type="radio"]:focus {
   color: var(--txtcolor);
   border-width: 0.25px;
   border-left-color: var(--brdrcolor);
-  /*border-left-style: solid;*/
+  height: fit-content;
 }
 .problem-statement h2 {
   color: var(--hdrcolor);
   font-size: 40px;
   margin-bottom: 1rem;
 }
-.problem-statement body {
+.problem-statement h3 {
   color: var(--txtcolor);
   font-size: 30px;
-  margin-bottom: 1rem;
 }
 .coding-problem-left {
   width: 60%;
@@ -551,6 +552,7 @@ input[type="radio"]:focus {
   top: 0;
   overflow-x: hidden;
   overflow: hidden;
+  overflow-y: scroll;
   float:left;
   display: block;
   padding: 10px;
@@ -571,25 +573,22 @@ input[type="radio"]:focus {
 .reviewBox body {
   color: var(--txtcolor);
   height: 70%;
-  overflow-y: scroll;
   border-color: var(--brdrcolor);
-  border-width: 0.5px;
+  border-width: 2px;
   border-top-style: solid;
   border-bottom-style: solid;
 }
-.votes img {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  width: 20px;
-  cursor: pointer;
+
+.votes-up img {
+  margin-top:2%;
+  width: 30px;
+  margin-bottom: 2%;
 }
-.votes {
+.votes-up{
   color: var(--txtcolor);
   font-size: 18px;
   text-indent: 0;
   width: 50%;
-  float: left;
 }
 .down {
   text-align: right;
