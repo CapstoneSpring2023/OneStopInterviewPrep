@@ -105,6 +105,7 @@ input[type="radio"]:focus {
   position: absolute;
   background-color: var(--bgcolor);
 }
+
 .settings-menu options {
   text-align: center;
 }
@@ -609,20 +610,22 @@ input[type="radio"]:focus {
 }
 
 .userDisplay{
-  color: var(--navtxtcolor);
   margin-top: 2.55%;
   margin-left: 5%;
+  color: var(--navtxtcolor);
 }
 
 .signOutBtn{
   background-color: var(--btncolor);
   color: var(--btntxtcolor);
+  width: 100px;
+  margin-top: 15%;
 }
 
 .signout-section{
-  background-color: var(--bgcolor);
   border: none;
-  padding: -5%;
+  margin-left: 5%;
+  width: fit-content;
 }
 /*------Mock Interview Page*/
 .mck-interview{
@@ -649,7 +652,6 @@ input[type="radio"]:focus {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: auto auto;
-  column-gap: 1rem;
 }
 
 .video-container{
@@ -666,6 +668,7 @@ input[type="radio"]:focus {
   background-color: var(--bg2color);
   height: 475px;
   border-radius: 15px;
+  justify-content: left;
 }
 .mck-interview-feedback{
   justify-content: center;

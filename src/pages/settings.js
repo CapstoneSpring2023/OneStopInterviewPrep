@@ -37,7 +37,7 @@ const Settings = () => {
         <div className="company-section settings-menu">
             <h1>Settings</h1>
             <div class="options">
-                Color Scheme:<ColorSchemeButton onClick={changeCSS}>{currentScheme}</ColorSchemeButton>
+               <ColorSchemeButton onClick={changeCSS}>{currentScheme}</ColorSchemeButton>
             </div>
         </div>
     </div>
