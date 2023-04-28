@@ -5,7 +5,6 @@ import upimg2 from "../../images/up2.png";
 import { API } from 'aws-amplify';
 import { listReviews} from '../../graphql/queries';
 import { updateReview } from '../../graphql/mutations';
-import { FaBreadSlice } from "react-icons/fa";
 
 
 function FeedbackView({companyIDs}){

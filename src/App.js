@@ -59,6 +59,7 @@ const GlobalStyle2 = createGlobalStyle`
   html {
     --bgcolor: #170c0d;
     --bg2color: #BCB8B1;
+    --bg3color: #702121;
     --btncolor: #BCB8B1;
     --btntxtcolor: #262948;
     --navcolor: #500000;

@@ -89,7 +89,7 @@ function CodingProblemList () {
     }
   }
   if (isEmpty) {
-    problemList.push(<body>There are currently no problems related to this company.</body>)
+    problemList.push(<h3>There are currently no problems related to this company.</h3>)
   }
   return (
     <div className='show-problems'>

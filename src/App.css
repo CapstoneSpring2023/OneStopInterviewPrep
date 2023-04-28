@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Merriweather:wght@300&family=Mukta:wght@300&family=Roboto+Slab:wght@300&family=Roboto:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400;700&family=Montserrat:wght@100;400;500;700&display=swap');
 
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body{
+  background-color: var(--bgcolor);
 }
 
 h1 {
@@ -14,12 +18,16 @@ h1 {
 
 h2 {
   font-size: 30px;
-  font-family: 'Merriweather', serif
+  font-family: 'Lato', sans-serif;
 }
 
 h3 {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
+}
+
+h4{
+  font-family: 'Montserrat', sans-serif;
 }
 
 .logo-img {
@@ -97,7 +105,7 @@ input[type="radio"]:focus {
   position: absolute;
   background-color: var(--bgcolor);
 }
-.settings-menu body {
+.settings-menu options {
   text-align: center;
 }
 
@@ -394,8 +402,9 @@ input[type="radio"]:focus {
   padding: 0.7rem;
   margin-bottom: 1rem;
 }
-.show-problems body {
+.show-problems h3 {
   font-size: 20px;
+  color: var(--txtcolor)
 }
 
 /* ----- Guide Styling ----- */
@@ -614,4 +623,89 @@ input[type="radio"]:focus {
   background-color: var(--bgcolor);
   border: none;
   padding: -5%;
+}
+/*------Mock Interview Page*/
+.mck-interview{
+  justify-content: center;
+}
+.mck-interview-prompt{
+  display: flex;
+  color: var(--aboutimgtxtcolor);
+  font-size: 38px;
+  justify-content: center;
+  background-color: var(--bg3color);
+  border-radius: 25px;
+  height:150px;
+
+}
+
+.mck-interview-prompt h2{
+  justify-content: center;
+  color: var(--hdrcolor);
+  margin: auto;
+}
+
+.video-n-feedback{
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1rem;
+}
+
+.video-container{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: flex;
+  justify-content: center;
+}
+.video{
+  height: max-content;
+}
+.mck-interview-fdbck-container{
+  justify-content: center;
+  background-color: var(--bg2color);
+  height: 475px;
+  border-radius: 15px;
+}
+.mck-interview-feedback{
+  justify-content: center;
+  color: var(--hdrcolor);
+  height: max-content;
+  padding: 5%;
+}
+
+.mck-interview-controls{
+  color: var(--hdrcolor);
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+}
+
+
+.mck-interview-time{
+  margin:auto;
+  font-size: 45px;
+  
+}
+.strt-sbmit{
+  display: flex;
+  columns: 3;
+  column-gap: 1em;
+}
+.strt-stop-btn{
+  margin: auto;
+}
+
+.sbmt-btn{
+  margin: auto;
+
+}
+
+.mck-interview-btn-guide{
+display: flex;
+justify-content: center;
+}
+.mck-interview p{
+  color:var(--txtcolor);
 }
