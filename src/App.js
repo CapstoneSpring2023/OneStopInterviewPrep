@@ -47,6 +47,7 @@ const GlobalStyle1 = createGlobalStyle`
     --navtxtcolor2: #500000;
     --hdrcolor: #8f4646;
     --txtcolor: #2E4052;
+    --txtcolor2: #2E4052;
     --brdrcolor: #0d0d0d;
     --shdwcolor: #ccc;
     --lnkcolor: #BCB8B1;
@@ -68,6 +69,7 @@ const GlobalStyle2 = createGlobalStyle`
     --navtxtcolor2: #fafafa;
     --hdrcolor: #F6EEE0;
     --txtcolor: #8f4646;
+    --txtcolor2: #F6EEE0;
     --brdrcolor: #0d0d0d;
     --shdwcolor: rgba(50,50,50,0.5);
     --lnkcolor: #F6EEE0;

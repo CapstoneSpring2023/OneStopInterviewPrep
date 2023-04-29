@@ -52,15 +52,8 @@ const Chatbot = () => {
 
 
   return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: '10',
-        }}
-      >
+    <div class = "chatbot">
+      <div class = "chatbot-submit">
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -78,20 +71,14 @@ const Chatbot = () => {
         </form>
       </div>
       {apiResponse && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            margin: 30,
-          }}
-        >
+        <div class = "chatbot-response">
           <text>
             <strong>Justin: </strong>
             {apiResponse}
           </text>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
