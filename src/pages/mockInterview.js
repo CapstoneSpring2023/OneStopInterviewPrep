@@ -1,5 +1,6 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { useReactMediaRecorder } from 'react-media-recorder';
+import Webcam from "react-webcam";
 import { API } from 'aws-amplify';
 import { listQuestions} from '../graphql/queries';
 // import logo from "./../images/Aggie_Fangs_Logo_Transparent.png";
@@ -143,6 +144,8 @@ const MockInterview = () => {
     });
   }
 
+  const replay = false;
+
   return (
     <div>
       <div style={{border: "1px solid black"}}>
@@ -151,11 +154,16 @@ const MockInterview = () => {
           {questionList ? "Prompt: " + questionList[questionIndex].prompt : "Press get question to start" }
         </h4>
       </div>
-      <div style={{ height: "38px" }}>
-        <video src={mediaBlobUrl} controls loop />
+      <div>
+        {!replay &&
+          <Webcam></Webcam>
+        }
+        {replay &&
+          <div style={{backgroundColor: "black", height: "300px", width: "500px"}}></div>
+        }
       </div>
 
-      <div className="col-md-6 col-md-offset-3" style={{backgroundColor: "black", color: "white", marginLeft: "650px"}}>
+      <div className="col-md-6 col-md-offset-3" style={{backgroundColor: "black", color: "white", marginLeft: "0px"}}>
         <div style={{ marginLeft: "70px", fontSize: "54px" }}>
           <span className="minute">{minute}</span>
           <span>:</span>
