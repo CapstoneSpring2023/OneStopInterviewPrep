@@ -12,7 +12,7 @@ import {
 } from "@aws-amplify/ui-react";
 import { Amplify, Auth } from 'aws-amplify';
 
-const Navbar = (props) => {
+const Navbar = ({signOut}) => {
     const [userName, setUserDetails] = React.useState("");
     const [userData, setUserData] = React.useState("");
     const [isLoading, setLoading] = React.useState(true);
@@ -70,9 +70,11 @@ const Navbar = (props) => {
             </NavLink>
         </NavMenu>
         <div className= "userDisplay">
-            <Heading level={3} className="text-area">{userName}</Heading>
+            <div className="nav-link">{userName}</div>
       </div>
-
+      <div className="signout-section">
+          <Button className= "signOutBtn" onClick={signOut}>Sign Out</Button>
+        </div>
     </Nav>
     </>
   )

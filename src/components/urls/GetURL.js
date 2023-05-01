@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import loadingGif from "../../images/loading.gif";
 import { API } from 'aws-amplify';
-import { listURLCompanies} from '../../graphql/queries';
+import { listURLS, listURLCompanies} from '../../graphql/queries';
 
 
-function GetURL({props}){
+function GetURL(props){
     const [urls, setUrls] = useState(null);
     var thisCompany = localStorage.getItem("this-company");
     /*Need to add an additional filter to check type */
@@ -20,7 +20,7 @@ function GetURL({props}){
     useEffect(() => {
         // List all items
         API.graphql({
-            query: listURLCompanies
+            query: listURLCompanies, variables: input_variables,
         }).then(response => {
             let urlArr1 = response.data.listURLCompanies.items
             setUrls(urlArr1);
@@ -37,11 +37,10 @@ function GetURL({props}){
         )
     } else {
         var urlArr = new Array();
-        /*the down vote and up votes dont display properly on some company pages */
+        console.log("props debug: ", props)
         urls.map( Obj=> {
             var urlObj = Obj.uRL;
-            if(urlObj.source == props.type){
-                console.log("inserting these objects to the array: ", urlObj.title)
+            if(urlObj.source == props.type ){
                 urlArr.push(
                     (
                         <li><a href={urlObj.url}>{urlObj.title}</a></li>
@@ -61,4 +60,3 @@ function GetURL({props}){
 }
 
 export default GetURL;
-

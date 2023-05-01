@@ -39,6 +39,7 @@ const GlobalStyle1 = createGlobalStyle`
   html {
     --bgcolor: #fafafa;
     --bg2color: #BCB8B1;
+    --bg3color: #BCB8B1;
     --btncolor: #2E4052;
     --btntxtcolor: #fafafa;
     --navcolor: #F6EEE0;
@@ -46,6 +47,7 @@ const GlobalStyle1 = createGlobalStyle`
     --navtxtcolor2: #500000;
     --hdrcolor: #8f4646;
     --txtcolor: #2E4052;
+    --txtcolor2: #2E4052;
     --brdrcolor: #0d0d0d;
     --shdwcolor: #ccc;
     --lnkcolor: #BCB8B1;
@@ -59,6 +61,7 @@ const GlobalStyle2 = createGlobalStyle`
   html {
     --bgcolor: #170c0d;
     --bg2color: #BCB8B1;
+    --bg3color: #702121;
     --btncolor: #BCB8B1;
     --btntxtcolor: #262948;
     --navcolor: #500000;
@@ -66,6 +69,7 @@ const GlobalStyle2 = createGlobalStyle`
     --navtxtcolor2: #fafafa;
     --hdrcolor: #F6EEE0;
     --txtcolor: #8f4646;
+    --txtcolor2: #F6EEE0;
     --brdrcolor: #0d0d0d;
     --shdwcolor: rgba(50,50,50,0.5);
     --lnkcolor: #F6EEE0;
@@ -121,14 +125,10 @@ function App({ signOut }) {
   if(isLoading) {
     return <div>Loading...</div>
   }
-  // var userName = userDetails.username;
   return (
       <BrowserRouter basename='/'>
         {whichStyle()}
-        <Navbar />
-        <div className="signout-section">
-          <Button className= "signOutBtn" onClick={signOut}>Sign Out</Button>
-        </div>
+        <Navbar signOut ={signOut}/>
         <Routes>
           <Route exact="true" path="/" element = {<Home />}/>
           <Route path="/applications" element = {<Applications/>}/>
