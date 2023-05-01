@@ -75,32 +75,32 @@ function FeedbackView({companyIDs}){
         }).catch(err => {
             console.log("Review update query in FeedbackView.js failed error is: ", err)
         })
-       // window.location.reload();
+        window.location.reload();
     }
 
-    function downvote(id){
-        var rev_obj = reviewInfo.filter(reviewObj => reviewObj.id === id);
-        var rev_to_upvote = rev_obj[0]
-        var new_rating = rev_to_upvote.rating - 1;
-        //console.log("State is set to: ", setlike);
-        /* need to set states... no need to validate user*/
-        document.getElementsByClassName("votes").src = disliked;
-        API.graphql({
-            query: updateReview,
-            variables:{
-                input: {
-                    id: rev_to_upvote.id,
-                    rating: new_rating
-                }
-            }
-        }).then(res => {
-          //  console.log(res);
-        }).catch(err => {
-            console.log("Review update query in FeedbackView.js failed error is: ", err)
-        })
-        //window.location.reload();
+    // function downvote(id){
+    //     var rev_obj = reviewInfo.filter(reviewObj => reviewObj.id === id);
+    //     var rev_to_upvote = rev_obj[0]
+    //     var new_rating = rev_to_upvote.rating - 1;
+    //     //console.log("State is set to: ", setlike);
+    //     /* need to set states... no need to validate user*/
+    //     document.getElementsByClassName("votes").src = disliked;
+    //     API.graphql({
+    //         query: updateReview,
+    //         variables:{
+    //             input: {
+    //                 id: rev_to_upvote.id,
+    //                 rating: new_rating
+    //             }
+    //         }
+    //     }).then(res => {
+    //       //  console.log(res);
+    //     }).catch(err => {
+    //         console.log("Review update query in FeedbackView.js failed error is: ", err)
+    //     })
+    //     //window.location.reload();
 
-    }
+    // }
 
     function display_rating(id){
         var rev_obj = reviewInfo.filter(reviewObj => reviewObj.id === id);
@@ -109,44 +109,33 @@ function FeedbackView({companyIDs}){
     }
 
 
-    function handleLike(id){
-        console.log("liked_img_state is: ", like_img_state.current);
-        if(like_img_state.current === true){
-            like_img_state.current = false;
-            localStorage.setItem('like_status', false);
-            console.log("disliked.")
-            downvote(id);  
-        } else{
-            like_img_state.current = true;
-            localStorage.setItem('like_status', true);
-            console.log("liked.")
-            upVote(id);
-        }
+    // function handleLike(id){
+    //     console.log("liked_img_state is: ", like_img_state.current);
+    //     if(like_img_state.current === true){
+    //         like_img_state.current = false;
+    //         localStorage.setItem('like_status', false);
+    //         console.log("disliked.")
+    //         downvote(id);  
+    //     } else{
+    //         like_img_state.current = true;
+    //         localStorage.setItem('like_status', true);
+    //         console.log("liked.")
+    //         upVote(id);
+    //     }
         
-    }
+    // }
 
-    useEffect(() => {
-        var liked_status = localStorage.getItem('like_status');
-        console.log("IN USE EFFECT, liked status", liked_status);
-        if (liked_status === true){
-            setLikeImg(liked);
-        } else {
-            setLikeImg(disliked);
-        }
-
-    })
-
-    function like(e) {
-        var cur_img = e.target.getAttribute('src');
-        if(cur_img === disliked || like_img_state.current === false){
-            e.target.setAttribute( 'src', liked);
-            e.target.setAttribute('alt', 'liked');
-        } else if (cur_img === liked || like_img_state.current === true){
-            e.target.setAttribute( 'src', disliked);
-            e.target.setAttribute('alt', 'disliked');
-        }
-    }
-    like_disp = <img class = "votes" src={likeimg} alt="upvote" align="left"  ref={like_img_state} onClick={like}/>
+    // function like(e) {
+    //     var cur_img = e.target.getAttribute('src');
+    //     if(cur_img === disliked || like_img_state.current === false){
+    //         e.target.setAttribute( 'src', liked);
+    //         e.target.setAttribute('alt', 'liked');
+    //     } else if (cur_img === liked || like_img_state.current === true){
+    //         e.target.setAttribute( 'src', disliked);
+    //         e.target.setAttribute('alt', 'disliked');
+    //     }
+    // }
+    like_disp = <img class = "votes" src={likeimg} alt="upvote" align="left"  ref={like_img_state}/>
 
     if(reviewInfo === null ){
         return(
@@ -168,7 +157,7 @@ function FeedbackView({companyIDs}){
                     <h3>Level: {display_level(singleReviewItem.level)}</h3>
 
                     <div class="votes-up">
-                        <a onClick={() => {handleLike(singleReviewItem.id)}}>{like_disp}</a>{singleReviewItem.upVotes}
+                        <a onClick={() => {upVote(singleReviewItem.id)}}>{like_disp}</a>{singleReviewItem.upVotes}
                         <h3>{display_rating(singleReviewItem.id)}</h3>
                     </div>
 
