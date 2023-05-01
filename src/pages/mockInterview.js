@@ -36,8 +36,8 @@ const MockInterview = () => {
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
   const [aiResponse, SetAIResponse] = useState("");
-  const [waiting, setWaiting] = useState(false);
   var disp_vid, disp_time, disp_start_stop, disp_sbmt, disp_fdbck;
+  const [loading, setLoading] = useState(false);
 
   const input_variables = {
     filter:{
@@ -97,6 +97,8 @@ const MockInterview = () => {
   
   const getNextQuestion = () => {
     let nextIndex = questionIndex + 1;
+    setRecorded(false);
+    setSubmmited(false);
     if (nextIndex == questionList.length) {
       setQuestionIndex(0);
     } else {
@@ -121,7 +123,7 @@ const MockInterview = () => {
     .then(async (blob) => {
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
-      setWaiting(true);
+      setLoading(true);
       formData.append("audiodata", audioFile, "audiodata.webm");
       formData.append("question", questionList[questionIndex].prompt)
       try {
@@ -137,7 +139,7 @@ const MockInterview = () => {
           SetSpeechToText(response.data.speech_to_text);
           SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
-          setWaiting(false);
+          setLoading(false);
       } catch(error) {
           console.log(error);
       }
@@ -276,6 +278,30 @@ const MockInterview = () => {
         </div>
         <b></b>
       </div>
+      </div>
+      <div 
+      style={{
+        marginLeft: "650px"
+      }}>
+        <p>
+          { loading &&
+            "Feedback Loading, Please Wait"
+          }
+        </p>
+        <p>{(upper_loud > 6.5 && submmited && !loading) &&
+            "Your volume may be too loud"
+        }</p>
+
+          <p>{(upper_loud < 3 && submmited && !loading) &&
+              "Your volume may be too quiet"
+          }</p>
+        <p>{(submmited && !loading) &&
+          "What you said: " + speechToText
+        }</p>
+        <br></br>
+        <p>{(submmited && !loading) &&
+          "Feedback: " + aiResponse
+        }</p>
       </div>
     </div>
   );

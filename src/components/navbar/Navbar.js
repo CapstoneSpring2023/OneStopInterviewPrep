@@ -1,7 +1,7 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavbarElements";
 import Logo from "./Logo"
-import "@aws-amplify/ui-react/styles.css";
+// import '@aws-amplify/ui-react/styles.css';
 import {
   withAuthenticator,
   Button,
