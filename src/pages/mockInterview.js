@@ -37,6 +37,7 @@ const MockInterview = () => {
   const [speechToText, SetSpeechToText] = useState("");
   const [aiResponse, SetAIResponse] = useState("");
   const [waiting, setWaiting] = useState(false);
+  const [loading, setLoading] = useState(false);
   var disp_vid, disp_time, disp_start_stop, disp_sbmt, disp_fdbck;
 
   const input_variables = {
@@ -97,6 +98,8 @@ const MockInterview = () => {
   
   const getNextQuestion = () => {
     let nextIndex = questionIndex + 1;
+    setRecorded(false);
+    setSubmmited(false);
     if (nextIndex == questionList.length) {
       setQuestionIndex(0);
     } else {
@@ -121,7 +124,7 @@ const MockInterview = () => {
     .then(async (blob) => {
       const audioFile = new File([blob], 'audiodata.webm', { type: 'audio/webm' });
       const formData = new FormData();
-      setWaiting(true);
+      setLoading(true);
       formData.append("audiodata", audioFile, "audiodata.webm");
       formData.append("question", questionList[questionIndex].prompt)
       try {
@@ -137,7 +140,7 @@ const MockInterview = () => {
           SetSpeechToText(response.data.speech_to_text);
           SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
-          setWaiting(false);
+          setLoading(false);
       } catch(error) {
           console.log(error);
       }
