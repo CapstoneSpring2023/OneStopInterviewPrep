@@ -158,7 +158,7 @@ const MockInterview = () => {
       <div class = "mck-interview-feedback">
         <div class="loudness-fdbck">
           <h4>
-            { waiting &&
+            { loading &&
               "Feedback Loading, Please wait"
             }
           </h4>
@@ -277,10 +277,6 @@ const MockInterview = () => {
                     {questionList ? "Get Next Question" : "Get First Question"}
           </button>
           </label>
-        
-        
-        
-        
         
         </div>
       </div>
