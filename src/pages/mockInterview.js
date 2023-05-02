@@ -271,37 +271,8 @@ const MockInterview = () => {
           </button>
           </label>
         
-        
-        
-        
-        
         </div>
-        <b></b>
       </div>
-      </div>
-      <div 
-      style={{
-        marginLeft: "650px"
-      }}>
-        <p>
-          { loading &&
-            "Feedback Loading, Please Wait"
-          }
-        </p>
-        <p>{(upper_loud > 6.5 && submmited && !loading) &&
-            "Your volume may be too loud"
-        }</p>
-
-          <p>{(upper_loud < 3 && submmited && !loading) &&
-              "Your volume may be too quiet"
-          }</p>
-        <p>{(submmited && !loading) &&
-          "What you said: " + speechToText
-        }</p>
-        <br></br>
-        <p>{(submmited && !loading) &&
-          "Feedback: " + aiResponse
-        }</p>
       </div>
     </div>
   );
