@@ -36,9 +36,9 @@ const Settings = () => {
     <div className="settings-page">
         <div className="company-section settings-menu">
             <h1>Settings</h1>
-            <body>
-                Color Scheme:<ColorSchemeButton onClick={changeCSS}>{currentScheme}</ColorSchemeButton>
-            </body>
+            <div class="options">
+               <ColorSchemeButton onClick={changeCSS}>{currentScheme}</ColorSchemeButton>
+            </div>
         </div>
     </div>
   )
