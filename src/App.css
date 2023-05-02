@@ -244,16 +244,9 @@ input[type="radio"]:focus {
   columns: 3;
 }
 
-/* .link-section {
-  float: left;
-  width: 33.33%;
-  background-color: var(--bgcolor);
-  height: 500px;
-  text-align: center;
-} */
-
 #link-area{
-  columns:3;
+  columns: 3;
+  margin-left : 10%;
 }
 
 .link-section h2{
@@ -270,13 +263,13 @@ input[type="radio"]:focus {
 .clipart{
   height: 100px;
   width: 100px;
-  margin-left: 16%;
+  margin-left: 27%;
   
 }
 
 .link-context{
   padding: 10px;
-  width: 50%;
+  width: 75%;
 }
 
 #prep{
@@ -732,10 +725,27 @@ justify-content: center;
 }
 
 .chatbot-submit{
-  padding: 8%;
+  padding: 2.5%;
   display: flex;
   justify-content: center;
   height: 30px;
+}
+
+.description{
+  background-color: var(--bg2color);
+  margin-top: 2%;
+  height: 250px;
+  width: 50%;
+  margin-left: 25%;
+  border-radius: 25px;
+  color: var(--txtcolor2);
+  text-align: center;
+}
+
+
+.description-text{
+  padding: 40px;
+  font-weight: 500;
 }
 
 .chatbot input{

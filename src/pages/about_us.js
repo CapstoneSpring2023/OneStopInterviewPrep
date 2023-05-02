@@ -31,8 +31,13 @@ const Home = () => {
         <div className= "split explanation-bottom">
         <h1> About Us</h1>
         <h2>
-        A one-stop shop for all of your interview preparation needs! Aimed at making interview preparation resources
-        more accessible for all.
+        Welcome to our one-stop shop for technical interview preparation!
+         Our mission is to make interview preparation free and accessible to all. We understand that technical interviews can be daunting and stressful, 
+         which is why we offer a wide range of resources and materials to help you feel confident and prepared. 
+         From coding challenges and practice problems to behavioral interview tips and advice, our platform has everything you need to succeed. 
+         Our team is dedicated to providing high-quality content and ensuring that our users have the best experience possible. 
+         Whether you're just starting your interview preparation journey or looking to refine your skills, we're here to help you every step of the way. 
+         Join our community today and take the first step towards acing your technical interview!
         </h2>
         </div>
       </div>
