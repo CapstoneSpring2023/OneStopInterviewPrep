@@ -35,6 +35,7 @@ const MockInterview = () => {
   const [upper_loud, set_upper_loud] = useState("0");
   const [lower_loud, set_lower_loud] = useState("0");
   const [speechToText, SetSpeechToText] = useState("");
+  const [emo_dec, set_emo_dec] = useState(" ");
   const [aiResponse, SetAIResponse] = useState("");
   const [waiting, setWaiting] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -138,7 +139,7 @@ const MockInterview = () => {
           set_upper_loud(response.data.upper_loud);
           set_lower_loud(response.data.lower_loud);
           SetSpeechToText(response.data.speech_to_text);
-          //response.data.emotion
+          set_emo_dec(response.data.emotion_detection);
           SetAIResponse(response.data.ai_response.choices[0].message.content);
           setSubmmited(true);
           setLoading(false);
@@ -174,6 +175,10 @@ const MockInterview = () => {
           }</h4>
         </div>
 
+        <div class = "emotion-detection">
+          <h4>{submmited && 
+          "Our model suggests that you may sound " + emo_dec}</h4>
+        </div>
         <div class= "ai-fdbck">
           <h4>{submmited &&
             "Feedback: " + aiResponse
@@ -278,7 +283,6 @@ const MockInterview = () => {
         
         
         </div>
-        <b></b>
       </div>
       </div>
     </div>

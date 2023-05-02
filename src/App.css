@@ -240,17 +240,26 @@ input[type="radio"]:focus {
   color:  var(--aboutimgtxtcolor);
 }
 
-.link-section {
+.about-links{
+  columns: 3;
+}
+
+/* .link-section {
   float: left;
   width: 33.33%;
   background-color: var(--bgcolor);
   height: 500px;
   text-align: center;
+} */
+
+#link-area{
+  columns:3;
 }
 
 .link-section h2{
   color:var(--txtcolor);
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .link-section h3{
@@ -261,8 +270,13 @@ input[type="radio"]:focus {
 .clipart{
   height: 100px;
   width: 100px;
-  /* margin-left: 20%; */
+  margin-left: 16%;
   
+}
+
+.link-context{
+  padding: 10px;
+  width: 50%;
 }
 
 #prep{
@@ -274,6 +288,7 @@ input[type="radio"]:focus {
 
 #prep_context{
   margin-top: 5%;
+  padding: 10px;
 }
 
 
@@ -650,13 +665,10 @@ input[type="radio"]:focus {
 
 .video-n-feedback{
   margin-top: 1rem;
-  display: grid;
-  grid-template-columns: auto auto;
+  columns: 2;
 }
 
 .video-container{
-  grid-column-start: 1;
-  grid-column-end: 2;
   display: flex;
   justify-content: center;
 }
@@ -665,10 +677,11 @@ input[type="radio"]:focus {
 }
 .mck-interview-fdbck-container{
   justify-content: center;
-  background-color: var(--bg2color);
   height: 475px;
   border-radius: 15px;
   justify-content: left;
+  width: 800px;
+  background-color: var(--bg2color);
 }
 .mck-interview-feedback{
   justify-content: center;
