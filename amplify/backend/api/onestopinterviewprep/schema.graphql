@@ -49,8 +49,3 @@ type Company @model @auth(rules: [{allow: public}]) {
   Reviews: [Review] @hasMany(indexName: "byCompany", fields: ["id"])
   Users: [User] @hasMany(indexName: "byCompany", fields: ["id"])
 }
- 
- type URLCompany {
-  uRLId: ID!
-  CompanyId: ID!
-}
