@@ -178,8 +178,9 @@ const MockInterview = () => {
 
         <div class = "emotion-detection">
           <h4>{submmited && 
-          "Our model suggests that you may sound " + user_emotion}</h4>
+          "Our model suggests that are you feeling " + user_emotion + "."}</h4>
         </div>
+        <br></br>
         <div class= "ai-fdbck">
           <h4>{submmited &&
             "Feedback: " + aiResponse
