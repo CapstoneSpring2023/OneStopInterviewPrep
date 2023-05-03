@@ -20,6 +20,15 @@ Howdy, welcome to our One Stop Interview Prep website GitHub. This website is in
 - Chatbot
   - Users can communicate with a chatbot to ask general questions about interview preparation. Powered by openAI.
 
+### Mockinterview.js
+- stopTimer
+  - This function is connected to the stop button in the front end and it is used to not only stop the timer but also save the recording to the mediaBlobUrl object. 
+- getNextQuestion
+  - This is connected to the "get next question" button and is used to get the next question in the question list array. This is done by adding 1 to the question         index and also sets some other variables for the front end to use.
+- questionStart
+  - This is connected to the "get first question" button and it is used to query the database for the list of questions. This is done by the using a graphql database     query and if it returns successfully then it saves the list to the questionList variable.
+- handleSubmit
+  - This is connected to the submit button and it is used to pass back the data to the flask server and then save what we want to output in the disp_fdbck variable.     This is done by having a fetch to the mediaBlobUrl, then creating a blob (binary large object) with the recording and the question prompt. We then send that blob     to the flask with a axios call. Once it returns we set the variables that it returns and sets what feedback should be displayed.
 
 ## Links
 [Main Branch](https://main.d18nfltgi3s46l.amplifyapp.com/)
