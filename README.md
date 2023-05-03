@@ -28,6 +28,7 @@ When changes are ready to be brought to production:
   - The React frontend is hosted on AWS Amplify.
   - The graphQL database is hosting on AWS Amplify.
   - The Flask server is containerized in docker and hosted on an AWS Lightsail instance.
+    - The repository that contains the code for the Flask backend is currently private to keep certain keys secure.
 - Mock Interview
   - Users can record themselves answering an interview question and submit it for AI evaliation.
   - Implemenation:
@@ -79,6 +80,49 @@ When changes are ready to be brought to production:
   - This is connected to the "get first question" button and it is used to query the database for the list of questions. This is done by the using a graphql database     query and if it returns successfully then it saves the list to the questionList variable.
 - handleSubmit
   - This is connected to the submit button and it is used to pass back the data to the flask server and then save what we want to output in the disp_fdbck variable.     This is done by having a fetch to the mediaBlobUrl, then creating a blob (binary large object) with the recording and the question prompt. We then send that blob     to the flask with a axios call. Once it returns we set the variables that it returns and sets what feedback should be displayed.
+  
+### codingProb.js
+- CodingProblemList
+  - This is a function that is called on loading the page and its purpose is to load all the the questions onto the page. This is done by making a graphQL query and     then storing the response in the codeProbArr variable.
+- changeCurrentProblem
+   - This gets the question of the index that is given, this is done by taking given index and getting the question from the codeProbArr and then setting the local variables to the information in the question and then refreshing the window.
+
+### Chatbot.js
+- configuration
+  - This function sets the openAI API key securely from the environment variables.
+- handleSubmit
+  - This function handles sending the user prompt, as well as the conversation history, to the Flask backend via Axios.
+  - Also handles the response from the Flask backend and displays the AI response to the user.
+
+### Database Information
+- User
+  - first_name: users first name
+  - last_name: users last name
+  - email: users email
+  - CompanyID: Connects this user to a company for those who may be represenatives of a company
+  - resume: users resume
+- Company
+  - name: company name
+  - logo: comapnies logo
+- URL
+  - title: URL title
+  - source: enum where 1 represents a leetcode problem, 2 represents a hackerrank problem and 3 represents other
+  - url: the actual url
+- Question
+  - title: question title
+  - type: enum where 1 represents a coding problem, 2 represents a technical questions and 3 represents behavioral
+  - concepts: concepts covered by the question
+  - prompts: question prompt (the actual question)
+  - solution: potential solution for the question
+- Review
+  - review: written review string
+  - rating: 1-5 rating for the item
+  - level: Enum that represents the class of the reviewer, 1: freshmen, 2: sophmore, 3: junior, 4: senior, 5: 5th year senior
+  - position: position title that the reviewer was trying to get
+  - companyID: if a company review then the ID of company being reviewed
+  - UserID: user ID of reviewer
+  - questionID: if a question review then the ID of question being reviewed
+  - URLID: if a URL review then the ID of URL being reviewed
 
 ## Links
 [Main Branch](https://main.d18nfltgi3s46l.amplifyapp.com/)
