@@ -57,19 +57,7 @@ const Chatbot = () => {
       <div class = "description-text">
       Introducing our AI chatbot feature,
        designed to help students better understand computer 
-       science concepts and clarify any unfamiliar terms. 
-       Our chatbot is your personal learning companion, available 24/7 
-       to answer your questions and provide you with clear and concise 
-       explanations of key concepts. With its advanced natural language
-       processing capabilities, our chatbot can understand your queries 
-       and provide relevant and accurate information in real-time. 
-       Whether you're struggling to understand a complex algorithm or 
-       need a quick definition of a technical term, our chatbot is here 
-       to assist you every step of the way. Our goal is to make learning 
-       computer science more accessible and engaging, and our chatbot 
-       is just one of the many ways we're achieving that. 
-       Try it out today and see for yourself how our chatbot 
-       can enhance your learning experience!
+       science concepts and clarify any unfamiliar terms.
       </div>
       </div>
       <div class = "chatbot-submit">
