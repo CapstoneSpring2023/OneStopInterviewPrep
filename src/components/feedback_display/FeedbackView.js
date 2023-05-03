@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from "react";
 import loadingGif from "../../images/loading.gif";
-import disliked from "../../images/disliked.png";
+import disliked from "../../images/liked.png";
 import liked from "../../images/liked.png"
 import like_feedback from "../../images/like_feedback.gif"
 import { API } from 'aws-amplify';
@@ -10,7 +10,7 @@ import { updateReview } from '../../graphql/mutations';
 
 function FeedbackView({companyIDs}){
     const [reviewInfo, setReviewInfo] = useState(null);
-    const [likeimg, setLikeImg] = useState(disliked);
+    const [likeimg, setLikeImg] = useState(liked);
     const [rating, setRating] = useState(null);
     const like_img_state = React.createRef(false);
     var like_disp;
@@ -84,7 +84,7 @@ function FeedbackView({companyIDs}){
     //     var new_rating = rev_to_upvote.rating - 1;
     //     //console.log("State is set to: ", setlike);
     //     /* need to set states... no need to validate user*/
-    //     document.getElementsByClassName("votes").src = disliked;
+    //     document.getElementsByClassName("votes").src = liked;
     //     API.graphql({
     //         query: updateReview,
     //         variables:{
@@ -114,7 +114,7 @@ function FeedbackView({companyIDs}){
     //     if(like_img_state.current === true){
     //         like_img_state.current = false;
     //         localStorage.setItem('like_status', false);
-    //         console.log("disliked.")
+    //         console.log("liked.")
     //         downvote(id);  
     //     } else{
     //         like_img_state.current = true;
@@ -127,12 +127,12 @@ function FeedbackView({companyIDs}){
 
     // function like(e) {
     //     var cur_img = e.target.getAttribute('src');
-    //     if(cur_img === disliked || like_img_state.current === false){
+    //     if(cur_img === liked || like_img_state.current === false){
     //         e.target.setAttribute( 'src', liked);
     //         e.target.setAttribute('alt', 'liked');
     //     } else if (cur_img === liked || like_img_state.current === true){
-    //         e.target.setAttribute( 'src', disliked);
-    //         e.target.setAttribute('alt', 'disliked');
+    //         e.target.setAttribute( 'src', liked);
+    //         e.target.setAttribute('alt', 'liked');
     //     }
     // }
     like_disp = <img class = "votes" src={likeimg} alt="upvote" align="left"  ref={like_img_state}/>
