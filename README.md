@@ -28,6 +28,7 @@ When changes are ready to be brought to production:
   - The React frontend is hosted on AWS Amplify.
   - The graphQL database is hosting on AWS Amplify.
   - The Flask server is containerized in docker and hosted on an AWS Lightsail instance.
+    - The repository that contains the code for the Flask backend is currently private to keep certain keys secure.
 - Mock Interview
   - Users can record themselves answering an interview question and submit it for AI evaliation.
   - Implemenation:
@@ -79,6 +80,14 @@ When changes are ready to be brought to production:
   - This is connected to the "get first question" button and it is used to query the database for the list of questions. This is done by the using a graphql database     query and if it returns successfully then it saves the list to the questionList variable.
 - handleSubmit
   - This is connected to the submit button and it is used to pass back the data to the flask server and then save what we want to output in the disp_fdbck variable.     This is done by having a fetch to the mediaBlobUrl, then creating a blob (binary large object) with the recording and the question prompt. We then send that blob     to the flask with a axios call. Once it returns we set the variables that it returns and sets what feedback should be displayed.
+  
+
+### Chatbot.js
+- configuration
+  - This function sets the openAI API key securely from the environment variables.
+- handleSubmit
+  - This function handles sending the user prompt, as well as the conversation history, to the Flask backend via Axios.
+  - Also handles the response from the Flask backend and displays the AI response to the user.
 
 ## Links
 [Main Branch](https://main.d18nfltgi3s46l.amplifyapp.com/)
