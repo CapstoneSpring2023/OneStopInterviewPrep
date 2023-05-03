@@ -81,6 +81,11 @@ When changes are ready to be brought to production:
 - handleSubmit
   - This is connected to the submit button and it is used to pass back the data to the flask server and then save what we want to output in the disp_fdbck variable.     This is done by having a fetch to the mediaBlobUrl, then creating a blob (binary large object) with the recording and the question prompt. We then send that blob     to the flask with a axios call. Once it returns we set the variables that it returns and sets what feedback should be displayed.
   
+### codingProb.js
+- CodingProblemList
+  - This is a function that is called on loading the page and its purpose is to load all the the questions onto the page. This is done by making a graphQL query and     then storing the response in the codeProbArr variable.
+- changeCurrentProblem
+   - This gets the question of the index that is given, this is done by taking given index and getting the question from the codeProbArr and then setting the local variables to the information in the question and then refreshing the window.
 
 ### Chatbot.js
 - configuration
