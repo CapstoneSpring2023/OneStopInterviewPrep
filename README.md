@@ -8,9 +8,17 @@ Howdy, welcome to our One Stop Interview Prep website GitHub. This website is in
 
 ### Main Features
 - Mock Interview
--- Users can record themselves answering an interview question and submit it for AI evaliation.
+  - Users can record themselves answering an interview question and submit it for AI evaliation.
 - Coding Problems
--- Users can practice solving coding problems using C++.
+  - Users can practice solving coding problems using C++.
+- Interview Prep
+  - Users can view reviews from other students on various companies.
+- Share Experience
+  - Users can submit reviews for companies, and request to submit practice problems. This is part of out crowdsourcing initiative.
+- Interview Guides
+  - Users can view recommendations on how to implement a good resume or cover letter, and how to effectively prepare for an interview.
+- Chatbot
+  - Users can communicate with a chatbot to ask general questions about interview preparation. Powered by openAI.
 
 
 ## Links
