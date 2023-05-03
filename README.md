@@ -94,6 +94,36 @@ When changes are ready to be brought to production:
   - This function handles sending the user prompt, as well as the conversation history, to the Flask backend via Axios.
   - Also handles the response from the Flask backend and displays the AI response to the user.
 
+### Database Information
+- User
+  - first_name: users first name
+  - last_name: users last name
+  - email: users email
+  - CompanyID: Connects this user to a company for those who may be represenatives of a company
+  - resume: users resume
+- Company
+  - name: company name
+  - logo: comapnies logo
+- URL
+  - title: URL title
+  - source: enum where 1 represents a leetcode problem, 2 represents a hackerrank problem and 3 represents other
+  - url: the actual url
+- Question
+  - title: question title
+  - type: enum where 1 represents a coding problem, 2 represents a technical questions and 3 represents behavioral
+  - concepts: concepts covered by the question
+  - prompts: question prompt (the actual question)
+  - solution: potential solution for the question
+- Review
+  - review: written review string
+  - rating: 1-5 rating for the item
+  - level: Enum that represents the class of the reviewer, 1: freshmen, 2: sophmore, 3: junior, 4: senior, 5: 5th year senior
+  - position: position title that the reviewer was trying to get
+  - companyID: if a company review then the ID of company being reviewed
+  - UserID: user ID of reviewer
+  - questionID: if a question review then the ID of question being reviewed
+  - URLID: if a URL review then the ID of URL being reviewed
+
 ## Links
 [Main Branch](https://main.d18nfltgi3s46l.amplifyapp.com/)
 
